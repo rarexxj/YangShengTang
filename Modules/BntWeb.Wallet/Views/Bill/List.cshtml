@@ -1,0 +1,66 @@
+﻿@using System.Web.Optimization
+@using Autofac
+@using BntWeb.Wallet.Models
+@using BntWeb.Environment
+@using BntWeb.Security
+@using BntWeb.Security.Identity
+@{
+    ViewBag.Title = WalletModule.DisplayName;
+    ViewBag.SubTitle = "明细列表";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+    var user = ViewBag.CurrentUser as User;
+    var authService = HostConstObject.Container.Resolve<IAuthorizationService>();
+}
+<style>
+    .dataTable th.sorting_disabled { color: #707070; }
+</style>
+@section HeaderRight {
+}
+@model Wallet
+
+<div class="col-xs-12 col-sm-3 center">
+    <div class="hr hr12 dotted"></div>
+
+    <div class="clearfix">
+        <div class="grid3">
+            <span class="bigger-175 red">@(Model.Available + Model.Frozen)</span>
+            <br>
+            总额
+        </div>
+        <div class="grid3">
+            <span class="bigger-175 blue">@Model.Available</span>
+            <br>
+            可用
+        </div>
+        <div class="grid3">
+            <span class="bigger-175 gray">@Model.Frozen</span>
+            <br>
+            冻结
+        </div>
+    </div>
+    <div class="hr hr16 dotted"></div>
+</div>
+<div class="row">
+    <div class="col-xs-12">
+        <div class="table-responsive">
+            <table id="billTable" class="table table-striped table-bordered table-hover">
+                <thead>
+                    <tr>
+                        <th>时间</th>
+                        <th>金额</th>
+                        <th>类型</th>
+                        <th>备注</th>
+                    </tr>
+                </thead>
+                <tbody></tbody>
+            </table>
+        </div>
+    </div>
+</div>
+@section Scripts {
+    @Scripts.Render("~/js/admin/jquery-datatable")
+    <script type="text/javascript">
+        var url_loadPage = "@MvcHtmlString.Create(Url.Action("ListOnPage", "Bill", new {area = WalletModule.Area, walletType = ViewBag.WalletType, memberId = ViewBag.MemberId }))";
+    </script>
+    @Scripts.Render("~/js/admin/Wallet/bill/list")
+}
