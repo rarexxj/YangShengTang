@@ -1,0 +1,140 @@
+﻿@using System.Web.Optimization
+@using BntWeb.FileSystems.Media
+@{
+    ViewBag.Title = WalletModule.DisplayName;
+    ViewBag.SubTitle = "编辑类型";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+    var categoriesJson = Html.Raw(ViewBag.CategoriesJson);
+    var divCategoryDisplay = "none";
+    if (Model.Type == 2)
+    {
+        divCategoryDisplay = "";
+    }
+}
+@model BntWeb.Wallet.Models.Voucher
+@section Styles {
+    @Styles.Render("~/css/ztree")
+    @Styles.Render("~/css/admin/editable")
+
+}
+<form class="form-horizontal" role="form" id="VoucherForm" action="@Url.Action("EditOnPost", "Voucher", new {area = WalletModule.Area})">
+    <div class="form-group">
+        <label class="col-sm-1 control-label no-padding-right" for="Title"> 优惠券名称 </label>
+        <input type="hidden" id="Id" name="Id" value="@Model.Id" />
+        <div class="col-sm-9">
+            <div class="clearfix">
+                <input type="text" id="Title" name="Title" placeholder="优惠券名称" class="col-xs-6 col-sm-3" value="@Model.Title" /><span class="red">*</span>
+            </div>
+        </div>
+    </div>
+    <div class="space-4"></div>
+    <div class="form-group" style="display:none;">
+        <label class="col-sm-1 control-label no-padding-right" for="Type"> 优惠券类型 </label>
+        <div class="col-sm-9">
+            <span class="input-icon">
+                <select class="form-control" id="Type" name="Type" onchange="divCategory();">
+                    <option value="1" @(Model.Type == 1 ? "selected=selected" : "")>通用</option>
+                    <option value="2" @(Model.Type == 2 ? "selected=selected" : "")>类别</option>
+                </select>
+            </span>
+        </div>
+    </div>
+
+    <div class="space-4"></div>
+    <div class="form-group" id="divCategory" style="display:@divCategoryDisplay">
+        <label class="col-sm-1 control-label no-padding-right" for="CategoryName"> 商品分类 </label>
+        <div class="col-sm-9">
+            <div class="clearfix">
+                <input type="text" id="CategoryName" name="CategoriesName" placeholder="" class="col-xs-10 col-sm-3" readonly onclick=mainTreeFun.showMenu(); value="@ViewBag.CategoryName" />
+                <input type="text" id="CategoryId" name="CategoriesId" placeholder="" style="display: none;" value="@Model.CategoriesId" />
+                <span class="red">*</span>
+                <!--CategoryId 对应的分类数结构 -->
+                <div id="menuContent" class="menuContent" style="display: none; position: absolute; background: #fff; border: 1px solid #d5d5d5; z-index: 100;">
+                    <ul id="mainCategoryTree" name="mainCategoryTree" class="ztree" style="margin-top: 0; height: 300px; overflow: auto"></ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="space-4"></div>
+    <div class="form-group">
+        <label class="col-sm-1 control-label no-padding-right" for="Denomination"> 优惠券面额 </label>
+        <div class="col-sm-9">
+            <div class="clearfix">
+                <input type="text" style="text-align: center;" id="Denomination" name="Denomination" placeholder="减" class="col-xs-3 col-sm-1" value="@Model.Denomination" /><span class="red">*</span>
+            </div>
+        </div>
+    </div>
+    <div class="space-4"></div>
+    <div class="form-group">
+        <label class="col-sm-1 control-label no-padding-right" for="Condition"> 满足条件 </label>
+        <div class="col-sm-9">
+            <div class="clearfix">
+                <input type="text" style="text-align:center;" id="Condition" name="Condition" placeholder="满" class="col-xs-3 col-sm-1" value="@Model.Condition" />
+            </div>
+        </div>
+    </div>
+    <div class="space-4"></div>
+    <div class="form-group">
+        <label class="col-sm-1 control-label no-padding-right" for="StartTime"> 开始时间 </label>
+        <div class="col-sm-9">
+            <span class="input-icon">
+                <input type="text" id="StartTime" name="StartTime" placeholder="开始时间" style="width: 300px;" value="@(Model.StartTime == null? DateTime.Now.ToString("yyyy-MM-dd") : Model.StartTime.ToString("yyyy-MM-dd"))" />
+                <i class="icon-calendar light-orange"></i>
+            </span>
+        </div>
+    </div>
+    <div class="space-4"></div>
+    <div class="form-group">
+        <label class="col-sm-1 control-label no-padding-right" for="EndTime"> 结束时间 </label>
+        <div class="col-sm-9">
+            <span class="input-icon">
+                <input type="text" id="EndTime" name="EndTime" placeholder="结束时间" style="width: 300px;" value="@(Model.EndTime == null ? DateTime.Now.ToString("yyyy-MM-dd") : Model.EndTime.ToString("yyyy-MM-dd"))" />
+                <i class="icon-calendar light-orange"></i>
+            </span>
+        </div>
+    </div>
+    <div class="space-4"></div>
+    <div class="form-group">
+        <label class="col-sm-1 control-label no-padding-right" for="UseTimes"> 可使用次数 </label>
+        <div class="col-sm-9">
+            <div class="clearfix">
+                <input type="text" style="text-align: center;" id="UseTimes" name="UseTimes" placeholder="可用次数" class="col-xs-3 col-sm-1" value="@Model.UseTimes" /><span class="red">*</span>
+            </div>
+        </div>
+    </div>
+
+    <div class="space-4"></div>
+    <div class="form-group">
+        <label class="col-sm-1 control-label no-padding-right" for="IsUser"> 启用 </label>
+        <div class="col-sm-9">
+            <input type="checkbox" id="IsUser" name="IsUser" @(Model.IsUser == BntWeb.Wallet.Models.UseStatus.InUse ? "checked=checked" : "") value="True" />
+        </div>
+    </div>
+    <div class="clearfix form-actions">
+        <div class="col-md-offset-3 col-md-9">
+            <button class="btn btn-info" type="submit">
+                <i class="icon-ok bigger-110"></i>
+                保存
+            </button>
+        </div>
+    </div>
+</form>
+@section Scripts {
+    @Scripts.Render("~/js/ztree")
+    @Scripts.Render("~/js/admin/editable")
+    @Scripts.Render("~/js/admin/jquery-form")
+    @Scripts.Render("~/js/kindeditor")
+    <script type="text/javascript">
+        var url_list = "@Url.Action("List", "Voucher", new {area = WalletModule.Area})";
+
+        var editor;
+        KindEditor.ready(function (K) {
+            editor = K.create('#Description', {
+                afterBlur: function () { this.sync(); }
+            });
+        });
+
+    </script>
+    @Scripts.Render("~/js/admin/Wallet/Voucher/edit")
+}
