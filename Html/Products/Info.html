@@ -1,0 +1,143 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <meta http-equiv="content-language" content="zh-CN" />
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1" >
+    <meta name="viewport" content="width=device-width,initial-scale=1.0,user-scalable=no" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+    <meta name="format-detection" content="telephone=no" />
+    <meta name="keywords" content="" />
+    <meta name="description" content="" />
+    <meta name="author" content="杭州博采网络科技股份有限公司-高端网站建设-http://www.bocweb.cn" />
+    <meta name="renderer" content="webkit">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>有商</title>
+    <script src="/Html/js/jQuery.js"></script>
+    <script src="/Html/js/vue.js"></script>
+    <script src="/Html/js/main.js"></script>
+    <script src="/Html/js/swiper-3.3.1.jquery.min.js"></script>
+    <link rel="stylesheet" href="/Html/css/reset.css">
+    <link rel="stylesheet" href="/Html/css/swiper-3.3.1.min.css">
+    <link rel="stylesheet" href="/Html/css/style.css">
+    <link rel="stylesheet" href="/Html/css/color-change.css">
+</head>
+<body>
+    <div class="pro-info pb120">
+        <div id="pro-info" v-cloak>
+            <div class="swiper-container swiper-container1">
+                <div class="swiper-wrapper">
+                    <div class="swiper-slide" :style="{backgroundImage: 'url('+listimg.RelativePath+')'}" v-for="listimg in MainImage"></div>
+                </div>
+                <!-- 如果需要分页器 -->
+                <div class="swiper-pagination"></div>
+            </div>
+            <div class="content">
+                <div class="name">{{Name}}</div>
+                <div class="price">
+                    <span class="nowp">¥<span class="int">{{prices1}}</span>.<span class="dec">{{prices2}}</span></span>
+                    <span class="old" v-if="OriginalPrice != 0">价格 <span class="oldp">¥{{OriginalPrice}}</span></span>
+                </div>
+                <div class="freight">运费：¥0.00</div>
+                <div class="tips">
+                    <span style="margin-right: 0.82rem">正品保障</span>
+                    <span>七天内无理由放心退</span>
+                </div>
+            </div>
+            <div class="goshop">
+                <div :class="['coll',HasCollect?'cur':'']" id="coll">
+                    <div class="tb"></div>
+                    <span>收藏</span>
+                </div>
+                <a href="/Html/ShopCar/ShopCar.html" class="goshopc">
+                    <div class="tb"></div>
+                    <span>购物车</span>
+                </a>
+                <div class="addshopc">加入购物车</div>
+                <div class="gobuy" >立即购买</div>
+            </div>
+        </div>
+        <div class="size">选择规格 <i></i></div>
+        <div class="information">
+            <div class="btns f-cb">
+                <div class="btn cur">商品详情</div>
+                <div class="btn eva-btn">销量和评价</div>
+            </div>
+            <div class="info">
+                <div class="infoajax">
+                    <!--<img src="/Html/img/img66.jpg" alt="" width="100%">-->
+                </div>
+                <div class="evaluateajax">
+                    <div class="memlist f-cb" id="head">
+                        <ul>
+                            <li v-for="headlist in data | limitBy 9" v-bind:style="{backgroundImage:'url('+headlist.Avatar.SmallThumbnail+')'}"></li>
+
+                            <li style="background-image:url('/Html/img/img81.png')" v-if="data.length>9"></li>
+                        </ul>
+                    </div>
+                    <div class="che-com" id="che_com">
+                        <div class="content" v-for="list in Evaluates">
+                            <div class="top f-cb">
+                                <div class="name fl" v-if="list.IsAnonymity">匿名</div>
+                                <div class="name fl" v-else="">{{list.MemberName}}</div>
+                                <ul>
+                                    <li v-for="xing in 5" :class="[$index<list.Score?'cur':'']"></li>
+
+                                </ul>
+                                <div class="time fr">{{list.newtime}}</div>
+                            </div>
+                            <div class="words">{{list.Content}}</div>
+                            <div class="reply" v-if="list.ReplyContent">
+                                {{list.ReplyContent}}
+                                <div class="time">{{list.newrtime}}</div>
+                                <i></i>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="size-mask" id="size-mask">
+        <div class="size-box">
+            <div class="size-info f-cb">
+                <div class="img fl" :style="{backgroundImage: 'url('+imgs+')'}"></div>
+                <div class="info fl">
+                    <p class="price">¥{{Price}}</p>
+                    <p>库存 <span class="kc">{{Stock}}</span>件</p>
+                    <p>选择<span v-for="list1 in AttributeValues">{{list1.AttributeName}} </span></p>
+                </div>
+            </div>
+            <div class="tcbox">
+            <div class="tc first">
+                <div class="tit" :data-id="AttributeValues[0].AttributeId">{{AttributeValues[0].AttributeName}}</div>
+                <ul class="f-cb choose-box">
+                    <li class="choose" :data-px="$index" :data-id="AttributeValues[0].AttributeId" v-for="list2 in AttributeValues[0].list">{{list2}}</li>
+                </ul>
+            </div>
+            <div class="tc other" v-if="AttributeValues[1]">
+                <div class="tit" :data-id="AttributeValues[0].AttributeId">{{AttributeValues[1].AttributeName}}</div>
+                <ul class="f-cb choose-box">
+
+                </ul>
+            </div>
+            </div>
+            <div class="getnum">
+                <div class="tit fl">数量</div>
+                <div class="numbox f-cb fr">
+                    <div class="jian fl"></div>
+                    <input type="tel" class="amount fl" value="1" disabled>
+                    <div class="jia fl"></div>
+                </div>
+            </div>
+            <div class="get-btn">确定</div>
+            <div class="close"></div>
+        </div>
+    </div>
+    <div class="new-loading"><ul class="small-loading"><li></li><li></li><li></li><li></li><li></li><li></li><li></li><li></li></ul></div>
+    <script src="/Html/mjs/ProductsInfo.js"></script>
+
+</body>
+</html>

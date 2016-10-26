@@ -1,0 +1,119 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <meta http-equiv="content-language" content="zh-CN" />
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1" >
+    <meta name="viewport" content="width=device-width,initial-scale=1.0,user-scalable=no" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+    <meta name="format-detection" content="telephone=no" />
+    <meta name="keywords" content="" />
+    <meta name="description" content="" />
+    <meta name="author" content="杭州博采网络科技股份有限公司-高端网站建设-http://www.bocweb.cn" />
+    <meta name="renderer" content="webkit">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>有商</title>
+    <script src="/Html/js/jQuery.js"></script>
+    <script src="/Html/js/vue.js"></script>
+    <script src="/Html/js/main.js"></script>
+    <link rel="stylesheet" href="/Html/css/reset.css">
+    <link rel="stylesheet" href="/Html/css/style.css">
+    <link rel="stylesheet" href="/Html/css/modify.css">
+    <link rel="stylesheet" href="/Html/css/color-change.css">
+</head>
+<body>
+    <div class="my-order pb122" id="my-order">
+        <div class="ordernav">
+            <a href="/Html/Order/MyOrder.html?orderType=0">全部</a>
+            <a href="/Html/Order/MyOrder.html?orderType=1">待付款</a>
+            <a href="/Html/Order/MyOrder.html?orderType=2">待收货</a>
+            <a href="/Html/Order/MyOrder.html?orderType=3">待评价</a>
+        </div>
+        <div class="content">
+            <div class="box normal" v-for="list in Orders" :data-id="list.Id">
+                <a href="javascript:;">
+                    <div class="top">
+                        <div class="time fl">{{list.newtime}}</div>
+                        <div class="st fr" v-if="list.OrderStatus == 0&&list.RefundStatus==0">待付款</div>
+                        <div class="st fr" v-if="list.OrderStatus == 1&&list.RefundStatus==0">待发货</div>
+                        <div class="st fr" v-if="list.OrderStatus == 2&&list.RefundStatus==0">待收货</div>
+                        <div class="st fr" v-if="list.OrderStatus == 3&&list.RefundStatus==0">已完成</div>
+                        <div class="st fr" v-if="list.OrderStatus == 4&&list.RefundStatus==0">已关闭</div>
+                        <div class="st fr" v-if="list.RefundStatus==1">退款中</div>
+                        <div class="st fr" v-if="list.RefundStatus==2">退款成功</div>
+                    </div>
+                    <div class="pro-style" v-for="listchild in list.OrderGoods" :data-id="listchild.SingleGoodsId">
+                        <div class="img fl" :style="{backgroundImage: 'url('+listchild.GoodsImage.SmallThumbnail+')'}"></div>
+                        <div class="info fl">
+                            <div class="name">{{listchild.GoodsName.substring(0,18)}}<span v-if="listchild.GoodsName.length >18">...</span></div>
+                        </div>
+                        <div class="num fr">
+                            <div class="price">¥ <span>{{listchild.prices3}}</span>.<span>{{listchild.prices4}}</span></div>
+                            <div class="number">x {{listchild.Quantity}}</div>
+                            <div class="back" v-if="list.RefundStatus==1||list.RefundStatus==2">退款详情</div>
+                        </div>
+                        <div class="color fl"><span v-for="sx in listchild.shuxi">{{sx}} </span></div>
+                    </div>
+                    <div class="total">共{{list. OrderGoods.length}}件商品&nbsp;&nbsp;&nbsp;&nbsp;合计 <span>¥ {{list.prices1}}.{{list.prices2}}</span>（含运费: <span>￥{{list.prices5}}.{{list.prices6}}</span>）</div>
+                </a>
+                <div class="btns f-cb">
+                    <a :href="'/Html/ShopCar/Pay.html?id='+list.Id+'&OrderNo='+list.OrderNo+'&money='+list.PayFee+'&time='+list.CreateTime" class="btn  cur" v-if="list.PayStatus==0&&list.OrderStatus==0">立即付款</a>
+                    <div class="btn cur confirm-btns" v-if="list.OrderStatus==2 && RefundStatus==0 ">确认收货</div>
+                    <div class="delete-btns btn cur" v-if="list.OrderStatus==4||list.OrderStatus==3">删除订单</div>
+                    <div class="btn cur remind-btn" v-if="list.OrderStatus==1 && list.ShippingStatus==0 &&list.RefundStatus==0">提醒发货</div>
+                    <a :href="'/Html/Order/Comment.html?id='+list.Id" class="btn cur" v-if="list.EvaluateStatus==0 && list.OrderStatus==3 &&list.RefundStatus==0">评价</a>
+                    <a :href="'/Html/Order/CheckComment.html?id='+list.Id" class="btn cur" v-if="(list.EvaluateStatus==1||list.EvaluateStatus==2) && list.OrderStatus==3">查看评价</a>
+
+                    <a :href="'http://m.kuaidi100.com/index_all.html?type='+list.ShippingCode+'&postid='+list.ShippingNo+'&callbackurl='+URL+'/Html/Order/MyOrder.html?orderType=0'" class="btn" v-if="list.ShippingStatus==1">查看物流</a>
+                </div>
+            </div>
+        </div>
+        <div class="loading">加载中，请稍后...</div>
+    </div>
+    <div class="pop dn pop-com">
+        <div class="box">
+            <p class="tit">确认收货</p>
+            <div class="btnb">
+                <p><a class="no">取消</a></p>
+                <p><a class="ok confirm-btn">确定</a></p>
+            </div>
+        </div>
+    </div>
+    <div class="pop dn pop-del">
+        <div class="box">
+            <p class="tit">确认删除订单?</p>
+            <div class="btnb">
+                <p><a class="no">取消</a></p>
+                <p><a class="ok delete-btn">确定</a></p>
+            </div>
+        </div>
+    </div>
+    <div class="subnav">
+        <a href="/Index.html" class="sy">
+            <span class="tb"></span>
+            <span class="tt">首页</span>
+        </a>
+        <a href="/Html/Products/Search.html" class="fl">
+            <span class="tb"></span>
+            <span class="tt">分类</span>
+        </a>
+        <a href="/Html/ShopCar/ShopCar.html" class="sc">
+            <span class="tb"></span>
+            <span class="tt">购物车</span>
+        </a>
+        <a href="/Html/Member/PersonalCenter.html" class="wd cur">
+            <span class="tb"></span>
+            <span class="tt">我的</span>
+        </a>
+    </div>
+    <div class="search-box" style="z-index: 27">
+        <div class="nothing">
+            <div class="tb"></div>
+            <p>抱歉，暂无订单</p>
+        </div>
+    </div>
+    <div class="new-loading"><ul class="small-loading"><li></li><li></li><li></li><li></li><li></li><li></li><li></li><li></li></ul></div>
+    <script src="/Html/mjs/MyOrder.js"></script>
+</body>
+</html>

@@ -1,0 +1,133 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <meta http-equiv="content-language" content="zh-CN" />
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1" >
+    <meta name="viewport" content="width=device-width,initial-scale=1.0,user-scalable=no" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+    <meta name="format-detection" content="telephone=no" />
+    <meta name="keywords" content="" />
+    <meta name="description" content="" />
+    <meta name="author" content="杭州博采网络科技股份有限公司-高端网站建设-http://www.bocweb.cn" />
+    <meta name="renderer" content="webkit">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>有商</title>
+    <script src="/Html/js/jQuery.js"></script>
+    <script src="/Html/js/vue.js"></script>
+    <script src="/Html/js/main.js"></script>
+    <link rel="stylesheet" href="/Html/css/reset.css">
+    <link rel="stylesheet" href="/Html/css/style.css">
+    <link rel="stylesheet" href="/Html/css/modify.css">
+    <link rel="stylesheet" href="/Html/css/color-change.css">
+</head>
+<body>
+    <div class="products-nav f-cb">
+        <div class="left fl f-cb">
+            <div class="sort fl chobtn cur">综合排序</div>
+            <div class="num fl chobtn" data-nSortType="3">销量优先</div>
+            <div class="screen fl chobtn">筛选</div>
+        </div>
+        <div class="btn"></div>
+    </div>
+    <div class="pro-list shopcar detailed pb123" id="pro-list">
+        <div class="box" v-for="box in Goods">
+            <a :href="'/Html/Products/Info.html?id='+box.Id" class="f-cb">
+                <div class="img fl" :style="{backgroundImage: 'url('+box.MainImage.MediumThumbnail+')'}"></div>
+                <div class="info fr">
+                    <div class="tt">{{box.Name}}</div>
+                    <div class="tc f-cb">
+                        <div class="int fl">{{box.PaymentAmount}}人已付款</div>
+                    </div>
+                    <div class="bot f-cb">
+                        <div class="price fl">¥ <span class="amo" data-unit="10.54" data-price="10.54"><span class="int">{{box.prices1}}</span>.<span class="dec">{{box.prices2}}</span></span> <span class="oldprice">¥{{box.OriginalPrice}}</span></div>
+                    </div>
+                </div>
+            </a>
+        </div>
+        <div class="loading">加载中，请稍后...</div>
+    </div>
+    <div class="subnav">
+        <a href="/Index.html" class="sy">
+            <span class="tb"></span>
+            <span class="tt">首页</span>
+        </a>
+        <a href="/Html/Products/Search.html" class="fl cur">
+            <span class="tb"></span>
+            <span class="tt">分类</span>
+        </a>
+        <a href="/Html/ShopCar/ShopCar.html" class="sc">
+            <span class="tb"></span>
+            <span class="tt">购物车</span>
+        </a>
+        <a href="/Html/Member/PersonalCenter.html" class="wd">
+            <span class="tb"></span>
+            <span class="tt">会员中心</span>
+        </a>
+    </div>
+    <div class="sort-mask">
+        <div class="sort-box">
+            <ul>
+                <li class="typecur com" data-nSortType="0">综合排序</li>
+                <li class="lth" data-nSortType="1">价格从低到高</li>
+                <li class="htl" data-nSortType="2">价格从高到低</li>
+            </ul>
+        </div>
+    </div>
+    <div class="screen-mask" id="screen-mask">
+        <div class="screen-box">
+            <div class="box brand" v-if="Brand.length">
+                <div class="tit">品牌</div>
+                <div class="content f-cb">
+                    <ul>
+                        <li v-for="brand in Brand" :data-id="brand.Id">{{brand.Value}}</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="box others"  v-if="Others.length">
+                <div class="tit">其他属性</div>
+                <div class="content f-cb">
+                    <!--<ul>-->
+                        <!--<li v-for="others in Others" :data-id="others.Id">{{others.Value}}</li>-->
+                    <!--</ul>-->
+                    <div class="os f-cb" :data-id="others.Id" v-for="others in Others" >
+                        <div class="osa fl" v-for="otherlist in others.otherlist">{{otherlist}}</div>
+                    </div>
+                </div>
+            </div>
+            <div class="box price">
+                <div class="tit">价格</div>
+                <div class="section f-cb">
+                    <input type="tel" class="min fl">
+                    <input type="tel" class="max fr">
+                </div>
+            </div>
+        </div>
+        <div class="screen-btn">确定</div>
+    </div>
+    <div class="search-box" id="search_box">
+        <div class="content">
+            <div class="search fl">
+                <div class="close fl"></div>
+                <input type="text" class="text" placeholder="搜索关键字">
+                <span class="delete"></span>
+            </div>
+            <div class="btn fl">搜索</div>
+        </div>
+        <div class="con">
+            <p>大家都在搜...</p>
+            <ul>
+                <li v-for="tag in data" :data-tag="tag">{{tag}}</li>
+
+            </ul>
+        </div>
+        <div class="nothing">
+            <div class="tb"></div>
+            <p>抱歉，没有找到符合条件的商品</p>
+        </div>
+    </div>
+    <div class="new-loading"><ul class="small-loading"><li></li><li></li><li></li><li></li><li></li><li></li><li></li><li></li></ul></div>
+    <script src="/Html/mjs/ProductsList.js"></script>
+</body>
+</html>

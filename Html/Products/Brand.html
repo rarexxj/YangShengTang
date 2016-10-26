@@ -1,0 +1,87 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <meta http-equiv="content-language" content="zh-CN" />
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1" >
+    <meta name="viewport" content="width=device-width,initial-scale=1.0,user-scalable=no" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+    <meta name="format-detection" content="telephone=no" />
+    <meta name="keywords" content="" />
+    <meta name="description" content="" />
+    <meta name="author" content="杭州博采网络科技股份有限公司-高端网站建设-http://www.bocweb.cn" />
+    <meta name="renderer" content="webkit">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>有商</title>
+    <script src="/Html/js/jQuery.js"></script>
+    <script src="/Html/js/vue.js"></script>
+    <script src="/Html/js/main.js"></script>
+    <script src="/Html/js/swiper-3.3.1.jquery.min.js"></script>
+    <link rel="stylesheet" href="/Html/css/reset.css">
+    <link rel="stylesheet" href="/Html/css/swiper-3.3.1.min.css">
+    <link rel="stylesheet" href="/Html/css/style.css">
+    <link rel="stylesheet" href="/Html/css/modify.css">
+</head>
+<body>
+    <div class="brand pb122">
+        <div class="swiper-container swiper-container3" id="banner">
+            <div class="swiper-wrapper">
+                <div :class="['swiper-slide',banner.urllink=='Goods'?'infourl':'',banner.urllink=='GoodsCategory'?'listurl':'']" v-for="banner in data" :style="{backgroundImage: 'url('+banner.CoverImage.RelativePath+')'}" :data-id="banner.idlink"></div>
+            </div>
+            <!-- 如果需要分页器 -->
+            <div class="swiper-pagination"></div>
+        </div>
+        <div class="hot" id="hot">
+            <div class="left fl">
+                <div :class="['img1',data[0].urllink=='Goods'?'infourl':'',data[0].urllink=='GoodsCategory'?'listurl':'']" :style="{backgroundImage: 'url('+data[0].AdvertImage.RelativePath+')'}"  :data-id="data[0].idlink"></div>
+            </div>
+            <div class="right fr">
+                <div :class="['img2',data[1].urllink=='Goods'?'infourl':'',data[1].urllink=='GoodsCategory'?'listurl':'']" :style="{backgroundImage: 'url('+data[1].AdvertImage.RelativePath+')'}" :data-id="data[1].idlink"></div>
+                <div :class="['img3',data[2].urllink=='Goods'?'infourl':'',data[2].urllink=='GoodsCategory'?'listurl':'']" :style="{backgroundImage: 'url('+data[2].AdvertImage.RelativePath+')'}" :data-id="data[2].idlink"></div>
+            </div>
+            <div class="clear"></div>
+            <div class="ban">
+                <div :class="['img4',data[3].urllink=='Goods'?'infourl':'',data[3].urllink=='GoodsCategory'?'listurl':'']" :style="{backgroundImage: 'url('+data[3].AdvertImage.RelativePath+')'}" :data-id="data[3].idlink"></div>
+            </div>
+        </div>
+        <div class="con" id="rec">
+            <div class="box">
+                <div class="content f-cb">
+                    <ul>
+                        <li v-for="list in Goods">
+                            <a :href="'/Html/Products/Info.html?id='+list.Id">
+                                <div class="img" :style="{backgroundImage: 'url('+list.MainImage.MediumThumbnail+')'}"></div>
+                                <div class="name">{{list.Name}}</div>
+                                <div class="price">¥{{list.prices1}}.{{list.prices2}}</div>
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            <div class="loading">加载中，请稍后...</div>
+        </div>
+    </div>
+    <div class="subnav">
+        <a href="/Index.html" class="sy cur">
+            <span class="tb"></span>
+            <span class="tt">首页</span>
+        </a>
+        <a href="/Html/Products/Search.html" class="fl">
+            <span class="tb"></span>
+            <span class="tt">分类</span>
+        </a>
+        <a href="/Html/ShopCar/ShopCar.html" class="sc">
+            <span class="tb"></span>
+            <span class="tt">购物车</span>
+        </a>
+        <a href="/Html/Member/PersonalCenter.html" class="wd">
+            <span class="tb"></span>
+            <span class="tt">我的</span>
+        </a>
+    </div>
+    <div class="new-loading"><ul class="small-loading"><li></li><li></li><li></li><li></li><li></li><li></li><li></li><li></li></ul></div>
+    <script src="/Html/mjs/Brand.js"></script>
+
+</body>
+</html>

@@ -1,0 +1,111 @@
+
+.per-cen .weixin .att {
+    background-color: #d1a162;
+}
+
+.login.forget .get {
+    background-color: #d1a162;
+}
+
+.login.forget .get2 {
+    background-color: #d1a162;
+}
+
+.submit {
+    background-color: #d1a162;
+}
+
+.wallet .moneyinfo {
+    background-color: #d1a162;
+}
+
+.wallet .moneyinfo .wd {
+    color: white;
+    border-color: white;
+}
+
+.withdrawals .list li.cur {
+    background-color: #d1a162
+}
+
+.wallet .intinfo {
+    background-color: #d1a162;
+
+}
+.wallet .intinfo .intro{
+  color:white;
+}
+
+.my-order .ordernav a.cur{
+  color: #d1a162;
+}
+
+.NoBnt{
+    color: #d1a162;
+    border-color: #d1a162;
+}
+.mypartner .wd{
+    color: white;
+    border-color:white;
+}
+.mypartner .con .btn.cur{
+    color: #d1a162;
+    border-color:#d1a162;
+}
+.success .goshopp{
+    color: #d1a162;
+}
+.products-nav .sort.cur, .products-nav .screen.cur{
+    color: #d1a162;
+}
+.sort-mask li.typecur{color: #d1a162;}
+.products-nav .num.typecur{
+    color: #d1a162;
+}
+.pro-info .information .btn.cur{
+    color: #d1a162;
+    border-color: #d1a162;
+}
+.goshop .addshopc{
+    background-color: #439241;
+}
+.goshop .gobuy{
+     background-color: #d1a162;
+}
+
+.screen-mask .box li.cur{
+    background-color: #d1a162;
+}
+.screen-mask .screen-btn{
+    background-color: #d1a162;
+}
+.search-box .btn{
+    color: #d1a162;
+}
+.size-mask .size-box .get-btn{
+ background-color: #d1a162;
+
+}
+.size-mask .size-box .tc li.choose-cur{
+    background-color: #d1a162;
+}
+.car-list .balance{
+    background-color: #d1a162;
+}
+.confirm-youhjt{
+    position: absolute;
+    right: 0.16rem;
+    top: 0.26rem;
+    background: url(../img/img38.png) no-repeat;
+    background-size: 100%;
+    height: 0.32rem;
+    width: 0.18rem;
+
+}
+.confirm-youh{
+    position: relative;
+}
+.my-order .btns .btn.cur{
+    border-color: #d1a162;
+    color: #d1a162;
+}

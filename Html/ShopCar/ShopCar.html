@@ -1,0 +1,78 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <meta http-equiv="content-language" content="zh-CN" />
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1" >
+    <meta name="viewport" content="width=device-width,initial-scale=1.0,user-scalable=no" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+    <meta name="format-detection" content="telephone=no" />
+    <meta name="keywords" content="" />
+    <meta name="description" content="" />
+    <meta name="author" content="杭州博采网络科技股份有限公司-高端网站建设-http://www.bocweb.cn" />
+    <meta name="renderer" content="webkit">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>有商</title>
+    <script src="/Html/js/jQuery.js"></script>
+    <script src="/Html/js/vue.js"></script>
+    <script src="/Html/js/main.js"></script>
+    <link rel="stylesheet" href="/Html/css/reset.css">
+    <link rel="stylesheet" href="/Html/css/style.css">
+    <link rel="stylesheet" href="/Html/css/modify.css">
+    <link rel="stylesheet" href="/Html/css/color-change.css">
+</head>
+<body>
+    <div class="shopcar pb100" id="shopcar">
+        <div class="box" v-for="list in Carts" :data-gid="list.GoodsId" :data-id="list.Id">
+            <div class="ccheck" v-if="list.Status == 1"></div>
+            <div class="invalid" v-if="list.Status == 0"></div>
+            <div class="img fl" :style="{backgroundImage: 'url('+list.GoodsImage.MediumThumbnail+')'}"><a :href="'/Html/Products/Info.html?id='+list.GoodsId"></a></div>
+            <div class="info fr">
+                <div class="tt"><a :href="'/Html/Products/Info.html?id='+list.GoodsId">{{list.GoodsName}}</a></div>
+                <div class="tc f-cb">
+                    <div class="int fl"><span v-for="sx in list.shuxi">{{sx}}</span></div>
+                    <div class="num fr">x<span>{{list.Quantity}}</span></div>
+                </div>
+                <div class="bot f-cb">
+                    <div class="price fl">¥ <span class="amo" :data-unit="list.Price" :data-price="list.allprice"><span class="int">{{list.prices1}}</span>.<span class="dec">{{list.prices2}}</span></span></div>
+                    <div class="edit fr">编辑</div>
+                </div>
+            </div>
+            <div class="editbox">
+                <div class="numbox f-cb" data-max="5">
+                    <div class="jian fl"></div>
+                    <input type="tel" class="amount fl" :value="list.Quantity" disabled>
+                    <div class="jia fl"></div>
+                </div>
+                <div class="good-name"><span v-for="sx in list.shuxi">{{sx}} </span></div>
+                <div class="btns f-cb fr">
+                    <div class="delete fl">删除</div>
+                    <div class="ok fl">完成</div>
+                </div>
+            </div>
+        </div>
+        <div class="clearsc">清除失效商品</div>
+        <div class="car-list">
+            <div class="choose fl">
+                <div class="pcheck"></div>
+                <span>全选</span>
+            </div>
+            <div class="balance fr">结算(<span>0</span>)</div>
+            <div class="total fr">
+                <p>合计：<i>￥</i><span class="amo"><span class="int">0</span>.<span class="dec">00</span></span></p>
+                <p>不含运费</p>
+            </div>
+        </div>
+    </div>
+    <div class="search-box">
+        <div class="nothing">
+            <div class="tb" style="background: url('/Html/img/noshopcar.png') no-repeat center center;background-size: contain"></div>
+            <p>您的购物车暂无商品</p>
+            <a href="/Index.html" class="NoBnt">随便逛逛</a>
+        </div>
+    </div>
+    <div class="new-loading"><ul class="small-loading"><li></li><li></li><li></li><li></li><li></li><li></li><li></li><li></li></ul></div>
+    <script src="/Html/mjs/ShopCar.js"></script>
+</body>
+</html>

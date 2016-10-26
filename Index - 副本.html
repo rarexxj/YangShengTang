@@ -1,0 +1,166 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+    <meta http-equiv="content-language" content="zh-CN"/>
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1">
+    <meta name="viewport" content="width=device-width,initial-scale=1.0,user-scalable=no"/>
+    <meta name="apple-mobile-web-app-capable" content="yes"/>
+    <meta name="apple-mobile-web-app-status-bar-style" content="black"/>
+    <meta name="format-detection" content="telephone=no"/>
+    <meta name="keywords" content=""/>
+    <meta name="description" content=""/>
+    <meta name="author" content="杭州博采网络科技股份有限公司-高端网站建设-http://www.bocweb.cn"/>
+    <meta name="renderer" content="webkit">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>有商</title>
+    <script src="/Html/js/jQuery.js"></script>
+    <script src="/Html/js/vue.js"></script>
+    <script src="/Html/js/main.js"></script>
+    <script src="/Html/js/swiper.min.js"></script>
+    <link rel="stylesheet" href="/Html/css/reset.css">
+    <link rel="stylesheet" href="/Html/css/swiper.min.css">
+    <link rel="stylesheet" href="/Html/css/style.css?v1">
+    
+</head>
+<body class="index1">
+<div class="welcome pb120 index1">
+    <div class="search-tit f-cb">
+        <div type="submit" class="btn fl"></div>
+        <div type="text" class="text">搜索关键字</div>
+    </div>
+    <div class="swiper-container swiper-container3" id="banner">
+        <div class="swiper-wrapper">
+            <div :class="['swiper-slide',banner.urllink=='Goods'?'infourl':'',banner.urllink=='GoodsCategory'?'listurl':'']"
+                 v-for="banner in data" :style="{backgroundImage: 'url('+banner.CoverImage.RelativePath+')'}"
+                 :data-id="banner.idlink"></div>
+        </div>
+        <!-- 如果需要分页器 -->
+        <div class="swiper-pagination"></div>
+    </div>
+    <!--<div class="brand-btns f-cb">-->
+    <!--<a href="/Html/Products/Brand.html?type=02" class="fl">只有精品</a>-->
+    <!--<a href="/Html/Products/Brand.html?type=03" class="fr">热卖爆款</a>-->
+    <!--</div>-->
+    <div id="home_info">
+        <div class="class-list">
+            <a class="class-item" v-for="list in OneLevelCategorys" :href="'/Html/Products/List.html?id='+list.Id">
+                <div class="c-i-img" :style="{backgroundImage: 'url('+list.CategoryImage.RelativePath+')'}"></div>
+                <div class="c-i-title">{{list.Name}}</div>
+            </a>
+
+        </div>
+        <div class="ad-01">
+            <a class="ad-01-item" v-for="(index,list) in Adverts" :href="'/Html/Products/Info.html?id='+list.goods" v-if="index<2"><img :src="list.AdvertImage.RelativePath"></a>
+
+        </div>
+
+        <div>
+            <div :class="['index-pro-list',index%3==0?'index-pro-list1':'',index%3==1?'index-pro-list2':'',index%3==2?'index-pro-list3':'']" v-for="(index,list) in Categories">
+                <div class="i-p-l-title">{{list.Name}}</div>
+                <div class="i-p-l-item-box" >
+                    <a class="i-p-l-item" v-for="lists in list.Goods" :href="'/Html/Products/Info.html?id='+lists.Id">
+                        <div class="i-p-l-i-img" :style="{backgroundImage: 'url('+lists.MainImage.RelativePath+')'}"></div>
+                        <div class="i-p-l-i-name">{{lists.Name}}</div>
+                        <div class="i-p-l-i-pa">{{lists.PaymentAmount}}人已付款</div>
+                        <div class="i-p-l-i-price">￥{{lists.ShopPrice}}</div>
+                    </a>
+                </div>
+            </div>
+
+            <!--<div class="floor" v-for="floor in Categories">-->
+                <!--<div class="tit f-cb">-->
+                    <!--<div class="tt fl">{{floor.Name}}</div>-->
+                    <!--&lt;!&ndash;<a :href="'/Html/Products/List.html?id='+floor.Id" class="fr more">更多</a>&ndash;&gt;-->
+                <!--</div>-->
+                <!--<div class="content f-cb">-->
+                    <!--<ul>-->
+                        <!--<li v-for="list in floor.Goods">-->
+                            <!--<a :href="'/Html/Products/Info.html?id='+list.Id">-->
+                                <!--<div class="img"-->
+                                     <!--:style="{backgroundImage: 'url('+list.MainImage.MediumThumbnail+')'}"></div>-->
+                                <!--<div class="name">{{list.Name}}</div>-->
+                                <!--<div class="price">¥ {{list.prices1}}.{{list.prices2}}</div>-->
+                            <!--</a>-->
+                        <!--</li>-->
+                    <!--</ul>-->
+                <!--</div>-->
+            <!--</div>-->
+
+            <div class="ad-02">
+                <a class="ad-02-item" v-for="(index,list) in Adverts" :href="'/Html/Products/Info.html?id='+list.goods" v-if="index==2"><img :src="list.AdvertImage.RelativePath"></a>
+            </div>
+            <div class="youlike">
+                <div class="tit">猜你喜欢</div>
+                <div class="content f-cb">
+                    <ul>
+                        <li v-for="like in RecommendGoods">
+                            <a :href="'/Html/Products/Info.html?id='+like.Id">
+                                <div class="img"
+                                     :style="{backgroundImage: 'url('+like.MainImage.RelativePath+')'}"></div>
+                                <div class="name">{{like.Name}}</div>
+                                <div class="price">¥{{like.prices1}}.{{like.prices2}}</div>
+                            </a>
+                        </li>
+
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="loading">加载中，请稍后...</div>
+    <div class="search-box" id="search_box">
+        <div class="content">
+            <div class="search fl">
+                <div class="close fl"></div>
+                <input type="text" class="text" id="search_alert" placeholder="搜索关键字">
+                <span class="delete"></span>
+            </div>
+            <div class="btn fl">搜索</div>
+        </div>
+        <div class="con">
+            <p>大家都在搜...</p>
+            <ul>
+                <li v-for="tag in data" :data-tag="tag">{{tag}}</li>
+            </ul>
+        </div>
+        <div class="nothing">
+            <div class="tb"></div>
+            <p>抱歉，没有找到符合条件的商品</p>
+        </div>
+    </div>
+</div>
+<div class="subnav">
+    <a href="/Index.html" class="sy cur">
+        <span class="tb"></span>
+        <span class="tt">首页</span>
+    </a>
+    <a href="/Html/Products/Search.html" class="fl">
+        <span class="tb"></span>
+        <span class="tt">分类</span>
+    </a>
+    <a href="/Html/ShopCar/ShopCar.html" class="sc">
+        <span class="tb"></span>
+        <span class="tt">购物车</span>
+    </a>
+    <a href="/Html/Member/PersonalCenter.html" class="wd">
+        <span class="tb"></span>
+        <span class="tt">我的</span>
+    </a>
+</div>
+<div class="new-loading">
+    <ul class="small-loading">
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+    </ul>
+</div>
+<script src="/Html/mjs/Index1.js"></script>
+</body>
+
+</html>

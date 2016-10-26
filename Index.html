@@ -1,0 +1,203 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+    <meta http-equiv="content-language" content="zh-CN"/>
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1">
+    <meta name="viewport" content="width=device-width,initial-scale=1.0,user-scalable=no"/>
+    <meta name="apple-mobile-web-app-capable" content="yes"/>
+    <meta name="apple-mobile-web-app-status-bar-style" content="black"/>
+    <meta name="format-detection" content="telephone=no"/>
+    <meta name="keywords" content=""/>
+    <meta name="description" content=""/>
+    <meta name="author" content="杭州博采网络科技股份有限公司-高端网站建设-http://www.bocweb.cn"/>
+    <meta name="renderer" content="webkit">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>有商</title>
+    <script src="/Html/js/jQuery.js"></script>
+    <script src="/Html/js/vue.js"></script>
+    <script src="/Html/js/main.js"></script>
+    <script src="/Html/js/swiper.min.js"></script>
+    <link rel="stylesheet" href="/Html/css/reset.css">
+    <link rel="stylesheet" href="/Html/css/swiper.min.css">
+    <link rel="stylesheet" href="/Html/css/style.css?v1">
+    <link rel="stylesheet" href="/Html/css/modify.css">
+</head>
+
+<body class="index1">
+<div class="index-callme" style="background-image: url(Html/img/index-img1.png);">
+    <a class="index-callmebtn" href="tel:4001077799">拨打</a>
+</div>
+<div class="welcome pb120 index1">
+    <div class="swiper-container swiper-container3" id="banner">
+        <div class="swiper-wrapper">
+            <div :class="['swiper-slide',banner.urllink=='Goods'?'infourl':'',banner.urllink=='GoodsCategory'?'listurl':'']"
+                 v-for="banner in data" :style="{backgroundImage: 'url('+banner.CoverImage.RelativePath+')'}"
+                 :data-id="banner.idlink"></div>
+        </div>
+        <!-- 如果需要分页器 -->
+        <div class="swiper-pagination"></div>
+    </div>
+
+    <div class="index-youh">
+        <a href="##" style="background-image:url(Html/img/index-img4.png)"></a>
+    </div>
+    <div class="index-banner2">
+        <div class="swiper-container swiper-container3" id="banner1">
+            <div class="swiper-wrapper">
+                <div :class="['swiper-slide',banner.urllink=='Goods'?'infourl':'',banner.urllink=='GoodsCategory'?'listurl':'']"
+                     v-for="banner in data" :style="{backgroundImage: 'url('+banner.CoverImage.RelativePath+')'}"
+                     :data-id="banner.idlink"></div>
+            </div>
+            <!-- 如果需要分页器 -->
+            <div class="swiper-pagination"></div>
+        </div>
+    </div>
+    <div class="index-recommend">
+        <div class="index-recommendl">
+            <a href="##" style="background-image:url(Html/img/index-img6.png)"></a>
+        </div>
+        <div class="index-recommendr">
+            <a href="##" style="background-image:url(Html/img/index-img7.png)"></a>
+        </div>
+    </div>
+    <div class="index-search">
+        <input type="text" id="search" placeholder="搜索">
+        <a class="index-searchlogo" href="##"></a>
+    </div>
+    <div id="home_info">
+        <div class="index-tabbox">
+            <ul class="index-tab">
+                <li class="active" dataId="0">全部</li>
+                <li :dataId="list.Id" v-for="list in Categories">{{list.Name}}</li>
+
+            </ul>
+        </div>
+        <div class="index-tab-box">
+            <div class="index-tab-f1" v-for="list in floor_tag">
+                <div class="index-tab-title">
+                    <span>{{list.Name}}</span>
+                    <a class="index-tab-titlebtn" :href="'/Html/Products/List.html?id='+list.Id">更多</a>
+                </div>
+                <div class="index-tab-main">
+                    <ul class="index-tab-mainul">
+                        <li class="index-tab-mainli" v-for="list1 in list.Goods">
+                            <a>
+                                <img :src="list1.MainImage.MediumThumbnail">
+                                <h2>{{list1.Name}}</h2>
+                                <p><span>￥{{list1.ShopPrice}}</span><i>￥{{list1.OriginalPrice}}</i></p>
+                            </a>
+                        </li>
+
+                    </ul>
+                </div>
+            </div>
+            <!--<div class="index-tab-f1">-->
+            <!--<div class="index-tab-title2">-->
+            <!--<button class="index-tab-titlebtn">更多</button>-->
+            <!--</div>-->
+            <!--<div class="index-tab-main">-->
+            <!--<ul class="index-tab-mainul">-->
+            <!--<li class="index-tab-mainli">-->
+            <!--<img src="Html/img/index-img9.png">-->
+            <!--<h2>养生堂·堂方·经典方·莲子清心茶30天量</h2>-->
+            <!--<p><span>￥168.00</span><i>￥268.00</i></p>-->
+            <!--</li>-->
+            <!--<li class="index-tab-mainli">-->
+            <!--<img src="Html/img/index-img10.png">-->
+            <!--<h2>养生堂·堂方·经典方·莲子清心茶30天量</h2>-->
+            <!--<p><span>￥168.00</span><i>￥268.00</i></p>-->
+            <!--</li>-->
+            <!--<li class="index-tab-mainli">-->
+            <!--<img src="Html/img/index-img11.png">-->
+            <!--<h2>养生堂·堂方·经典方·莲子清心茶30天量</h2>-->
+            <!--<p><span>￥168.00</span><i>￥268.00</i></p>-->
+            <!--</li>-->
+            <!--<li class="index-tab-mainli">-->
+            <!--<img src="Html/img/index-img12.png">-->
+            <!--<h2>养生堂·堂方·经典方·莲子清心茶30天量</h2>-->
+            <!--<p><span>￥168.00</span><i>￥268.00</i></p>-->
+            <!--</li>-->
+            <!--</ul>-->
+            <!--</div>-->
+            <!--</div>-->
+        </div>
+        <div class="index-banner3">
+            <a href="##" style="background-image:url(Html/img/index-img14.png)"></a>
+        </div>
+        <div class="index-ulikebox">
+            <div class="index-ulike"></div>
+            <div class="index-tab-ff">
+                <div class="index-tab-main">
+                    <ul class="index-tab-mainul">
+                        <li class="index-tab-mainli" v-for="list in RecommendGoods">
+                            <a :href="'/Html/Products/Info.html?id='+list.Id">
+                                <img :src="list.MainImage.MediumThumbnail">
+                                <h2>{{list.Name}}</h2>
+                                <p><span>￥{{list.ShopPrice}}</span><i>￥{{list.OriginalPrice}}</i></p>
+                            </a>
+                        </li>
+
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!--<div class="loading">加载中，请稍后...</div>-->
+    <!--<div class="search-box" id="search_box">-->
+    <!--<div class="content">-->
+    <!--<div class="search fl">-->
+    <!--<div class="close fl"></div>-->
+    <!--<input type="text" class="text" id="search_alert" placeholder="搜索关键字">-->
+    <!--<span class="delete"></span>-->
+    <!--</div>-->
+    <!--<div class="btn fl">搜索</div>-->
+    <!--</div>-->
+    <!--<div class="con">-->
+    <!--<p>大家都在搜...</p>-->
+    <!--<ul>-->
+    <!--<li v-for="tag in data" :data-tag="tag">{{tag}}</li>-->
+    <!--</ul>-->
+    <!--</div>-->
+    <!--<div class="nothing">-->
+    <!--<div class="tb"></div>-->
+    <!--<p>抱歉，没有找到符合条件的商品</p>-->
+    <!--</div>-->
+    <!--</div>-->
+</div>
+<div class="subnav">
+    <a href="/Index.html" class="sy cur">
+        <span class="tb"></span>
+        <span class="tt">首页</span>
+    </a>
+    <a href="/Html/hotsell/shangpfl.html" class="fl">
+        <span class="tb"></span>
+        <span class="tt">分类</span>
+    </a>
+    <a href="/Html/ShopCar/ShopCar.html" class="sc">
+        <span class="tb"></span>
+        <span class="tt">购物车</span>
+    </a>
+    <a href="/Html/Member/PersonalCenter.html" class="wd">
+        <span class="tb"></span>
+        <span class="tt">会员中心</span>
+    </a>
+</div>
+<div class="new-loading">
+    <ul class="small-loading">
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+    </ul>
+</div>
+<script src="/Html/mjs/Index2.js"></script>
+</body>
+
+</html>
