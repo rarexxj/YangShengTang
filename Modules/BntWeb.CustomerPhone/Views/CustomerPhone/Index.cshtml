@@ -1,0 +1,52 @@
+﻿@using System.Web.Optimization
+@using BntWeb.CustomerPhone
+@using BntWeb.FileSystems.Media
+@{
+    ViewBag.Title = CustomerPhoneModule.DisplayName;
+    ViewBag.SubTitle = "编辑类型";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+@model BntWeb.CustomerPhone.Models.CustomerPhoneModel
+@section Styles {
+    @Styles.Render("~/css/ztree")
+    @Styles.Render("~/css/admin/editable")
+
+}
+<form class="form-horizontal" role="form" id="VoucherForm" action="@Url.Action("EditOnPost", "CustomerPhone", new {area = CustomerPhoneModule.Area})">
+    <div class="form-group">
+        <label class="col-sm-1 control-label no-padding-right" for="CustomerPhone"> 客服电话 </label>
+        <input type="hidden" id="Id" name="Id" value="@Model.Id" />
+        <div class="col-sm-9">
+            <div class="clearfix">
+                <input type="text" id="CustomerPhone" name="CustomerPhone" placeholder="客服电话" class="col-xs-6 col-sm-3" value="@Model.CustomerPhone" /><span class="red">*</span>
+            </div>
+        </div>
+    </div>
+
+    <div class="clearfix form-actions">
+        <div class="col-md-offset-3 col-md-9">
+            <button class="btn btn-info" type="submit">
+                <i class="icon-ok bigger-110"></i>
+                保存
+            </button>
+        </div>
+    </div>
+</form>
+@section Scripts {
+    @Scripts.Render("~/js/ztree")
+    @Scripts.Render("~/js/admin/editable")
+    @Scripts.Render("~/js/admin/jquery-form")
+    @Scripts.Render("~/js/kindeditor")
+    <script type="text/javascript">
+        var url_list = "@Url.Action("Index", "CustomerPhone", new {area = CustomerPhoneModule.Area})";
+
+        var editor;
+        KindEditor.ready(function (K) {
+            editor = K.create('#Description', {
+                afterBlur: function () { this.sync(); }
+            });
+        });
+
+    </script>
+    @Scripts.Render("~/js/admin/customerphone/list")
+}
