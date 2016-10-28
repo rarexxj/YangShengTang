@@ -208,6 +208,8 @@ $(function () {
             data: rs,
             ready: function () {
                 var ww=0
+                // var a=rs.Categories.Goods.Name.split('F')[0];
+                // alert(a)
                 $('.index-tab>li').each(function () {
                     ww+=$(this).outerWidth()
 
