@@ -111,10 +111,8 @@ $(function () {
                     $.RMLOAD();
                     qrsh();
                     deleteorder();
-                    remind();
                     js();
                     link();
-                    
                 }
             })
         }
@@ -179,8 +177,9 @@ $(function () {
             url:'/Api/v1/Order/'+id+'/Complete',
             type:'patch'
         }).done(function (rs) {
+            $('.pop-com').hide();
             if (rs.returnCode == '200'){
-                $('.pop-com').hide();
+
                 oppo('成功确认收货',1,function () {
                     window.location.replace("/Html/Order/MyOrder.html?orderType=0")
                 })
@@ -224,29 +223,8 @@ $(function () {
             }
         })
     }
-    //提醒发货
-    function remind() {
-        $('.box .remind-btn').on('click',function () {
-            var id = $(this).parents('.box').attr('data-id');
-            $.ajax({
-                url:'/Api/v1/Order/'+ id+'/Remind',
-                type:'post'
-            }).done(function (rs) {
-                if (rs.returnCode == '200'){
-                    oppo('提醒成功',1)
-                }else{
-                    if(rs.returnCode == '401'){
-                        Backlog();
-                    }else{
-                        oppo(rs.msg ,1)
-                    }
-                }
-            })
-        })
-
-    }
     function link() {
-        $('.my-order .normal a').on('click',function () {
+        $('.my-order .normal>a').on('click',function () {
             var id = $(this).parent().attr('data-id');
             window.location.href="/Html/Order/Info.html?id="+id
         })

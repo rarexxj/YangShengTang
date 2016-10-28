@@ -205,7 +205,7 @@ $(function () {
         }).done(function (rs) {
             if (rs.returnCode == '200'){
                 oppo('保存成功',1);
-                window.location.replace("/Html/Member/PersonalCenter.html")
+                window.location.replace("/Html/Member/My.html")
 
             }else{
                 if(rs.returnCode == '401'){

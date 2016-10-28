@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="en">
+<html>
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
     <meta http-equiv="content-language" content="zh-CN" />
@@ -12,18 +12,17 @@
     <meta name="description" content="" />
     <meta name="author" content="杭州博采网络科技股份有限公司-高端网站建设-http://www.bocweb.cn" />
     <meta name="renderer" content="webkit">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title>BTV养生堂</title>
+    <title>浙江天泉生物科技有限公司</title>
+    <link rel="stylesheet" href="/Html/css/reset.css">
+    <link rel="stylesheet" href="/Html/css/style.css">
+    <link rel="stylesheet" href="/Html/css/index.css">
     <script src="/Html/js/jQuery.js"></script>
     <script src="/Html/js/vue.js"></script>
     <script src="/Html/js/main.js"></script>
-    <link rel="stylesheet" href="/Html/css/reset.css">
-    <link rel="stylesheet" href="/Html/css/style.css">
-    <link rel="stylesheet" href="/Html/css/modify.css">
-    <link rel="stylesheet" href="/Html/css/color-change.css">
+
 </head>
 <body>
-    <div class="my-order pb122" id="my-order">
+    <div class="my-order pb120" id="my-order">
         <div class="ordernav">
             <a href="/Html/Order/MyOrder.html?orderType=0">全部</a>
             <a href="/Html/Order/MyOrder.html?orderType=1">待付款</a>
@@ -59,9 +58,8 @@
                 </a>
                 <div class="btns f-cb">
                     <a :href="'/Html/ShopCar/Pay.html?id='+list.Id+'&OrderNo='+list.OrderNo+'&money='+list.PayFee+'&time='+list.CreateTime" class="btn  cur" v-if="list.PayStatus==0&&list.OrderStatus==0">立即付款</a>
-                    <div class="btn cur confirm-btns" v-if="list.OrderStatus==2 && RefundStatus==0 ">确认收货</div>
+                    <div class="btn cur confirm-btns" v-if="list.OrderStatus==2 && list.RefundStatus==0 ">确认收货</div>
                     <div class="delete-btns btn cur" v-if="list.OrderStatus==4||list.OrderStatus==3">删除订单</div>
-                    <div class="btn cur remind-btn" v-if="list.OrderStatus==1 && list.ShippingStatus==0 &&list.RefundStatus==0">提醒发货</div>
                     <a :href="'/Html/Order/Comment.html?id='+list.Id" class="btn cur" v-if="list.EvaluateStatus==0 && list.OrderStatus==3 &&list.RefundStatus==0">评价</a>
                     <a :href="'/Html/Order/CheckComment.html?id='+list.Id" class="btn cur" v-if="(list.EvaluateStatus==1||list.EvaluateStatus==2) && list.OrderStatus==3">查看评价</a>
 
@@ -110,7 +108,7 @@
     <div class="search-box" style="z-index: 27">
         <div class="nothing">
             <div class="tb"></div>
-            <p>抱歉，暂无订单</p>
+            <p>抱歉，没有找到符合条件的订单</p>
         </div>
     </div>
     <div class="new-loading"><ul class="small-loading"><li></li><li></li><li></li><li></li><li></li><li></li><li></li><li></li></ul></div>
