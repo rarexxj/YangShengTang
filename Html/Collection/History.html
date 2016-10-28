@@ -31,11 +31,11 @@
             <div class="content">
                 <ul>
                     <li v-for="list in Goods">
-                        <a :href="'/Html/Products/Info.html?id='+id">
+                        <a :href="'/Html/Products/Info.html?id='+list.Id">
                             <div class="img" :style="{backgroundImage: 'url('+list.MainImage.MediumThumbnail+')'}"></div>
                             <div class="tt">{{list.Name}}</div>
                             <div class="price">¥{{list.prices1}}.{{list.prices2}}</div>
-                            <span class="timen">2016-08-30</span>
+                            <span class="timen">{{list.BrowseTime}}</span>
                         </a>
                     </li>
                 </ul>

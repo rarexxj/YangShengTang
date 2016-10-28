@@ -986,7 +986,7 @@ body {
 .history .content .img {
     width: 2.84rem;
     height: 3.17rem;
-    background-size: cover;
+    background-size: contain;
     background-position: center;
     background-repeat: no-repeat;
 }
