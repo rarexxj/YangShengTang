@@ -32,7 +32,7 @@
         <div type="text" class="text">搜索关键字</div>
     </div> -->
         <div class="youhq-box" id="youhq">
-            <div class="youhq" v-for="list in data.VoucherList">
+            <div class="youhq" v-for="list in yhq">
                 <a href="javascript:;" class="lingqu2"><img class="lingqu" :dataId="list.Id" src="../img/youhq-img2.png"></a>
                 <div class="youhq-mainl">
                     <div class="youhq-mainl1"><span>￥{{list.Denomination}}</span><a href="javascript:;" class="leix">{{list.Type}}</a></div>
@@ -105,22 +105,7 @@
         </ul>
     </div>
     <script src="/Html/mjs/youhq.js"></script>
-    <script type="text/javascript">
 
-
-
-
-    // xx关闭弹出框
-    $(".popup-chac").click(function() {
-        $(".popup-box").hide();
-        $(".popup-box-two").hide();
-
-    })
-
-
-
-
-    </script>
 </body>
 
 </html>
