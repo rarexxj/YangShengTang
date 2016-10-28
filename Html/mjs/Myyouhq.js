@@ -33,14 +33,14 @@ $(function () {
             el: '#myyouhq',
             data: rs,
             ready: function () {
+                $.RMLOAD()
                 //判断类型
-
                 $('.ordernav1 a').eq(ID - 1).addClass('active');
                 $('.youhq').click(function () {
                     $('.youhq').removeClass('active')
                     $(this).addClass('active')
                 })
-                $.RMLOAD()
+
             }
         })
     }

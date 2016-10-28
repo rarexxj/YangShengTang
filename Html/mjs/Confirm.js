@@ -151,7 +151,9 @@ $(function () {
                     Tel:rs.Addresses.Phone,
                     Memo:$('.bz').val(),
                     Goods:prodata,
-                    Integral:num
+                    Integral:num,
+                    VoucherId:$('.youhq-box .youhq.active').attr('data-Id'),
+                    VoucherAmount:$('.youhq-box .youhq.active').attr('data-price')
                 }
                 //console.log(datas)
                 $.ajax({
@@ -204,39 +206,42 @@ function getCoupon() {
         $('.confirm-order').hide();
         $('.youhq-box').show();
     })
-    $('.xjj-yhq-box .yhq-btn').on('click',function () {  //确认选择优惠券
+    $('.yhq-btn').on('click',function () {
+        $('.confirm-order').show();
+        $('.youhq-box').hide();
+    })
+    $('.youhq-box .yhq-btn').on('click',function () {  //确认选择优惠券
         $('.confirm-order').show();
         $('.xjj-yhq-box').hide();
-        if($('.xjj-yhq-box li.cur').length == 0){
-            $('.yhq').attr('data-price',0)
+        if($('.youhq-box .youhq.active').length == 0){
+            $('#yhq').attr('data-price',0)
         }else{
-            var price = $('.xjj-yhq-box li.cur').attr('data-price');
-            $('.yhq').attr('data-price',price)
+            var price = $('.youhq-box .youhq.active').attr('data-price');
+            console.log(price)
+            $('#yhq').attr('data-price',price)
         }
         getLastPrice()
     })
-    $('.xjj-yhq-box li').on('click',function () {
-        if($(this).hasClass('cur')){
-            $(this).removeClass('cur');
+    $('.youhq-box .youhq').on('click',function () {
+        if($(this).hasClass('active')){
+            $(this).removeClass('active');
         }else{
-            $(this).addClass('cur').siblings().removeClass('cur');
+            $(this).addClass('active').siblings().removeClass('active');
         }
     })
 }
 function js() {
-    var money=0;
+    var n=$('.weui_switch').attr('data-money')
     if($('.weui_switch').is(':checked')){
-        money = parseFloat($('.car-list .amo').attr('data-price2')) - parseFloat($('.weui_switch').attr('data-price'))
-        if(money <0){
-            money =0
-        }
-        money=money + parseFloat($('.postage').attr('data-postage'))
-
-        money = parseFloat(money).toFixed(2)
+        $('.weui_switch').attr('data-price',n)
     }else{
-        money = parseFloat(Number($('.car-list .amo').attr('data-price2')) + Number($('.postage').attr('data-postage'))).toFixed(2)
-        console.log(money)
+        $('.weui_switch').attr('data-price',0)
     }
+    getLastPrice();
+}
+function getLastPrice() {
+    var money = parseFloat($('.car-list .amo').attr('data-price2') - $('.weui_switch').attr('data-price') - $('#yhq').attr('data-price'))
+    money = parseFloat(Number(money) + Number($('.postage').attr('data-postage'))).toFixed(2);
     $('.car-list .amo').attr('data-price',money)
     GetPrice($('.car-list').find('.amo'))
 }

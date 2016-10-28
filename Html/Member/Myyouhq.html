@@ -31,7 +31,9 @@
     </div>
     <div class="youhq-box" id="myyouhq" v-cloak="">
         <div class="youhq" v-for="list in data">
-            <a href=""><div class="lingqu"></div></a>
+            <a href="">
+                <div class="lingqu"></div>
+            </a>
             <div class="youhq-mainl">
                 <div class="youhq-mainl1"><span>￥{{list.Denomination}}</span>
 
@@ -40,7 +42,7 @@
                 </div>
             </div>
             <div class="youhq-mainr">
-                <div class="youhq-mainr1">满<span>{{list.Condition}}</span>减<span >{{list.Denomination}}</span></div>
+                <div class="youhq-mainr1">满<span>{{list.Condition}}</span>减<span>{{list.Denomination}}</span></div>
                 <div class="youhq-mainr2">有效期：<span>{{list.endtime}}</span></div>
                 <div class="youhq-mainr3">剩余使用次数：<span>{{list.MyUseTimes}}</span>(次)</div>
             </div>
