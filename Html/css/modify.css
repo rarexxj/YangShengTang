@@ -13,6 +13,7 @@
     position: fixed;
     top: 0;
     left: 0;
+    z-index: 100;
 }
 
 .index-callmebtn {
@@ -27,6 +28,7 @@
     right: 0.20rem;
     top: 0.18rem;
     border-radius: 1px;
+    text-align: center;
 }
 
 .welcome .swiper-slide {
@@ -51,10 +53,19 @@
     background-position: center;
 }
 
-.index-banner2 a {
+.index-banner2 {
     height: 3.4rem;
     width: 100%;
-    background-size: 100%;
+    background-size: cover;
+    background-repeat: no-repeat;
+    display: block;
+    background-position: center;
+}
+
+.index-banner1 {
+    height: 2.8rem;
+    width: 100%;
+    background-size: cover;
     background-repeat: no-repeat;
     display: block;
     background-position: center;
@@ -147,7 +158,8 @@
     border-bottom: 2px solid #cda467;
 }
 
-.index-tab-box {}
+.index-tab-box {
+}
 
 .index-tab-title {
     background-image: url(../img/index-img8.png);
@@ -159,14 +171,11 @@
     width: 100%;
 }
 
-.index-tab-title2 {
-    background-image: url(../img/index-img13.png);
-    background-size: 100%;
-    height: 0.83rem;
-    position: absolute;
-    top: -2px;
-    left: 0;
-    width: 100%;
+.index-tab-title span {
+    font-size: 0.256rem;
+    line-height: 0.83rem;
+    color: #fff;
+    margin-left: 0.21rem;
 }
 
 .index-tab-titlebtn {
@@ -180,6 +189,7 @@
     border: 1px solid #a59b8f;
     border-radius: 5px;
     background-color: transparent;
+    text-align: center;
 }
 
 .index-tab-f1 {
@@ -234,7 +244,7 @@
     letter-spacing: -1px;
 }
 
-.index-banner3 a {
+.index-banner3 {
     height: 1.53rem;
     background-size: 100%;
     display: block;
@@ -254,6 +264,7 @@
 .pb121 {
     padding-bottom: 1rem;
 }
+
 .pb122 {
     padding-bottom: 1.2rem;
 }
@@ -322,7 +333,6 @@
     color: #cda467;
 }
 
-
 /*爆款*/
 
 .hotsell-baok {
@@ -330,16 +340,22 @@
 }
 
 .hotsell-baokl {
+    display: block;
     float: left;
-    width: 3.09rem;
-    height: 4.25rem;
+    width: 50%;
+    box-sizing: border-box;
+    height: 4.2rem;
     border-top: 2px solid #e8e8e8;
     border-right: 1px solid #e8e8e8;
     border-bottom: 1px solid #e8e8e8;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
 }
 
 .hotsell-baokr {
     float: left;
+    height: 2.1rem;
     border-top: 2px solid #e8e8e8;
 }
 
@@ -347,57 +363,51 @@
     overflow: hidden;
 }
 
-.hotsell-baokl h2 {
-    font-size: 0.34rem;
-    color: #322d2f;
-    margin-left: 0.3rem;
-    margin-top: 0.4rem;
-    line-height: 1;
-}
+/*.hotsell-baokl h2 {*/
+/*font-size: 0.34rem;*/
+/*color: #322d2f;*/
+/*margin-left: 0.3rem;*/
+/*margin-top: 0.4rem;*/
+/*line-height: 1;*/
+/*}*/
 
-.hotsell-baokl p {
-    font-size: 0.24rem;
-    color: #999;
-    margin-left: 0.3rem;
-    margin-top: 0.18rem;
-    line-height: 1;
-}
+/*.hotsell-baokl p {*/
+/*font-size: 0.24rem;*/
+/*color: #999;*/
+/*margin-left: 0.3rem;*/
+/*margin-top: 0.18rem;*/
+/*line-height: 1;*/
+/*}*/
 
-.hotsell-baokl img {
-    width: 2.7rem;
-    height: 2.78rem;
-    margin-left: 0.3rem;
-    margin-top: 0.2rem;
-}
+/*.hotsell-baokl img {*/
+/*width: 2.7rem;*/
+/*height: 2.78rem;*/
+/*margin-left: 0.3rem;*/
+/*margin-top: 0.2rem;*/
+/*}*/
 
-.hotsell-baokr h2 {
-    font-size: 0.28rem;
-    color: #322d2f;
-    line-height: 1;
-    margin-left: 0.3rem;
-    margin-top: 0.4rem;
-}
+/*.hotsell-baokr h2 {*/
+/*font-size: 0.28rem;*/
+/*color: #322d2f;*/
+/*line-height: 1;*/
+/*margin-left: 0.3rem;*/
+/*margin-top: 0.4rem;*/
+/*}*/
 
-.hotsell-baokr p {
-    font-size: 0.24rem;
-    color: #999;
-    margin-left: 0.3rem;
-    margin-top: 0.18rem;
-    line-height: 1;
-}
+/*.hotsell-baokr p {*/
+/*font-size: 0.24rem;*/
+/*color: #999;*/
+/*margin-left: 0.3rem;*/
+/*margin-top: 0.18rem;*/
+/*line-height: 1;*/
+/*}*/
 
-.hotsell-baokrt {
-    width: 3.29rem;
-    height: 1.72rem;
-    border-bottom: #f3f3f3;
-    position: relative;
-}
-
-.hotsell-baokrt img {
-    position: absolute;
-    right: 0.14rem;
-    top: 0.12rem;
-}
+/*.hotsell-baokrt {*/
+/*width: 3.29rem;*/
+/*height: 1.72rem;*/
+/*border-bottom: #f3f3f3;*/
+/*position: relative;*/
+/*}*/
 
 .hotsell-baokrb {
     width: 3.29rem;
@@ -413,9 +423,10 @@
 }
 
 .hotsell-healfood {
-    background: url(../img/hotsell-img1.png);
-    background-size: 100%;
+    background-size: contain;
     height: 1.29rem;
+    width: 100%;
+    float: left;
 }
 
 .youhq {
@@ -439,7 +450,8 @@
     padding-left: 0.14rem;
 }
 
-.youhq-mainl1 {}
+.youhq-mainl1 {
+}
 
 .youhq-mainl .youhq-mainl1 span {
     font-size: 0.6rem;
@@ -462,6 +474,7 @@
 .youhq-mainr .youhq-mainr2 {
     font-size: 0.24rem;
     color: #999;
+    line-height: 0.3rem;
 }
 
 .youhq-mainr .youhq-mainr3 {
@@ -477,8 +490,9 @@
 
 .youhq-mainr {
     position: absolute;
-    right: 1.4rem;
+    right: 0.4rem;
     top: 0.2rem;
+    width:3rem;
 }
 
 .popup2 p {
@@ -591,21 +605,35 @@
     display: none;
 }
 
-
 /*会员中心*/
 
 .per-cen .head a {
     background: #d1a162;
 }
 
-.per-cen .head a .jt2 {
+.per-cen .head a.jt2 {
+    width: 0.4rem;
+    height: 0.4rem;
+    background: url(../img/img10-1.png) no-repeat;
+    background-size: 100%;
+    background-position: center;
+    top: 0.25rem;
+    right: 0.22rem;
+    margin-top: 0;
+    display: block;
+    position: absolute;
+}
+.per-cen .head a.jtr {
     width: 0.4rem;
     height: 0.4rem;
     background: url(../img/img10-2.png) no-repeat;
     background-size: 100%;
-    top: 0.12rem;
-    right: 0.9rem;
+    background-position: center;
+    top: 0.25rem;
+    right: 0.22rem;
     margin-top: 0;
+    display: block;
+    position: absolute;
 }
 
 .per-cen .weixin .att {
@@ -641,36 +669,85 @@
     background-color: #d1a162;
 
 }
-.wallet .intinfo .intro{
-  color:white;
+
+.wallet .intinfo .intro {
+    color: white;
 }
 
-.my-order .ordernav a.cur{
-  color: #d1a162;
-}
-.confirm-order .line .w146{
+.my-order .ordernav a.cur {
+    color: #d1a162;
 }
 
-.bot-btn{
-  background: #d1a162;
+.confirm-order .line .w146 {
 }
-.products-nav .sort.cur, .products-nav .screen.cur{
-  color: #d1a162;
+
+.bot-btn {
+    background: #d1a162;
 }
-.reg .yzm .get{
-  background: #d1a162;
+
+.products-nav .sort.cur, .products-nav .screen.cur {
+    color: #d1a162;
 }
-.address .addlist.first{
-   background: #d1a162;
+
+.reg .yzm .get {
+    background: #d1a162;
 }
-.shangpfl-main img{
-  width: 6.4rem;
-  height: 3.16rem;
+
+.address .addlist.first {
+    background: #d1a162;
 }
-.withalipay .line .get{
-   background: #d1a162;
+
+.shangpfl-main img {
+    width: 6.4rem;
+    height: 3.16rem;
 }
-.order-info .status .btns .bigbtn{
-  border-color: #d1a162;
-  color: #d1a162;
+
+.withalipay .line .get {
+    background: #d1a162;
+}
+
+.order-info .status .btns .bigbtn {
+    border-color: #d1a162;
+    color: #d1a162;
+}
+
+.addaddress .line.delete {
+    color: #d1a162;
+}
+
+.order-info .logi .now {
+    color: #d1a162;
+}
+
+.News-xq p {
+    line-height: 30px;
+    font-size: 0.34rem;
+    color: #322d2f;
+}
+
+.News-xq span {
+    display: block;
+    text-align: center;
+    font-size: 0.36rem;
+    color: #322d2f;
+    font-weight: bold;
+}
+.per-cen .head a{
+    padding: 0;
+}
+
+.per-cen .head .head-in{
+    padding: 0.26rem 0.15rem;
+}
+
+.my-order .ordernav a{
+    width:2rem;
+}
+[v-cloak]{
+    visibility: hidden;
+}
+
+.my-order .ordernav a.active{
+    border-bottom: 0.04rem solid #d1a162;
+    color: #d1a162;
 }

@@ -14,7 +14,7 @@
     <meta name="author" content="杭州博采网络科技股份有限公司-高端网站建设-http://www.bocweb.cn" />
     <meta name="renderer" content="webkit">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title>有商</title>
+    <title>养生堂</title>
     <script src="/Html/js/jQuery.js"></script>
     <script src="/Html/js/vue.js"></script>
     <script src="/Html/js/main.js"></script>
@@ -31,51 +31,18 @@
         <div type="submit" class="btn fl"></div>
         <div type="text" class="text">搜索关键字</div>
     </div> -->
-        <div class="youhq-box">
-            <div class="youhq">
-                <img class="lingqu" src="../img/youhq-img2.png">
+        <div class="youhq-box" id="youhq">
+            <div class="youhq" v-for="list in data.VoucherList">
+                <a href="javascript:;" class="lingqu2"><img class="lingqu" :dataId="list.Id" src="../img/youhq-img2.png"></a>
                 <div class="youhq-mainl">
-                    <div class="youhq-mainl1"><span>￥50</span><a href="javascript:;">全场通用</a></div>
+                    <div class="youhq-mainl1"><span>￥{{list.Denomination}}</span><a href="javascript:;" class="leix">{{list.Type}}</a></div>
                 </div>
                 <div class="youhq-mainr">
-                    <div class="youhq-mainr1">满199减50</div>
-                    <div class="youhq-mainr2">有效期：2016-07-29</div>
-                    <div class="youhq-mainr3">剩余使用次数：<span>4</span>(次)</div>
+                    <div class="youhq-mainr1">{{list.Condition}}</div>
+                    <div class="youhq-mainr2">有效期：{{list.EndTime}}</div>
                 </div>
             </div>
-            <div class="youhq">
-                <img class="lingqu" src="../img/youhq-img2.png">
-                <div class="youhq-mainl">
-                    <div class="youhq-mainl1"><span>￥50</span><a href="javascript:;">全场通用</a></div>
-                </div>
-                <div class="youhq-mainr">
-                    <div class="youhq-mainr1">满199减50</div>
-                    <div class="youhq-mainr2">有效期：2016-07-29</div>
-                    <div class="youhq-mainr3">剩余使用次数：<span>4</span>(次)</div>
-                </div>
-            </div>
-            <div class="youhq">
-                <img class="lingqu" src="../img/youhq-img2.png">
-                <div class="youhq-mainl">
-                    <div class="youhq-mainl1"><span>￥50</span><a href="javascript:;">全场通用</a></div>
-                </div>
-                <div class="youhq-mainr">
-                    <div class="youhq-mainr1">满199减50</div>
-                    <div class="youhq-mainr2">有效期：2016-07-29</div>
-                    <div class="youhq-mainr3">剩余使用次数：<span>4</span>(次)</div>
-                </div>
-            </div>
-            <div class="youhq">
-                <img class="lingqu" src="../img/youhq-img2.png">
-                <div class="youhq-mainl">
-                    <div class="youhq-mainl1"><span>￥50</span><a href="javascript:;">全场通用</a></div>
-                </div>
-                <div class="youhq-mainr">
-                    <div class="youhq-mainr1">满199减50</div>
-                    <div class="youhq-mainr2">有效期：2016-07-29</div>
-                    <div class="youhq-mainr3">剩余使用次数：<span>4</span>(次)</div>
-                </div>
-            </div>
+
         </div>
         <!-- <div class="loading">加载中，请稍后...</div>
         <div class="search-box" id="search_box">
@@ -103,7 +70,7 @@
         <div class="popup">
             <div class="popup1"></div>
             <div class="popup2">
-                <p>适用范围：全场通用
+                <p>适用范围：{{list.Type}}
                     <br/>优惠额度：满199减50
                     <br/>使用门槛：消费满199.00元
                     <br/>有效期：2016-06-06 至 2016-07-07
@@ -137,12 +104,10 @@
             <li></li>
         </ul>
     </div>
-    <script src="/Html/mjs/Index1.js"></script>
+    <script src="/Html/mjs/youhq.js"></script>
     <script type="text/javascript">
-    //领取优惠券
-    $(".lingqu").click(function() {
-        $(".popup-box").show();
-    })
+
+
 
 
     // xx关闭弹出框
@@ -151,6 +116,10 @@
         $(".popup-box-two").hide();
 
     })
+
+
+
+
     </script>
 </body>
 

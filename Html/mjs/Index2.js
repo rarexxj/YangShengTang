@@ -88,6 +88,47 @@ $(function () {
         })
     }
 
+    ajaxbanner2();
+    // ajaxhome();
+    function ajaxbanner2() {
+        $.ajax({
+            url: '/Api/v1/Carousel/05',
+            type: "get"
+        }).done(function (rs) {
+            if (rs.returnCode == '200') {
+                viewbanner2(rs)
+            } else {
+                if (rs.returnCode == '401') {
+                    Backlog();
+                } else {
+                    oppo(rs.msg, 1)
+                }
+            }
+
+
+        })
+    }
+
+    function viewbanner2(rs) {
+        //短地址处理
+        for (var i in rs.data) {
+            if (rs.data[i].ShotUrl) {
+                rs.data[i].urllink = rs.data[i].ShotUrl.split('|')[0];
+                rs.data[i].idlink = rs.data[i].ShotUrl.split('|')[1];
+            } else {
+                rs.data[i].urllink = 0;
+                rs.data[i].idlink = 0;
+            }
+        }
+        new Vue({
+            el: "#banner2",
+            data: rs,
+            ready: function () {
+                Swipers2();
+                link();
+            }
+        })
+    }
 
 
     //获取首页内容
@@ -230,6 +271,20 @@ $(function () {
     //轮播
     function Swipers1() {
         var mySwiper = new Swiper('#banner1', {
+            pagination: '.swiper-pagination',
+            paginationClickable: true,
+            spaceBetween: 20,
+            slidesPerView: 'auto',
+            centeredSlides: true,
+            grabCursor: true,
+            autoplay: 2500,
+            autoplayDisableOnInteraction: false,
+            loop:true
+        })
+    }
+    //轮播
+    function Swipers2() {
+        var mySwiper = new Swiper('#banner2', {
             pagination: '.swiper-pagination',
             paginationClickable: true,
             spaceBetween: 20,

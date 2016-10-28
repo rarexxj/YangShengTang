@@ -14,7 +14,7 @@
     <meta name="author" content="杭州博采网络科技股份有限公司-高端网站建设-http://www.bocweb.cn"/>
     <meta name="renderer" content="webkit">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title>有商</title>
+    <title>养生堂</title>
     <script src="/Html/js/jQuery.js"></script>
     <script src="/Html/js/vue.js"></script>
     <script src="/Html/js/main.js"></script>
@@ -56,10 +56,10 @@
     </div>
     <div class="index-recommend">
         <div class="index-recommendl">
-            <a href="##" style="background-image:url(Html/img/index-img6.png)"></a>
+            <a href="/Html/hotsell/hotsell.html?abc=02" style="background-image:url(Html/img/index-img6.png)"></a>
         </div>
         <div class="index-recommendr">
-            <a href="##" style="background-image:url(Html/img/index-img7.png)"></a>
+            <a href="/Html/hotsell/hotsell.html?abc=03" style="background-image:url(Html/img/index-img7.png)"></a>
         </div>
     </div>
     <div class="index-search">
@@ -83,7 +83,7 @@
                 <div class="index-tab-main">
                     <ul class="index-tab-mainul">
                         <li class="index-tab-mainli" v-for="list1 in list.Goods">
-                            <a>
+                            <a  :href="'/Html/Products/Info.html?id='+list1.Id">
                                 <img :src="list1.MainImage.MediumThumbnail">
                                 <h2>{{list1.Name}}</h2>
                                 <p><span>￥{{list1.ShopPrice}}</span><i>￥{{list1.OriginalPrice}}</i></p>
@@ -124,7 +124,15 @@
             <!--</div>-->
         </div>
         <div class="index-banner3">
-            <a href="##" style="background-image:url(Html/img/index-img14.png)"></a>
+            <div class="swiper-container swiper-container3" id="banner2">
+                <div class="swiper-wrapper">
+                    <div :class="['swiper-slide',banner.urllink=='Goods'?'infourl':'',banner.urllink=='GoodsCategory'?'listurl':'']"
+                         v-for="banner in data" :style="{backgroundImage: 'url('+banner.CoverImage.RelativePath+')'}"
+                         :data-id="banner.idlink"></div>
+                </div>
+                <!-- 如果需要分页器 -->
+                <div class="swiper-pagination"></div>
+            </div>
         </div>
         <div class="index-ulikebox">
             <div class="index-ulike"></div>

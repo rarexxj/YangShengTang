@@ -14,7 +14,7 @@
     <meta name="author" content="杭州博采网络科技股份有限公司-高端网站建设-http://www.bocweb.cn" />
     <meta name="renderer" content="webkit">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title>有商</title>
+    <title>养生堂</title>
     <script src="/Html/js/jQuery.js"></script>
     <script src="/Html/js/vue.js"></script>
     <script src="/Html/js/main.js"></script>
@@ -26,10 +26,8 @@
 </head>
 
 <body class="index1">
-    <div class="shangpfl-main">
-        <a href="##"> <img src="../img/shangpfl-img1.png"></a>
-        <a href="##"> <img src="../img/shangpfl-img2.png"></a>
-        <a href="##"> <img src="../img/shangpfl-img3.png"></a>
+    <div class="shangpfl-main" id="shangpfl_main">
+        <a :href="'/Html/Products/List.html?id='+list.Id" v-for="list in data"> <img :src="list.FloorPicture.RelativePath"></a>
     </div>
     <div class="welcome pb121 index1">
         <div class="loading">加载中，请稍后...</div>
@@ -72,19 +70,19 @@
             <span class="tt">我的</span>
         </a>
     </div>
-    <div class="new-loading">
-        <ul class="small-loading">
-            <li></li>
-            <li></li>
-            <li></li>
-            <li></li>
-            <li></li>
-            <li></li>
-            <li></li>
-            <li></li>
-        </ul>
-    </div>
-    <script src="/Html/mjs/Index1.js"></script>
+    <!--<div class="new-loading">-->
+        <!--<ul class="small-loading">-->
+            <!--<li></li>-->
+            <!--<li></li>-->
+            <!--<li></li>-->
+            <!--<li></li>-->
+            <!--<li></li>-->
+            <!--<li></li>-->
+            <!--<li></li>-->
+            <!--<li></li>-->
+        <!--</ul>-->
+    <!--</div>-->
+    <script src="/Html/mjs/shangpfl.js"></script>
 </body>
 
 </html>

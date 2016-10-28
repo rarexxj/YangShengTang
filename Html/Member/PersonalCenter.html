@@ -14,7 +14,7 @@
     <meta name="author" content="杭州博采网络科技股份有限公司-高端网站建设-http://www.bocweb.cn" />
     <meta name="renderer" content="webkit">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title>有商</title>
+    <title>养生堂</title>
     <script src="/Html/js/jQuery.js"></script>
     <script src="/Html/js/vue.js"></script>
     <script src="/Html/js/main2.js"></script>
@@ -25,13 +25,13 @@
 <body>
     <div class="per-cen pb140" id="per-cen">
         <div class="head">
-            <a href="/Html/Member/My.html">
+            <a href="/Html/Member/My.html" class="head-in">
                 <div class="img fl"><img src="/Html/img/img08.jpg" width="100%" height="100%" alt=""></div>
                 <div class="info fl">
                     <div class="name"></div>
                     <div class="ph"></div>
                 </div>
-                <span class="jt2"></span>
+                <a :class="['jt2',SystemMessageCount=='0'?'':'jtr']" href="/Html/Member/News.html"></a>
             </a>
         </div>
         <div class="money f-cb">
@@ -76,7 +76,7 @@
             </div>
         </div>
         <div class="line mt20" >
-            <a href="/Html/hotsell/youhq.html">
+            <a href="/Html/Member/Myyouhq.html?vocherTpe=1">
                 <div class="tt">我的优惠券</div>
                 <span class="jt"></span>
             </a>
@@ -140,7 +140,7 @@
             <span class="tt">首页</span>
         </a>
         <!-- <a href="/Html/hotsell/shangpfl.html" class="fl"> -->
-        <a href="/Html/Products/Search.html" class="fl">
+        <a href="/Html/hotsell/shangpfl.html" class="fl">
             <span class="tb"></span>
             <span class="tt">分类</span>
         </a>
