@@ -60,6 +60,7 @@
     background-repeat: no-repeat;
     display: block;
     background-position: center;
+    margin-bottom: 0.18rem;
 }
 
 .index-banner1 {
@@ -116,6 +117,8 @@
     padding-left: 0.16rem;
     font-size: 0.2048rem;
     font-family: "宋体";
+    box-shadow: none;
+    -webkit-appearance: none;
 }
 
 .index-searchlogo {
@@ -151,9 +154,10 @@
     font-family: "宋体";
     float: left;
     padding-right: 0.56rem;
+    -webkit-tap-highlight-color:rgba(0,0,0,0);
 }
 
-.index-tab li.active {
+.index-tab li.active div{
     color: #cda467;
     border-bottom: 2px solid #cda467;
 }
@@ -794,4 +798,11 @@
 .youhq.active .lingqu2{
     background-image: url("../img/youhq-img21.png");
 
+}
+.swiper-pagination-bullet-active{
+    background:#fff;
+}
+
+.swiper-pagination-bullet{
+    background:#fff;
 }

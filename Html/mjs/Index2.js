@@ -40,8 +40,11 @@ $(function () {
             el: "#banner",
             data: rs,
             ready: function () {
-                Swipers();
+                    // console.log(rs.data.length)
                 link();
+                if(rs.data.length>1){
+                    Swipers();
+                }
             }
         })
     }
@@ -78,12 +81,16 @@ $(function () {
                 rs.data[i].idlink = 0;
             }
         }
+
         new Vue({
             el: "#banner1",
             data: rs,
             ready: function () {
-                Swipers1();
+
                 link();
+                if(rs.data.length>1){
+                    Swipers1();
+                }
             }
         })
     }
@@ -124,7 +131,10 @@ $(function () {
             el: "#banner2",
             data: rs,
             ready: function () {
-                Swipers2();
+                if(rs.data.length>1){
+                    Swipers2();
+                }
+
                 link();
             }
         })
@@ -216,7 +226,7 @@ $(function () {
 
         $('.index-tab>li').on('click',function () {
             var id=$(this).attr('dataId')
-
+            $(this).addClass('active').siblings().removeClass('active')
 
             console.log(id)
             for(var i=0;i<rss.length;i++){

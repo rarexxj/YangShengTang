@@ -69,8 +69,8 @@
     <div id="home_info">
         <div class="index-tabbox">
             <ul class="index-tab">
-                <li class="active" dataId="0">全部</li>
-                <li :dataId="list.Id" v-for="list in Categories">{{list.Name}}</li>
+                <li class="active" dataId="0"><div>全部</div></li>
+                <li :dataId="list.Id" v-for="list in Categories"><div>{{list.Name}}</div></li>
 
             </ul>
         </div>
