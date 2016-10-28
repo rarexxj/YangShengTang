@@ -26,7 +26,8 @@ $(function () {
         ids.AddressId=addid
     }
     $.ADDLOAD();
-    ajax(ids)
+    ajax(ids);
+
     function ajax(ids) {
         $.ajax({
             url:"/Api/v1/Mall/OrderCalculation",
@@ -115,6 +116,7 @@ $(function () {
             data:rs,
             ready:function () {
                 $.RMLOAD();
+                getCoupon()
                 //js();
             }
         })
@@ -197,6 +199,30 @@ $(function () {
     }
 
 })
+function getCoupon() {
+    $('#yhq').on('click',function () {
+        $('.confirm-order').hide();
+        $('.youhq-box').show();
+    })
+    $('.xjj-yhq-box .yhq-btn').on('click',function () {  //确认选择优惠券
+        $('.confirm-order').show();
+        $('.xjj-yhq-box').hide();
+        if($('.xjj-yhq-box li.cur').length == 0){
+            $('.yhq').attr('data-price',0)
+        }else{
+            var price = $('.xjj-yhq-box li.cur').attr('data-price');
+            $('.yhq').attr('data-price',price)
+        }
+        getLastPrice()
+    })
+    $('.xjj-yhq-box li').on('click',function () {
+        if($(this).hasClass('cur')){
+            $(this).removeClass('cur');
+        }else{
+            $(this).addClass('cur').siblings().removeClass('cur');
+        }
+    })
+}
 function js() {
     var money=0;
     if($('.weui_switch').is(':checked')){
@@ -204,7 +230,7 @@ function js() {
         if(money <0){
             money =0
         }
-        money=money + parseFloat($('.postage').attr('data-postage')).toFixed(2)
+        money=money + parseFloat($('.postage').attr('data-postage'))
 
         money = parseFloat(money).toFixed(2)
     }else{

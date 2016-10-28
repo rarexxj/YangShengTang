@@ -22,8 +22,8 @@
     <link rel="stylesheet" href="/Html/css/modify.css">
     <link rel="stylesheet" href="/Html/css/color-change.css">
 </head>
-<body>
-    <div class="confirm-order" id="confirm_order">
+<body id="confirm_order">
+    <div class="confirm-order">
         <div class="choadd" v-if="Addresses" >
             <!--<a :href="'/Html/ShopCar/ChooseAddress.html?id='+backid">-->
             <div class="a">
@@ -85,7 +85,7 @@
                 <input class="weui_switch" type="checkbox" :data-int="AvailableIntegral" :data-price="AvailableIntegral/1000" onchange="js()">
             </div>
         </div>
-        <div class="line confirm-youh" style="margin-top: 0.2rem">
+        <div class="line confirm-youh" style="margin-top: 0.2rem" id="yhq"  data-price="0">
             <div class="tt w146">使用优惠券</div>
             <div class="confirm-youhjt"></div>
             
@@ -101,7 +101,31 @@
             <div class="balance fr">确认订单</div>
 
         </div>
+
+
     </div>
+
+        <div class="youhq-box" style="display: none">
+            <div class="youhq" v-for="cop in Voucher.List">
+                <a href=""><div class="lingqu lingqu2"></div></a>
+                <div class="youhq-mainl">
+                    <div class="youhq-mainl1"><span>￥{{cop.Denomination}}</span>
+
+                        <a href="javascript:;" class="leix" v-if="cop.Type==0">通用</a>
+                        <a href="javascript:;" class="leix" v-if="cop.Type==1">{{cop.CategoriesName}}</a>
+                    </div>
+                </div>
+                <div class="youhq-mainr">
+                    <div class="youhq-mainr1">满<span>{{cop.Condition}}</span>减<span >{{cop.Denomination}}</span></div>
+                    <div class="youhq-mainr2">有效期：<span>{{cop.endtime}}</span></div>
+                    <div class="youhq-mainr3">剩余使用次数：<span>{{cop.MyUseTimes}}</span>(次)</div>
+                </div>
+            </div>
+            <div class="yhq-btn-box">
+                <div class="yhq-btn">确定</div>
+            </div>
+        </div>
+
     <script src="/Html/mjs/Confirm.js"></script>
 </body>
 </html>
