@@ -2,7 +2,7 @@
  * Created by Administrator on 2016/10/27.
  */
 $(function () {
-
+    $.ADDLOAD()
     var ID=$.getUrlParam("vocherTpe");
 
     ajaxmyyouhq();
@@ -35,7 +35,8 @@ $(function () {
                 }else{
                     $('.leix').html("类型")
                 };
-                $(".ordernav a").eq(ID-1).addClass("active")
+                $(".ordernav1 a").eq(ID-1).addClass("active");
+                $.RMLOAD()
             }
         })
     }

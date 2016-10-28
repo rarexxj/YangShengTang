@@ -25,13 +25,25 @@
 <body>
     <div class="per-cen pb140" id="per-cen">
         <div class="line mt20" id="News">
-            <a :href="'/Html/Member/Newsxq.html?messageId='+list.Id" v-for="list in data.Messages">
+            <a :href="'/Html/Member/Newsxq.html?messageId='+list.Id" v-for="list in Messages">
                 <div class="tt">{{list.Title}}</div>
                 <span class="jt"></span>
             </a>
         </div>
     </div>
-    <!--<div class="new-loading"><ul class="small-loading"><li></li><li></li><li></li><li></li><li></li><li></li><li></li><li></li></ul></div>-->
+    <div class="new-loading">
+        <ul class="small-loading">
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+        </ul>
+    </div>
+
     <script src="/Html/mjs/News.js" charset="utf-8"></script>
 </body>
 </html>

@@ -52,6 +52,29 @@ $(function () {
 
     }
 
+
+    //分页
+    var flag = true;
+    $(window).scroll(function () {
+        var H = $('body,html').height();
+        var h = $(window).height();
+        var t = $('body').scrollTop();
+        if (t >= H - h * 1.1 && flag == true) {
+            flag = false;
+            datas.pageNo++;
+            if(datas.pageNo>allpage){
+                //$('.loading').hide();
+
+            }else{
+                setTimeout(function () {
+                    flag = true;
+                }, 500)
+                ajaxNews()
+            }
+        }
+    })
+
+
     //领取优惠券
     $(".youhq-box").on("click", '.lingqu', function (event) {
         var id = $(this).attr('dataId');
