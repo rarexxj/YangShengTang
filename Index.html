@@ -27,7 +27,7 @@
 
 <body class="index1">
 <div id="telephone">
-<div class="index-callme" :style="{backgroundImage: 'url('+MainImage.MediumThumbnail+')'}" >
+<div class="index-callme" :style="{backgroundImage: 'url('+MainImage.RelativePath+')'}" >
     <a class="index-callmebtn" :href="'tel:'+CustomerPhone">拨打</a>
 </div>
     </div>
@@ -128,7 +128,7 @@
         <div class="index-banner3">
             <div class="swiper-container swiper-container3" id="banner2">
                 <div class="swiper-wrapper">
-                    <div :class="['swiper-slide',banner.urllink=='Goods'?'infourl':'',banner.urllink=='GoodsCategory'?'listurl':'']"
+                    <div :class="['swiper-slide swiper-slide10',banner.urllink=='Goods'?'infourl':'',banner.urllink=='GoodsCategory'?'listurl':'']"
                          v-for="banner in data" :style="{backgroundImage: 'url('+banner.CoverImage.RelativePath+')'}"
                          :data-id="banner.idlink"></div>
                 </div>

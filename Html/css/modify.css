@@ -5,7 +5,7 @@
 .index-callme {
     height: 0.76rem;
     width: 100%;
-
+    border:none;
     background-repeat: no-repeat;
     background-position: center;
     background-size: cover;
@@ -35,6 +35,9 @@
     height: 3.4rem;
 }
 
+.welcome .swiper-slide10{
+    height: 1.53rem;
+}
 .welcome .swiper-container3 {
     padding-top: 0;
     padding-bottom: 0;
