@@ -6,7 +6,7 @@ $(function () {
     var Id = $.getUrlParam('id');
     var OrderNo = $.getUrlParam('OrderNo');
     var money = $.getUrlParam('money');
-    var time = $.getUrlParam('time').toString().split('T');
+    var time = $.getUrlParam('time');
     $('.orderno').html(OrderNo);
     $('#orderid').val(Id);
     cash();
@@ -30,8 +30,8 @@ $(function () {
         $('.mpri .dec').html('00').attr('data-int','00')
     }
     //计时
-    var str = time.toString().replace(/-/g,"/");
-    var date = new Date(str);
+    //var str = time.toString().replace(/-/g,"/");
+    var date = new Date(time);
     var deadline = date.getTime()+30*60*1000;
     var mytime = new Date()
     var nowtime = mytime.getTime();
