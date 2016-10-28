@@ -26,8 +26,8 @@
 </head>
 
 <body class="index1">
-<div class="index-callme" style="background-image: url(Html/img/index-img1.png);">
-    <a class="index-callmebtn" href="tel:4001077799">拨打</a>
+<div class="index-callme" :style="{backgroundImage: 'url('+MainImage.MediumThumbnail+')'}" id="telephone">
+    <a class="index-callmebtn" :href="'tel:'+CustomerPhone">拨打</a>
 </div>
 <div class="welcome pb120 index1">
     <div class="swiper-container swiper-container3" id="banner">
