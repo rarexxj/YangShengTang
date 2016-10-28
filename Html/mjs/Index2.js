@@ -236,7 +236,32 @@ $(function () {
 
         })
     }
+    telephoneajax();
+    function telephoneajax() {
+            $.ajax({
+                url:'/Api/v1/CustomerPhone',
+                type:'get'
 
+            }).done(function (rs) {
+                if (rs.returnCode == '200') {
+                    viewTele(rs.data)
+                } else {
+                    if (rs.returnCode == '401') {
+                        Backlog();
+                    } else {
+                        oppo(rs.msg, 1)
+                    }
+                }
+            })
+    }
+
+    function viewTele(rs){
+        new Vue({
+            el:'#telephone',
+            data:rs
+
+        })
+    }
 
     function searchlink() {
         $('.index-searchlogo').on('click', function () {
