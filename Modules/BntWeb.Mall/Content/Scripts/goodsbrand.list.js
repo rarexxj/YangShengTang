@@ -12,24 +12,17 @@
 			    "sWidth": "250px"
 			},
 			{
-			    "mData": "SiteUrl", 'sClass': 'left',
-			    "sWidth": "250px", "mRender": function (data, type, full) {
-			    if (data.length > 0)
-			        return "<a href='" + data + "' target='_blank'>" + data + "</a>";
-			} },
-			{ "mData": "Description", 'sClass': 'left' },
-			{
-		        "mData": "Id", 'sClass': ' center', "orderable": false,
-		        "sWidth": "200px",
-		        "mRender": function (data, type, full) {
-		            var render = '<div class="visible-md visible-lg hidden-sm hidden-xs action-buttons">';
+			    "mData": "Id", 'sClass': ' center', "orderable": false,
+			    "sWidth": "200px",
+			    "mRender": function (data, type, full) {
+			        var render = '<div class="visible-md visible-lg hidden-sm hidden-xs action-buttons">';
 
-		            render += '<a class="blue" href="' + url_edit + '?id=' + full.Id + '" title="编辑"><i class="icon-pencil bigger-130"></i></a>';
-		            render += '<a class="red delete" data-id="' + full.Id + '" href="#" title="删除"><i class="icon-trash bigger-130"></i></a>';
-		            render += '</div>';
-		            return render;
-		        }
-		    }
+			        render += '<a class="blue" href="' + url_edit + '?id=' + full.Id + '" title="编辑"><i class="icon-pencil bigger-130"></i></a>';
+			        render += '<a class="red delete" data-id="' + full.Id + '" href="#" title="删除"><i class="icon-trash bigger-130"></i></a>';
+			        render += '</div>';
+			        return render;
+			    }
+			}
 		]
     });
 
