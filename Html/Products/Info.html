@@ -13,7 +13,7 @@
     <meta name="author" content="杭州博采网络科技股份有限公司-高端网站建设-http://www.bocweb.cn" />
     <meta name="renderer" content="webkit">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title>养生堂</title>
+    <title>BTV养生堂</title>
     <script src="/Html/js/jQuery.js"></script>
     <script src="/Html/js/vue.js"></script>
     <script src="/Html/js/main.js"></script>
@@ -39,7 +39,7 @@
                     <span class="nowp">¥<span class="int">{{prices1}}</span>.<span class="dec">{{prices2}}</span></span>
                     <span class="old" v-if="OriginalPrice != 0">价格 <span class="oldp">¥{{OriginalPrice}}</span></span>
                 </div>
-                <div class="freight">运费：¥0.00</div>
+                <div class="freight">运费：¥0.00<span>{{SalesVolume}}人已付款</span></div>
                 <div class="tips">
                     <span style="margin-right: 0.82rem">正品保障</span>
                     <span>七天内无理由放心退</span>

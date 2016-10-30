@@ -14,7 +14,7 @@
     <meta name="author" content="杭州博采网络科技股份有限公司-高端网站建设-http://www.bocweb.cn"/>
     <meta name="renderer" content="webkit">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title>养生堂</title>
+    <title>BTV养生堂</title>
     <script src="/Html/js/jQuery.js"></script>
     <script src="/Html/js/vue.js"></script>
     <script src="/Html/js/main.js"></script>
@@ -27,7 +27,7 @@
 
 <body class="index1">
 <div id="telephone">
-<div class="index-callme" :style="{backgroundImage: 'url('+MainImage.MediumThumbnail+')'}" >
+<div class="index-callme" :style="{backgroundImage: 'url('+MainImage.RelativePath+')'}" >
     <a class="index-callmebtn" :href="'tel:'+CustomerPhone">拨打</a>
 </div>
     </div>
@@ -72,7 +72,7 @@
         <div class="index-tabbox">
             <ul class="index-tab">
                 <li class="active" dataId="0"><div>全部</div></li>
-                <li :dataId="list.Id" v-for="list in Categories"><div>{{list.Name}}</div></li>
+                <li :dataId="list.Id" v-for="list in Categories"><div>{{list.FloorName}}</div></li>
 
             </ul>
         </div>
@@ -128,7 +128,7 @@
         <div class="index-banner3">
             <div class="swiper-container swiper-container3" id="banner2">
                 <div class="swiper-wrapper">
-                    <div :class="['swiper-slide',banner.urllink=='Goods'?'infourl':'',banner.urllink=='GoodsCategory'?'listurl':'']"
+                    <div :class="['swiper-slide swiper-slide10',banner.urllink=='Goods'?'infourl':'',banner.urllink=='GoodsCategory'?'listurl':'']"
                          v-for="banner in data" :style="{backgroundImage: 'url('+banner.CoverImage.RelativePath+')'}"
                          :data-id="banner.idlink"></div>
                 </div>

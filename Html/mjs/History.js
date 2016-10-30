@@ -39,6 +39,8 @@ $(function () {
                 rs.Goods[i].prices1 = rs.Goods[i].ShopPrice;
                 rs.Goods[i].prices2 = '00'
             }
+
+            rs.Goods[i].BrowseTime=rs.Goods[i].BrowseTime.replace(/T/,' ')
         }
         new Vue({
             el:'#history',

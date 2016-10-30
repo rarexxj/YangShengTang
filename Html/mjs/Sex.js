@@ -39,7 +39,7 @@ $(function () {
         }).done(function (rs) {
             if(rs.returnCode == '200'){
                 oppo('修改成功',1,function () {
-                    window.location.href="/Html/Member/PersonalCenter.html";
+                    window.location.href="/Html/Member/My.html";
                     sessionStorage['qy_Sex'] = rs.data.Sex;
                 })
             }else{
