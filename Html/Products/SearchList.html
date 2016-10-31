@@ -13,7 +13,7 @@
     <meta name="author" content="杭州博采网络科技股份有限公司-高端网站建设-http://www.bocweb.cn" />
     <meta name="renderer" content="webkit">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title>养生堂</title>
+    <title>BTV养生堂</title>
     <script src="/Html/js/jQuery.js"></script>
     <script src="/Html/js/vue.js"></script>
     <script src="/Html/js/main.js"></script>
@@ -23,15 +23,19 @@
     <link rel="stylesheet" href="/Html/css/color-change.css">
 </head>
 <body>
-<div class="products-nav f-cb">
-    <div class="left fl f-cb">
-        <div class="sort fl chobtn cur">综合排序</div>
-        <div class="num fl chobtn" data-nSortType="3">销量优先</div>
-        <div class="screen fl chobtn">筛选</div>
-    </div>
-    <div class="btn"></div>
+<!--<div class="products-nav f-cb">-->
+    <!--<div class="left fl f-cb">-->
+        <!--<div class="sort fl chobtn cur">综合排序</div>-->
+        <!--<div class="num fl chobtn" data-nSortType="3">销量优先</div>-->
+        <!--<div class="screen fl chobtn">筛选</div>-->
+    <!--</div>-->
+    <!--<div class="btn"></div>-->
+<!--</div>-->
+<div class="search-tit f-cb">
+    <div type="submit" class="btn fl"></div>
+    <div type="text" class="text">搜索关键字</div>
 </div>
-<div class="pro-list shopcar detailed pb122" id="pro-list">
+<div class="pro-list shopcar detailed pb122" id="pro-list" style="margin-top: 0;">
     <div class="box" v-for="box in Goods">
         <a :href="'/Html/Products/Info.html?id='+box.Id" class="f-cb">
             <div class="img fl" :style="{backgroundImage: 'url('+box.MainImage.MediumThumbnail+')'}"></div>

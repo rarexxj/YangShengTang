@@ -40,8 +40,11 @@ $(function () {
             el: "#banner",
             data: rs,
             ready: function () {
-                Swipers();
+                    // console.log(rs.data.length)
                 link();
+                if(rs.data.length>1){
+                    Swipers();
+                }
             }
         })
     }
@@ -78,12 +81,16 @@ $(function () {
                 rs.data[i].idlink = 0;
             }
         }
+
         new Vue({
             el: "#banner1",
             data: rs,
             ready: function () {
-                Swipers1();
+
                 link();
+                if(rs.data.length>1){
+                    Swipers1();
+                }
             }
         })
     }
@@ -124,7 +131,10 @@ $(function () {
             el: "#banner2",
             data: rs,
             ready: function () {
-                Swipers2();
+                if(rs.data.length>1){
+                    Swipers2();
+                }
+
                 link();
             }
         })
@@ -198,6 +208,8 @@ $(function () {
             data: rs,
             ready: function () {
                 var ww=0
+                // var a=rs.Categories.Goods.Name.split('F')[0];
+                // alert(a)
                 $('.index-tab>li').each(function () {
                     ww+=$(this).outerWidth()
 
@@ -216,7 +228,7 @@ $(function () {
 
         $('.index-tab>li').on('click',function () {
             var id=$(this).attr('dataId')
-
+            $(this).addClass('active').siblings().removeClass('active')
 
             console.log(id)
             for(var i=0;i<rss.length;i++){
@@ -236,7 +248,32 @@ $(function () {
 
         })
     }
+    telephoneajax();
+    function telephoneajax() {
+            $.ajax({
+                url:'/Api/v1/CustomerPhone',
+                type:'get'
 
+            }).done(function (rs) {
+                if (rs.returnCode == '200') {
+                    viewTele(rs.data)
+                } else {
+                    if (rs.returnCode == '401') {
+                        Backlog();
+                    } else {
+                        oppo(rs.msg, 1)
+                    }
+                }
+            })
+    }
+
+    function viewTele(rs){
+        new Vue({
+            el:'#telephone',
+            data:rs
+
+        })
+    }
 
     function searchlink() {
         $('.index-searchlogo').on('click', function () {

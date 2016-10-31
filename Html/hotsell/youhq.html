@@ -14,7 +14,7 @@
     <meta name="author" content="杭州博采网络科技股份有限公司-高端网站建设-http://www.bocweb.cn" />
     <meta name="renderer" content="webkit">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title>养生堂</title>
+    <title>BTV养生堂</title>
     <script src="/Html/js/jQuery.js"></script>
     <script src="/Html/js/vue.js"></script>
     <script src="/Html/js/main.js"></script>
@@ -31,18 +31,21 @@
         <div type="submit" class="btn fl"></div>
         <div type="text" class="text">搜索关键字</div>
     </div> -->
-        <div class="youhq-box" id="youhq">
-            <div class="youhq" v-for="list in yhq">
+        <div class="youhq-box" id="youhq" >
+            <div class="youhq" v-for="list in yhq"  :data-fromtime="list.starttime" :data-lasttime="list.endtime" :data-price="list.Denomination" :data-maxprice="list.Condition">
                 <a href="javascript:;" class="lingqu2"><img class="lingqu" :dataId="list.Id" src="../img/youhq-img2.png"></a>
                 <div class="youhq-mainl">
-                    <div class="youhq-mainl1"><span>￥{{list.Denomination}}</span><a href="javascript:;" class="leix">{{list.Type}}</a></div>
+                    <div class="youhq-mainl1">
+                        <span>￥{{list.Denomination}}</span>
+                        <a href="javascript:;" class="leix" v-if="list.Type==0">通用</a>
+                        <a href="javascript:;" class="leix" v-if="list.Type==1">{{list.CategoriesName}}</a>
+                    </div>
                 </div>
                 <div class="youhq-mainr">
-                    <div class="youhq-mainr1">{{list.Condition}}</div>
-                    <div class="youhq-mainr2">有效期：{{list.EndTime}}</div>
+                    <div class="youhq-mainr1">满{{list.Condition}}减{{list.Denomination}}</div>
+                    <div class="youhq-mainr2">有效期：{{list.endtime}}</div>
                 </div>
             </div>
-
         </div>
         <!-- <div class="loading">加载中，请稍后...</div>
         <div class="search-box" id="search_box">
@@ -70,13 +73,13 @@
         <div class="popup">
             <div class="popup1"></div>
             <div class="popup2">
-                <p>适用范围：{{list.Type}}
-                    <br/>优惠额度：满199减50
-                    <br/>使用门槛：消费满199.00元
-                    <br/>有效期：2016-06-06 至 2016-07-07
+                <p>适用范围：<span id="leixing"></span>
+                    <br/>优惠额度：满<span id="maxprice"></span>减 <span id="price"></span>
+                    <br/>使用门槛：消费满<span id="maxprice2"></span>元
+                    <br/>有效期：<span id="fromtime"></span> 至 <span id="lasttime"></span>
                 </p>
             </div>
-            <span class="popup3">查看优惠券</span>
+            <a class="popup3" href="/Html/Member/Myyouhq.html?vocherTpe=1">查看优惠券</a>
             <div class="popup-chac"></div>
         </div>
         <div class="popup-bg"></div>
@@ -92,6 +95,7 @@
         </div>
         <div class="popup-bg"></div>
     </div>
+
     <div class="new-loading">
         <ul class="small-loading">
             <li></li>

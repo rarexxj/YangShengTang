@@ -240,7 +240,7 @@ $(function () {
     }
     function searchjs() {
         //搜索
-        $('.products-nav .btn').on('click',function () {
+        $('.search-tit').on('click',function () {
             flag = true;
             $('.search-box').show();
             $('.sort-mask').hide();

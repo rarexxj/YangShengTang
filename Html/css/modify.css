@@ -5,7 +5,7 @@
 .index-callme {
     height: 0.76rem;
     width: 100%;
-
+    border:none;
     background-repeat: no-repeat;
     background-position: center;
     background-size: cover;
@@ -35,6 +35,9 @@
     height: 3.4rem;
 }
 
+.welcome .swiper-slide10{
+    height: 1.53rem;
+}
 .welcome .swiper-container3 {
     padding-top: 0;
     padding-bottom: 0;
@@ -60,6 +63,7 @@
     background-repeat: no-repeat;
     display: block;
     background-position: center;
+    margin-bottom: 0.18rem;
 }
 
 .index-banner1 {
@@ -116,6 +120,8 @@
     padding-left: 0.16rem;
     font-size: 0.2048rem;
     font-family: "宋体";
+    box-shadow: none;
+    -webkit-appearance: none;
 }
 
 .index-searchlogo {
@@ -151,9 +157,10 @@
     font-family: "宋体";
     float: left;
     padding-right: 0.56rem;
+    -webkit-tap-highlight-color:rgba(0,0,0,0);
 }
 
-.index-tab li.active {
+.index-tab li.active div{
     color: #cda467;
     border-bottom: 2px solid #cda467;
 }
@@ -433,7 +440,7 @@
     background: url(../img/youhq-img1.png);
     width: 6.1rem;
     height: 2.06rem;
-    background-size: 100%;
+    background-size: cover;
     position: relative;
     margin-bottom: 0.2rem;
     background-position: center;
@@ -463,7 +470,7 @@
     font-size: 0.24rem;
     color: #d1a162;
     display: block;
-    margin-left: 0.2rem;
+    margin-left: 0.1rem;
 }
 
 .youhq-mainr .youhq-mainr1 {
@@ -484,15 +491,15 @@
 
 .youhq-mainl {
     position: absolute;
-    left: 0.4rem;
+    left: 0.2rem;
     top: 0.5rem;
 }
 
 .youhq-mainr {
     position: absolute;
-    right: 0.4rem;
+    right: 1.3rem;
     top: 0.2rem;
-    width:3rem;
+    width:2.2rem;
 }
 
 .popup2 p {
@@ -740,14 +747,65 @@
     padding: 0.26rem 0.15rem;
 }
 
-.my-order .ordernav a{
-    width:2rem;
+.my-order .ordernav1 a{
+    width:2.13rem;
+    float: left;
+    text-align: center;
+    height: 0.9rem;
+    font-size: 0.3rem;
+    color: #333;
+    line-height: 0.9rem;
 }
+
+.my-order .ordernav1{
+    width: 100%;
+    height: 0.9rem;
+    border-bottom: 1px solid #fff;
+    background: #fff;
+    position: relative;
+    z-index: 40;
+}
+
 [v-cloak]{
     visibility: hidden;
 }
 
-.my-order .ordernav a.active{
+.my-order .ordernav1 a.active{
     border-bottom: 0.04rem solid #d1a162;
     color: #d1a162;
+}
+.lingqu{
+    width:0.93rem;
+    height:2.06rem;
+    float: right;
+    background-image:url("../img/youhq-img23.png");
+    background-size: cover;
+    background-repeat: no-repeat;
+}
+.youhq.active .lingqu{
+     background-image: url("../img/youhq-img22.png");
+
+ }
+.youhq.active{
+    border: 1px solid #e31f2c;
+
+}
+.lingqu2{
+    width:0.93rem;
+    height:2.06rem;
+    float: right;
+    background-image:url("../img/youhq-img2.png");
+    background-size: cover;
+    background-repeat: no-repeat;
+}
+.youhq.active .lingqu2{
+    background-image: url("../img/youhq-img21.png");
+
+}
+.swiper-pagination-bullet-active{
+    background:#fff;
+}
+
+.swiper-pagination-bullet{
+    background:#fff;
 }

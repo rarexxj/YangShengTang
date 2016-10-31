@@ -3,7 +3,7 @@
  */
 $(function () {
 
-
+    $.ADDLOAD();
     var ID = $.getUrlParam('messageId')
     ajaxNewsxq();
     function ajaxNewsxq() {
@@ -13,7 +13,7 @@ $(function () {
         }).done(function (rs) {
             if (rs.returnCode == '200') {
                 viewNews(rs)
-                $('.new-loading').remove()
+
             } else {
                 if (rs.returnCode == '401') {
                     Backlog();
@@ -29,7 +29,10 @@ $(function () {
     function viewNews(rs) {
         new Vue({
             el:'#News',
-            data:rs
+            data:rs,
+            ready:function () {
+                $('.new-loading').remove()
+            }
         })
     }
 })

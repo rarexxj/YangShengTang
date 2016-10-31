@@ -1,19 +1,19 @@
 <!doctype html>
 <html lang="en">
 <head>
-    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-    <meta http-equiv="content-language" content="zh-CN" />
-    <meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1" >
-    <meta name="viewport" content="width=device-width,initial-scale=1.0,user-scalable=no" />
-    <meta name="apple-mobile-web-app-capable" content="yes" />
-    <meta name="apple-mobile-web-app-status-bar-style" content="black" />
-    <meta name="format-detection" content="telephone=no" />
-    <meta name="keywords" content="" />
-    <meta name="description" content="" />
-    <meta name="author" content="杭州博采网络科技股份有限公司-高端网站建设-http://www.bocweb.cn" />
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+    <meta http-equiv="content-language" content="zh-CN"/>
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1">
+    <meta name="viewport" content="width=device-width,initial-scale=1.0,user-scalable=no"/>
+    <meta name="apple-mobile-web-app-capable" content="yes"/>
+    <meta name="apple-mobile-web-app-status-bar-style" content="black"/>
+    <meta name="format-detection" content="telephone=no"/>
+    <meta name="keywords" content=""/>
+    <meta name="description" content=""/>
+    <meta name="author" content="杭州博采网络科技股份有限公司-高端网站建设-http://www.bocweb.cn"/>
     <meta name="renderer" content="webkit">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title>养生堂</title>
+    <title>BTV养生堂</title>
     <script src="/Html/js/jQuery.js"></script>
     <script src="/Html/js/vue.js"></script>
     <script src="/Html/js/main.js"></script>
@@ -22,86 +22,128 @@
     <link rel="stylesheet" href="/Html/css/modify.css">
     <link rel="stylesheet" href="/Html/css/color-change.css">
 </head>
-<body>
-    <div class="confirm-order" id="confirm_order">
-        <div class="choadd" v-if="Addresses" >
-            <!--<a :href="'/Html/ShopCar/ChooseAddress.html?id='+backid">-->
-            <div class="a">
-                <div class="name fl">收货人：{{Addresses.Contacts}}</div>
-                <span class="tel fl">{{Addresses.Phone}}</span>
-                <div class="clear"></div>
-                <div class="add">收货地址：{{Addresses.RegionName}} {{Addresses.Address}}</div>
-                <i></i>
-            </div>
-            <!--</a>-->
+<body id="confirm_order">
+<div class="confirm-order">
+    <div class="choadd" v-if="Addresses">
+        <!--<a :href="'/Html/ShopCar/ChooseAddress.html?id='+backid">-->
+        <div class="a">
+            <div class="name fl">收货人：{{Addresses.Contacts}}</div>
+            <span class="tel fl">{{Addresses.Phone}}</span>
+            <div class="clear"></div>
+            <div class="add">收货地址：{{Addresses.RegionName}} {{Addresses.Address}}</div>
+            <i></i>
         </div>
-        <div class="addadd" v-else="">
-            <!--<a :href="'/Html/ShopCar/ChooseAddAddress.html?id='+backid">-->
-                <div class="a">
-                <span class="tt">请添加收货地址</span>
+        <!--</a>-->
+    </div>
+    <div class="addadd" v-else="">
+        <!--<a :href="'/Html/ShopCar/ChooseAddAddress.html?id='+backid">-->
+        <div class="a">
+            <span class="tt">请添加收货地址</span>
+        </div>
+        <!--</a>-->
+    </div>
+    <div class="shopcar detailed" v-if="Goods.List.length == 1">
+        <div class="box">
+            <div class="img fl" :style="{backgroundImage: 'url('+Goods.List[0].GoodsImage.MediumThumbnail+')'}"></div>
+            <div class="info fr">
+                <div class="tt">{{Goods.List[0].GoodsName}}</div>
+                <div class="tc f-cb">
+                    <div class="int fl"><span v-for="sx in Goods.List[0].shuxi">{{sx}}</span></div>
                 </div>
-            <!--</a>-->
-        </div>
-        <div class="shopcar detailed" v-if="Goods.List.length == 1">
-            <div class="box">
-                <div class="img fl" :style="{backgroundImage: 'url('+Goods.List[0].GoodsImage.MediumThumbnail+')'}"></div>
-                <div class="info fr">
-                    <div class="tt">{{Goods.List[0].GoodsName}}</div>
-                    <div class="tc f-cb">
-                        <div class="int fl"><span v-for="sx in Goods.List[0].shuxi">{{sx}}</span></div>
-                    </div>
-                    <div class="bot f-cb">
-                        <div class="price fl">¥ <span class="amo"><span class="int">{{Goods.List[0].prices1}}</span>.<span class="dec">{{Goods.List[0].prices2}}</span></span></div>
-                        <div class="num fr">x <span>{{Goods.List[0].Quantity}}</span></div>
-                    </div>
+                <div class="bot f-cb">
+                    <div class="price fl">¥ <span class="amo"><span class="int">{{Goods.List[0].prices1}}</span>.<span
+                            class="dec">{{Goods.List[0].prices2}}</span></span></div>
+                    <div class="num fr">x <span>{{Goods.List[0].Quantity}}</span></div>
                 </div>
             </div>
-        </div>
-        <div class="pro-list" v-if="Goods.List.length > 1">
-            <!--<a href="/Html/ShopCar/ProductsDetailed.html">-->
-            <div class="godeta">
-                <ul>
-                    <li v-for="list in Goods.List">
-                        <div class="img" :style="{backgroundImage: 'url('+list.GoodsImage.SmallThumbnail+')'}"></div>
-                        <div class="num">x <span>{{list.Quantity}}</span></div>
-                    </li>
-                </ul>
-                <div class="allnum fr">共{{Goods.List.length}}件</div>
-            </div>
-        </div>
-        <div class="line pro-money">
-            <div class="tt fl">商品金额</div>
-            <div class="price fr" :data-price="GoodsAmount">¥<span class="amo"><span class="int">{{prices1}}</span>.<span class="dec">{{prices2}}</span></span></div>
-        </div>
-        <div class="line postage">
-            <div class="tt fl">邮费</div>
-            <div class="price fr" :data-price="ShippingFee">¥<span class="amo"><span class="int">{{prices3}}</span>.<span class="dec">{{prices4}}</span></span></div>
-        </div>
-        <div class="line" style="margin-top: 0.2rem">
-            <!--<div class="tt fl">可用积分{{AvailableIntegral}}分，可抵扣{{(AvailableIntegral/1000).toFixed(2)}}元</div>-->
-            <div class="tt fl">有{{AvailableIntegral}}分，可抵{{(AvailableIntegral/1000).toFixed(2)}}元</div>
-
-            <div class="weui_cell_ft fr">
-                <input class="weui_switch" type="checkbox" :data-int="AvailableIntegral" :data-price="AvailableIntegral/1000" onchange="js()">
-            </div>
-        </div>
-        <div class="line confirm-youh" style="margin-top: 0.2rem">
-            <div class="tt w146">使用优惠券</div>
-            <div class="confirm-youhjt"></div>
-            
-        </div>
-        <div class="line" style="margin-top: 0.2rem">
-            <div class="tt w145">订单备注：</div>
-            <input type="text" class="text fl  bz" maxlength="50" placeholder="选填，给买家留言（限50字）">
-        </div>
-        <div class="car-list">
-            <div class="hj fl">
-                合计：<span class="price">¥ <span class="amo" :data-price1="allprice" :data-price2="GoodsAmount"><span class="int">{{prices5}}</span>.<span class="dec">{{prices6}}</span></span></span><span class="postage">（含邮费{{ShippingFee}}元）</span>
-            </div>
-            <div class="balance fr">确认订单</div>
-
         </div>
     </div>
-    <script src="/Html/mjs/Confirm.js"></script>
+    <div class="pro-list" v-if="Goods.List.length > 1">
+        <!--<a href="/Html/ShopCar/ProductsDetailed.html">-->
+        <div class="godeta">
+            <ul>
+                <li v-for="list in Goods.List">
+                    <div class="img" :style="{backgroundImage: 'url('+list.GoodsImage.SmallThumbnail+')'}"></div>
+                    <div class="num">x <span>{{list.Quantity}}</span></div>
+                </li>
+            </ul>
+            <div class="allnum fr">共{{Goods.List.length}}件</div>
+        </div>
+    </div>
+    <div class="line pro-money">
+        <div class="tt fl">商品金额</div>
+        <div class="price fr sellprice" :data-price="GoodsAmount">¥<span class="amo"><span class="int">{{prices1}}</span>.<span
+                class="dec">{{prices2}}</span></span></div>
+    </div>
+    <div class="line postage">
+        <div class="tt fl">邮费</div>
+        <div class="price fr mailprice" :data-price="ShippingFee">¥<span class="amo"><span class="int">{{prices3}}</span>.<span
+                class="dec">{{prices4}}</span></span></div>
+    </div>
+    <div class="line" style="margin-top: 0.2rem;display: none;">
+        <!--<div class="tt fl">可用积分{{AvailableIntegral}}分，可抵扣{{(AvailableIntegral/1000).toFixed(2)}}元</div>-->
+        <div class="tt fl">有{{AvailableIntegral}}分，可抵{{(AvailableIntegral/100*IntegralDiscountRate).toFixed(2)}}元</div>
+
+        <div class="weui_cell_ft fr">
+            <input class="weui_switch" type="checkbox" :data-int="AvailableIntegral"
+                   :data-moeny="AvailableIntegral/100*IntegralDiscountRate" onchange="js()" :data-price="0">
+        </div>
+    </div>
+    <div class="line confirm-youh" style="margin-top: 0.2rem" id="yhq" data-price="0">
+        <div class="tt w146">使用优惠券</div>
+        <div class="confirm-youhjt"></div>
+
+    </div>
+    <div class="line" style="margin-top: 0.2rem">
+        <div class="tt w145">订单备注：</div>
+        <input type="text" class="text fl  bz" maxlength="50" placeholder="选填，给买家留言（限50字）">
+    </div>
+    <div class="car-list">
+        <div class="hj fl">
+            合计：<span class="price">¥ <span class="amo" :data-price1="allprice" :data-price2="GoodsAmount"><span
+                class="int">{{prices5}}</span>.<span class="dec">{{prices6}}</span></span></span><span class="postage">（含邮费{{ShippingFee}}元）</span>
+        </div>
+        <div class="balance fr">确认订单</div>
+
+    </div>
+
+
+</div>
+
+<div class="youhq-box" style="display: none">
+    <div class="youhq" v-for="cop in Voucher.List" :data-price="cop.Denomination" :data-id="cop.Id">
+
+            <div class="lingqu lingqu2"></div>
+        <div class="youhq-mainl">
+            <div class="youhq-mainl1"><span>￥{{cop.Denomination}}</span>
+
+                <a href="javascript:;" class="leix" v-if="cop.Type==0">通用</a>
+                <a href="javascript:;" class="leix" v-if="cop.Type==1">{{cop.CategoriesName}}</a>
+            </div>
+        </div>
+        <div class="youhq-mainr">
+            <div class="youhq-mainr1">满<span>{{cop.Condition}}</span>减<span>{{cop.Denomination}}</span></div>
+            <div class="youhq-mainr2">有效期：<span>{{cop.endtime}}</span></div>
+            <div class="youhq-mainr3">剩余使用次数：<span>{{cop.MyUseTimes}}</span>(次)</div>
+        </div>
+    </div>
+    <div class="yhq-btn-box">
+        <div class="yhq-btn">确定</div>
+    </div>
+</div>
+<div class="new-loading">
+    <ul class="small-loading">
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+    </ul>
+</div>
+
+<script src="/Html/mjs/Confirm.js"></script>
 </body>
 </html>

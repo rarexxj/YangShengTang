@@ -13,7 +13,7 @@
     <meta name="author" content="杭州博采网络科技股份有限公司-高端网站建设-http://www.bocweb.cn"/>
     <meta name="renderer" content="webkit">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title>养生堂</title>
+    <title>BTV养生堂</title>
     <script src="/Html/js/jQuery.js"></script>
     <script src="/Html/js/vue.js"></script>
     <script src="/Html/js/main.js"></script>
@@ -24,22 +24,27 @@
 </head>
 <body>
 <div class="my-order pb122" id="my-order">
-    <div class="ordernav">
-        <a href="/Html/Member/Myyouhq.html?vocherTpe=1" >可使用</a>
-        <a href="/Html/Member/Myyouhq.html?vocherTpe=2" >已使用</a>
-        <a href="/Html/Member/Myyouhq.html?vocherTpe=3" >已失效</a>
+    <div class="ordernav1">
+        <a href="/Html/Member/Myyouhq.html?vocherTpe=1">可使用</a>
+        <a href="/Html/Member/Myyouhq.html?vocherTpe=2">已使用</a>
+        <a href="/Html/Member/Myyouhq.html?vocherTpe=3">已失效</a>
     </div>
     <div class="youhq-box" id="myyouhq" v-cloak="">
         <div class="youhq" v-for="list in data">
-            <a href=""><img class="lingqu" src="../img/youhq-img2.png"></a>
+            <a href="">
+                <div class="lingqu"></div>
+            </a>
             <div class="youhq-mainl">
-                <div class="youhq-mainl1"><span>￥{{list.Denomination}}</span><a href="javascript:;" class="leix">{{list.Type}}</a>
+                <div class="youhq-mainl1"><span>￥{{list.Denomination}}</span>
+
+                    <a href="javascript:;" class="leix" v-if="list.Type==0">通用</a>
+                    <a href="javascript:;" class="leix" v-if="list.Type==1">{{list.CategoriesName}}</a>
                 </div>
             </div>
             <div class="youhq-mainr">
-                <div class="youhq-mainr1">{{list.Condition}}</div>
-                <div class="youhq-mainr2">有效期：{{list.EndTime}}</div>
-                <div class="youhq-mainr3">剩余使用次数：<span>4</span>(次)</div>
+                <div class="youhq-mainr1">满<span>{{list.Condition}}</span>减<span>{{list.Denomination}}</span></div>
+                <div class="youhq-mainr2">有效期：<span>{{list.endtime}}</span></div>
+                <div class="youhq-mainr3">剩余使用次数：<span>{{list.MyUseTimes}}</span>(次)</div>
             </div>
         </div>
 
@@ -47,18 +52,18 @@
 </div>
 
 
-<!--<div class="new-loading">-->
-<!--<ul class="small-loading">-->
-<!--<li></li>-->
-<!--<li></li>-->
-<!--<li></li>-->
-<!--<li></li>-->
-<!--<li></li>-->
-<!--<li></li>-->
-<!--<li></li>-->
-<!--<li></li>-->
-<!--</ul>-->
-<!--</div>-->
+<div class="new-loading">
+    <ul class="small-loading">
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+    </ul>
+</div>
 <script src="/Html/mjs/Myyouhq.js"></script>
 </body>
 </html>

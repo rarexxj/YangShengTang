@@ -19,7 +19,7 @@ $(function () {
             type:'post'
         }).done(function (rs) {
             if (rs.returnCode == '200'){
-                oppo('短息已经发送',1)
+                oppo('验证码已经发送',1)
                 CountDown($('.get'));
             }else{
                 if(rs.returnCode == '401'){

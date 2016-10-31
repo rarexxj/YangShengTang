@@ -26,7 +26,8 @@ $(function () {
         ids.AddressId=addid
     }
     $.ADDLOAD();
-    ajax(ids)
+    ajax(ids);
+
     function ajax(ids) {
         $.ajax({
             url:"/Api/v1/Mall/OrderCalculation",
@@ -115,6 +116,7 @@ $(function () {
             data:rs,
             ready:function () {
                 $.RMLOAD();
+                getCoupon()
                 //js();
             }
         })
@@ -149,7 +151,9 @@ $(function () {
                     Tel:rs.Addresses.Phone,
                     Memo:$('.bz').val(),
                     Goods:prodata,
-                    Integral:num
+                    Integral:num,
+                    VoucherId:$('.youhq-box .youhq.active').attr('data-Id'),
+                    VoucherAmount:$('.youhq-box .youhq.active').attr('data-price')
                 }
                 //console.log(datas)
                 $.ajax({
@@ -159,7 +163,7 @@ $(function () {
                 }).done(function (rs) {
                     if (rs.returnCode == '200'){
 
-                         window.location.replace("/Html/ShopCar/Pay.html?id="+rs.data.Id+'&OrderNo='+rs.data.OrderNo+'&money='+rs.data.PayFee+'&time='+rs.data.CreateTime)
+                         //window.location.replace("/Html/ShopCar/Pay.html?id="+rs.data.Id+'&OrderNo='+rs.data.OrderNo+'&money='+rs.data.PayFee+'&time='+rs.data.CreateTime)
                     }else{
                         if(rs.returnCode == '401'){
                             Backlog();
@@ -197,20 +201,65 @@ $(function () {
     }
 
 })
-function js() {
-    var money=0;
-    if($('.weui_switch').is(':checked')){
-        money = parseFloat($('.car-list .amo').attr('data-price2')) - parseFloat($('.weui_switch').attr('data-price'))
-        if(money <0){
-            money =0
+function getCoupon() {
+    $('#yhq').on('click',function () {
+        $('.confirm-order').hide();
+        $('.youhq-box').show();
+    })
+    $('.yhq-btn').on('click',function () {
+        $('.confirm-order').show();
+        $('.youhq-box').hide();
+    })
+    $('.youhq-box .yhq-btn').on('click',function () {  //确认选择优惠券
+        $('.confirm-order').show();
+        $('.xjj-yhq-box').hide();
+        if($('.youhq-box .youhq.active').length == 0){
+            $('#yhq').attr('data-price',0)
+        }else{
+            var price = $('.youhq-box .youhq.active').attr('data-price');
+            console.log(price)
+            $('#yhq').attr('data-price',price)
         }
-        money=money + parseFloat($('.postage').attr('data-postage')).toFixed(2)
+        getLastPrice()
+    })
+    $('.youhq-box .youhq').on('click',function () {
+        if($(this).hasClass('active')){
+            $(this).removeClass('active');
+        }else{
+            $(this).addClass('active').siblings().removeClass('active');
+        }
+    })
+}
+//function js() {
+//    var money=0;
+//    if($('.weui_switch').is(':checked')){
+//        money = parseFloat($('.car-list .amo').attr('data-price2')) - parseFloat($('.weui_switch').attr('data-price'))
+//        if(money <0){
+//            money =0
+//        }
+//        money=money + parseFloat($('.postage').attr('data-postage'))
+//
+//        money = parseFloat(money).toFixed(2)
+//    }else{
+//        money = parseFloat(Number($('.car-list .amo').attr('data-price2')) + Number($('.postage').attr('data-postage'))).toFixed(2)
+//        console.log(money)
+//    }
+//    $('.car-list .amo').attr('data-price',money)
+//    GetPrice($('.car-list').find('.amo'))
+//}
 
-        money = parseFloat(money).toFixed(2)
+function js() {
+    var n=$('.weui_switch').attr('data-money')
+    if($('.weui_switch').is(':checked')){
+        $('.weui_switch').attr('data-price',n)
     }else{
-        money = parseFloat(Number($('.car-list .amo').attr('data-price2')) + Number($('.postage').attr('data-postage'))).toFixed(2)
-        console.log(money)
+        $('.weui_switch').attr('data-price',0)
     }
+    getLastPrice();
+}
+function getLastPrice() {
+    var money = parseFloat($('.car-list .amo').attr('data-price2') - $('.weui_switch').attr('data-price') - $('#yhq').attr('data-price'))
+    money = parseFloat(Number(money) + Number($('.postage').attr('data-postage'))).toFixed(2);
     $('.car-list .amo').attr('data-price',money)
     GetPrice($('.car-list').find('.amo'))
 }

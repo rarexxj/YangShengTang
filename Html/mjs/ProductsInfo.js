@@ -404,6 +404,7 @@ $(function () {
             }
         }).done(function (rs) {
             if (rs.returnCode == '200'){
+
                 viewhead(rs)
             }else{
                 if(rs.returnCode == '401'){
@@ -415,6 +416,12 @@ $(function () {
         })
     }
     function viewhead(rs) {
+        for(var  i in rs.data){
+            var datas=rs.data[i]
+            if(!datas.Avatar){
+                datas.Avatar['SmallThumbnail']='/Html/img/img08.jpg'
+            }
+        }
         new Vue({
             el:'#head',
             data:rs
