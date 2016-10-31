@@ -101,6 +101,7 @@ $(function () {
         limit: 3
     }
     var a;
+    var allpage='';
     ajaxProduct()
 
     function ajaxProduct() {
@@ -110,7 +111,7 @@ $(function () {
             type: 'get'
         }).done(function (rs) {
             if (rs.returnCode == '200') {
-                allpage = Math.ceil(rs.data.TotalCount / datas.limit);
+              allpage = Math.ceil(rs.data.TotalCount / datas.limit);
                 viewProduct(rs)
             } else {
                 if (rs.returnCode == '401') {
