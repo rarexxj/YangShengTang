@@ -802,6 +802,18 @@
     background-image: url("../img/youhq-img21.png");
 
 }
+.lingqu3{
+    width:0.93rem;
+    height:2.06rem;
+    float: right;
+    background-image:url("../img/youhq-img24.png");
+    background-size: cover;
+    background-repeat: no-repeat;
+}
+.youhq.active .lingqu3{
+    background-image: url("../img/youhq-img25.png");
+
+}
 .swiper-pagination-bullet-active{
     background:#fff;
 }
