@@ -250,6 +250,7 @@ function getCoupon() {
 
 function js() {
     var n=$('.weui_switch').attr('data-money')
+    console.log(n)
     if($('.weui_switch').is(':checked')){
         $('.weui_switch').attr('data-price',n)
     }else{
@@ -258,7 +259,10 @@ function js() {
     getLastPrice();
 }
 function getLastPrice() {
-    var money = parseFloat($('.car-list .amo').attr('data-price2') - $('.weui_switch').attr('data-price') - $('#yhq').attr('data-price'))
+    var money = parseFloat($('.car-list .amo').attr('data-price2') - $('.weui_switch').attr('data-price') - $('#yhq').attr('data-price'));
+    if(money<0){
+        money=0
+    }
     money = parseFloat(Number(money) + Number($('.postage').attr('data-postage'))).toFixed(2);
     $('.car-list .amo').attr('data-price',money)
     GetPrice($('.car-list').find('.amo'))
