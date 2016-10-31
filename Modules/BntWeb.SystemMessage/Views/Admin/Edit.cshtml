@@ -40,14 +40,16 @@
 
 @section Scripts {
     @Scripts.Render("~/js/admin/jquery-form")
+    @Scripts.Render("~/js/kindeditor")
     <script type="text/javascript">
-        jQuery(function($) {
+        jQuery(function ($) {
             bntToolkit.initForm($("#SystemMessageForm"), {
                 Content: {
                     required: true
                 }
             }, null, success);
         });
+
 
         // post-submit callback
         function success(result, statusText, xhr, $form) {
@@ -57,6 +59,15 @@
                 location.href = "@Url.Action("List", "Admin", new {area = SystemMessageModule.Area})";
             }
         }
+
+
+    </script>
+    <script>
+        var editor = KindEditor.ready(function (K) {
+            editor = K.create('#Content', {
+                afterBlur: function () { this.sync(); }
+            });
+        });
 
     </script>
 }

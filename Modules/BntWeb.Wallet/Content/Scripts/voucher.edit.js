@@ -13,7 +13,7 @@
         },
         Denomination: {
             required: true,
-            number:true
+            number: true
         },
         StartTime: {
             required: true,
