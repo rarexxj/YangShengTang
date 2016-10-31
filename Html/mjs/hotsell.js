@@ -91,12 +91,16 @@ $(function () {
         })
     }
 
+
+
+
+
     var datas = {
         type: key,
         pageNo: 1,
         limit: 3
     }
-
+    var a;
     ajaxProduct()
 
     function ajaxProduct() {
@@ -106,6 +110,7 @@ $(function () {
             type: 'get'
         }).done(function (rs) {
             if (rs.returnCode == '200') {
+                allpage = Math.ceil(rs.data.TotalCount / datas.limit);
                 viewProduct(rs)
             } else {
                 if (rs.returnCode == '401') {
@@ -120,10 +125,36 @@ $(function () {
 
 
     function viewProduct(rs) {
-        var a = new Vue({
-            el: '#hotsell_healfoodbox',
-            data: rs
-        })
+        if (a) {
+            a.data.Goods = a.data.Goods.concat(rs.data.Goods)
+            console.log(a.data.Goods)
+        } else {
+            a = new Vue({
+                el: '#hotsell_healfoodbox',
+                data: rs
+            })
+        }
+
     }
+
+    var flag = true;
+    $(window).scroll(function () {
+        var H = $('body,html').height();
+        var h = $(window).height();
+        var t = $('body').scrollTop();
+        if (t >= H - h * 1.1 && flag == true) {
+            flag = false;
+            datas.pageNo++;
+            if (datas.pageNo > allpage) {
+                //$('.loading').hide();
+
+            } else {
+                setTimeout(function () {
+                    flag = true;
+                }, 500)
+                ajaxProduct();
+            }
+        }
+    })
 
 })

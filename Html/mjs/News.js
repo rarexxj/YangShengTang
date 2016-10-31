@@ -9,7 +9,7 @@ $(function () {
         pageNo: 1,
         limit: 10
     };
-    var list;
+    var a;
     ajaxNews();
     function ajaxNews() {
         $.ajax({
@@ -32,10 +32,10 @@ $(function () {
         })
     }
     function viewNews(rs) {
-        if(list){
-            list.Messages=list.Messages.concat(rs.Messages);
+        if(a){
+            a.Messages=a.Messages.concat(rs.Messages);
         }else{
-            list = new Vue({
+            a = new Vue({
                 el:'#News',
                 data:rs,
                 ready:function () {
