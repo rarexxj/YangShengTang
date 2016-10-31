@@ -163,7 +163,7 @@ $(function () {
                 }).done(function (rs) {
                     if (rs.returnCode == '200'){
 
-                         //window.location.replace("/Html/ShopCar/Pay.html?id="+rs.data.Id+'&OrderNo='+rs.data.OrderNo+'&money='+rs.data.PayFee+'&time='+rs.data.CreateTime)
+                         window.location.replace("/Html/ShopCar/Pay.html?id="+rs.data.Id+'&OrderNo='+rs.data.OrderNo+'&money='+rs.data.PayFee+'&time='+rs.data.CreateTime)
                     }else{
                         if(rs.returnCode == '401'){
                             Backlog();
