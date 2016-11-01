@@ -1,7 +1,7 @@
 /**
  * Created by admin on 2016/8/16.
  */
-$(function() {
+$(function () {
 
 
     //rem
@@ -17,8 +17,9 @@ $(function() {
 
             html.style.fontSize = fontSize + 'px';
         }
+
         setFontSize();
-        window.addEventListener('resize', function() {
+        window.addEventListener('resize', function () {
             setFontSize();
         });
 
@@ -35,11 +36,11 @@ $(function() {
     // }
 
     //删除HTML里面标签
-    $.DELHTML = function(str) {
-            return str ? str.replace(/<[^>].*?>/g, "") : str;
-        }
-        //获取URL上参数
-    $.getUrlParam = function(name) {
+    $.DELHTML = function (str) {
+        return str ? str.replace(/<[^>].*?>/g, "") : str;
+    }
+    //获取URL上参数
+    $.getUrlParam = function (name) {
         var reg = new RegExp("(^|&)" + name + "=([^&]*)(&|$)")
         var r = window.location.search.substr(1).match(reg)
         if (r != null) return unescape(r[2])
@@ -47,21 +48,19 @@ $(function() {
     }
 
 
-
     //移除LOADING
-    $.RMLOAD = function() {
+    $.RMLOAD = function () {
 
-            (!$('.new-loading').length) || $('.new-loading').remove();
-            (!$('.news-loading').length) || $('.news-loading').remove();
+        (!$('.new-loading').length) || $('.new-loading').remove();
+        (!$('.news-loading').length) || $('.news-loading').remove();
     }
-        //添加LOADING
-    $.ADDLOAD = function() {
+    //添加LOADING
+    $.ADDLOAD = function () {
         var html = '<div class="new-loading"><ul class="small-loading"><li></li><li></li><li></li><li></li><li></li><li></li><li></li><li></li></ul></div>'
         if (!$('.new-loading').length) {
             $('body').append(html);
         }
     }
-
 
 
     // window.TOKEN = localStorage.getItem('qy_loginToken')
@@ -114,11 +113,11 @@ $(function() {
                 Authorization: 'Basic ' + base64encode(window.TOKEN)
             }
         })
-    }else{
-        if(!window.TOKEN) {
-            if ((window.TOKEN && /Index/i.test(location.pathname)) || (window.TOKEN && /\/Html\/Member\/Login/i.test(location.pathname)) || (!window.TOKEN && /\/Html\/Products/i.test(location.pathname)) || (!window.TOKEN && /\/Html\/Member\/Register.html/i.test(location.pathname)) || (!window.TOKEN && location.pathname.match(/\/Html\/Member\/Forget/i)) || (!window.TOKEN && /\/Html\/Member\/Login\.html/i.test(location.pathname)) || (!window.TOKEN && /\/Htm\/Share/i.test(location.pathname)) || (!window.TOKEN && /\/Html\/Member\/WeChatBind/i.test(location.pathname)) ){
+    } else {
+        if (!window.TOKEN) {
+            if (/index/i.test(location.pathname) || /\/Html\/hotsell\/shangpfl/i.test(location.pathname) || /\/Html\/Member\/Login/i.test(location.pathname) || (!window.TOKEN && /\/Html\/Products/i.test(location.pathname)) || (!window.TOKEN && /\/Html\/Member\/Register.html/i.test(location.pathname)) || (!window.TOKEN && location.pathname.match(/\/Html\/Member\/Forget/i)) || (!window.TOKEN && /\/Html\/Member\/Login\.html/i.test(location.pathname)) || (!window.TOKEN && /\/Htm\/Share/i.test(location.pathname)) || (!window.TOKEN && /\/Html\/Member\/WeChatBind/i.test(location.pathname))) {
 
-            }else{
+            } else {
                 if (is_weixin()) {
 
                     window.location.replace('/WeiXin/Login?backUrl=' + location.pathname);
@@ -126,7 +125,9 @@ $(function() {
                     window.location.replace('/Html/Member/Login.html');
                 }
             }
-        }else{
+        } else {
+
+
             window.TOKEN = localStorage.getItem('qy_loginToken')
             $.ajaxSetup({
                 headers: {
@@ -154,9 +155,9 @@ $(function() {
 
     function base64encode(str) {
         //var encryptedHexStr = CryptoJS.enc.Base64.parse(str);
-        var encryptedHexStr =CryptoJS.enc.Utf8.parse(str)
+        var encryptedHexStr = CryptoJS.enc.Utf8.parse(str)
         console.log(str)
-        var words =  CryptoJS.enc.Base64.stringify(encryptedHexStr);
+        var words = CryptoJS.enc.Base64.stringify(encryptedHexStr);
         console.log(words)
         return words
     }
@@ -196,8 +197,8 @@ function is_weixin() {
 function Backlog(backUrl) {
     if (is_weixin()) {
 
-        var backUrls=backUrl?backUrl:location.pathname
-        window.location.href = "/WeiXin/Login"+backUrls?('?backUrl='+backUrls):''
+        var backUrls = backUrl ? backUrl : location.pathname
+        window.location.href = "/WeiXin/Login" + backUrls ? ('?backUrl=' + backUrls) : ''
     } else {
         window.location.href = "/Html/Member/Login.html"
     }
@@ -214,7 +215,7 @@ function GetPrice(amo) {
 function oppo(msg, time, callback) {
     var html = '<div class="oppo">' + msg + '</div>';
     $('body').append(html);
-    setTimeout(function() {
+    setTimeout(function () {
         $('.oppo').remove()
         if (typeof(callback) == 'function') {
             callback()
@@ -226,7 +227,7 @@ function oppo(msg, time, callback) {
 
 function CountDown(obj) {
     var t = 60;
-    var timer = setInterval(function() {
+    var timer = setInterval(function () {
         if (t == 0) {
             obj.html('获取验证码');
             obj.removeClass('on')

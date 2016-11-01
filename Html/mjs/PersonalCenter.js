@@ -3,52 +3,52 @@
  */
 $(function () {
     $.ADDLOAD();
-    var userinfo = $.getUrlParam('userInfo');
-    if (userinfo) {
-        //userinfo=decodeURIComponent(userinfo);
-        userinfo = base64_decode(userinfo);
-        // alert(userinfo)
-        userinfo = eval("(" + userinfo + ")");
-        localStorage.setItem('qy_loginToken', userinfo.PhoneNumber + ':' + userinfo.DynamicToken);
-        localStorage['qy_Identity'] = userinfo.Id;
-        localStorage['qy_UserName'] = userinfo.UserName;
-        //localStorage['qy_CreateTime']=rs.data.CreateTime;
-        localStorage['qy_NickName'] = encodeURIComponent(encodeURIComponent(userinfo.NickName));
-        localStorage['qy_Sex'] = userinfo.Sex;
-        localStorage['qy_Birthday'] = userinfo.Birthday;
-        localStorage['qy_PhoneNumber'] = userinfo.PhoneNumber;
-        localStorage['qy_Province'] = userinfo.Province;
-        localStorage['qy_City'] = userinfo.City;
-        localStorage['qy_InvitationCode'] = userinfo.InvitationCode;
-        if (userinfo.Avatar != null) {
-            localStorage['qy_head'] = userinfo.Id + '|' + userinfo.Avatar.SmallThumbnail;
-        }
-    }
-
-    window.TOKEN = localStorage.getItem('qy_loginToken')
-    if (window.TOKEN && location.pathname.indexOf('/Html/Member/Login') <= -1) {
-        $.ajaxSetup({
-            headers: {
-                Authorization: 'Basic ' + base64encode(window.TOKEN)
-            }
-        })
-    } else if ((window.TOKEN && location.pathname.indexOf('/Html/Member/Login') > -1) || (!window.TOKEN && location.pathname.indexOf('/Html/Products') > -1) || (!window.TOKEN && location.pathname.indexOf('/Index.html') > -1) || (!window.TOKEN && location.pathname.indexOf('/Html/Member/Register.html') > -1) || (!window.TOKEN && location.pathname.indexOf('/Html/Member/Forget.html') > -1) || (!window.TOKEN && location.pathname.indexOf('/Html/Member/Login.html') > -1) || (!window.TOKEN && location.pathname.indexOf('/Html/Share') > -1)) {
-        //console.log('不用跳转登录页')
-    } else {
-        if (is_weixin()) {
-            window.location.replace('/WeiXin/Login');
-        } else {
-            window.location.replace('/Html/Member/Login.html');
-        }
-    }
-    function is_weixin() {
-        var ua = navigator.userAgent.toLowerCase();
-        if (ua.match(/micromessenger/i) == "micromessenger") {
-            return true;
-        } else {
-            return false;
-        }
-    }
+    // var userinfo = $.getUrlParam('userInfo');
+    // if (userinfo) {
+    //     //userinfo=decodeURIComponent(userinfo);
+    //     userinfo = base64_decode(userinfo);
+    //     // alert(userinfo)
+    //     userinfo = eval("(" + userinfo + ")");
+    //     localStorage.setItem('qy_loginToken', userinfo.PhoneNumber + ':' + userinfo.DynamicToken);
+    //     localStorage['qy_Identity'] = userinfo.Id;
+    //     localStorage['qy_UserName'] = userinfo.UserName;
+    //     //localStorage['qy_CreateTime']=rs.data.CreateTime;
+    //     localStorage['qy_NickName'] = encodeURIComponent(encodeURIComponent(userinfo.NickName));
+    //     localStorage['qy_Sex'] = userinfo.Sex;
+    //     localStorage['qy_Birthday'] = userinfo.Birthday;
+    //     localStorage['qy_PhoneNumber'] = userinfo.PhoneNumber;
+    //     localStorage['qy_Province'] = userinfo.Province;
+    //     localStorage['qy_City'] = userinfo.City;
+    //     localStorage['qy_InvitationCode'] = userinfo.InvitationCode;
+    //     if (userinfo.Avatar != null) {
+    //         localStorage['qy_head'] = userinfo.Id + '|' + userinfo.Avatar.SmallThumbnail;
+    //     }
+    // }
+    //
+    // window.TOKEN = localStorage.getItem('qy_loginToken')
+    // if (window.TOKEN && location.pathname.indexOf('/Html/Member/Login') <= -1) {
+    //     $.ajaxSetup({
+    //         headers: {
+    //             Authorization: 'Basic ' + base64encode(window.TOKEN)
+    //         }
+    //     })
+    // } else if ((window.TOKEN && location.pathname.indexOf('/Html/Member/Login') > -1) || (!window.TOKEN && location.pathname.indexOf('/Html/Products') > -1) || (!window.TOKEN && location.pathname.indexOf('/Index.html') > -1) || (!window.TOKEN && location.pathname.indexOf('/Html/Member/Register.html') > -1) || (!window.TOKEN && location.pathname.indexOf('/Html/Member/Forget.html') > -1) || (!window.TOKEN && location.pathname.indexOf('/Html/Member/Login.html') > -1) || (!window.TOKEN && location.pathname.indexOf('/Html/Share') > -1)) {
+    //     //console.log('不用跳转登录页')
+    // } else {
+    //     if (is_weixin()) {
+    //         window.location.replace('/WeiXin/Login');
+    //     } else {
+    //         window.location.replace('/Html/Member/Login.html');
+    //     }
+    // }
+    // function is_weixin() {
+    //     var ua = navigator.userAgent.toLowerCase();
+    //     if (ua.match(/micromessenger/i) == "micromessenger") {
+    //         return true;
+    //     } else {
+    //         return false;
+    //     }
+    // }
 
     $('.head .name').html(decodeURIComponent(decodeURIComponent(localStorage['qy_NickName'])));
     $('.head .ph').html(localStorage['qy_PhoneNumber']);
