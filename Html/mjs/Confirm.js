@@ -3,8 +3,6 @@
  */
 $(function () {
 
-    $.checkuser()
-
     //console.log(window.location.pathname)
     var id = $.getUrlParam('id');
     var gid = $.getUrlParam('gid');

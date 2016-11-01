@@ -116,7 +116,7 @@ $(function() {
         })
     }else{
         if(!window.TOKEN) {
-            if ((window.TOKEN && location.pathname.indexOf('Index.html') > -1) || (window.TOKEN && location.pathname.indexOf('/Html/Member/Login') > -1) || (!window.TOKEN && location.pathname.indexOf('/Html/Products') > -1) || (!window.TOKEN && location.pathname.indexOf('/Index.html') > -1) || (!window.TOKEN && location.pathname.indexOf('/Html/Member/Register.html') > -1) || (!window.TOKEN && location.pathname.indexOf('/Html/Member/Forget.html') > -1) || (!window.TOKEN && location.pathname.indexOf('/Html/Member/Login.html') > -1) || (!window.TOKEN && location.pathname.indexOf('/Html/Share') > -1) || (!window.TOKEN && location.pathname.indexOf('/Html/Member/WeChatBind.html') > -1)) {
+            if ((window.TOKEN && /Index/i.test(location.pathname)) || (window.TOKEN && /\/Html\/Member\/Login/i.test(location.pathname)) || (!window.TOKEN && /\/Html\/Products/i.test(location.pathname)) || (!window.TOKEN && /\/Html\/Member\/Register.html/i.test(location.pathname)) || (!window.TOKEN && location.pathname.match(/\/Html\/Member\/Forget/i)) || (!window.TOKEN && /\/Html\/Member\/Login\.html/i.test(location.pathname)) || (!window.TOKEN && /\/Htm\/Share/i.test(location.pathname)) || (!window.TOKEN && /\/Html\/Member\/WeChatBind/i.test(location.pathname)) ){
 
             }else{
                 if (is_weixin()) {
@@ -137,7 +137,6 @@ $(function() {
     }
 
 
-
     function is_weixin() {
         var ua = navigator.userAgent.toLowerCase();
         if (ua.match(/micromessenger/i) == "micromessenger") {
@@ -153,6 +152,14 @@ $(function() {
         return words
     }
 
+    function base64encode(str) {
+        //var encryptedHexStr = CryptoJS.enc.Base64.parse(str);
+        var encryptedHexStr =CryptoJS.enc.Utf8.parse(str)
+        console.log(str)
+        var words =  CryptoJS.enc.Base64.stringify(encryptedHexStr);
+        console.log(words)
+        return words
+    }
 })
 
 //提示框
@@ -230,144 +237,4 @@ function CountDown(obj) {
         }
 
     }, 1000)
-}
-$.checkuser=function(){
-    var userinfo = $.getUrlParam('userInfo');
-    if (userinfo) {
-        //userinfo=decodeURIComponent(userinfo);
-        userinfo = base64_decode(userinfo);
-        // alert(userinfo)
-        userinfo = eval("(" + userinfo + ")");
-        localStorage.setItem('qy_loginToken', userinfo.PhoneNumber + ':' + userinfo.DynamicToken);
-        localStorage['qy_Identity'] = userinfo.Id;
-        localStorage['qy_UserName'] = userinfo.UserName;
-        //localStorage['qy_CreateTime']=rs.data.CreateTime;
-        localStorage['qy_NickName'] = encodeURIComponent(encodeURIComponent(userinfo.NickName));
-        localStorage['qy_Sex'] = userinfo.Sex;
-        localStorage['qy_Birthday'] = userinfo.Birthday;
-        localStorage['qy_PhoneNumber'] = userinfo.PhoneNumber;
-        localStorage['qy_Province'] = userinfo.Province;
-        localStorage['qy_City'] = userinfo.City;
-        localStorage['qy_InvitationCode'] = userinfo.InvitationCode;
-        if (userinfo.Avatar != null) {
-            localStorage['qy_head'] = userinfo.Id + '|' + userinfo.Avatar.SmallThumbnail;
-        }
-    }
-
-    window.TOKEN = localStorage.getItem('qy_loginToken')
-    if (window.TOKEN && location.pathname.indexOf('/Html/Member/Login') <= -1) {
-        $.ajaxSetup({
-            headers: {
-                Authorization: 'Basic ' + base64encode(window.TOKEN)
-            }
-        })
-    } else if ((window.TOKEN && location.pathname.indexOf('/Html/Member/Login') > -1) || (!window.TOKEN && location.pathname.indexOf('/Html/Products') > -1) || (!window.TOKEN && location.pathname.indexOf('/Index.html') > -1) || (!window.TOKEN && location.pathname.indexOf('/Html/Member/Register.html') > -1) || (!window.TOKEN && location.pathname.indexOf('/Html/Member/Forget.html') > -1) || (!window.TOKEN && location.pathname.indexOf('/Html/Member/Login.html') > -1) || (!window.TOKEN && location.pathname.indexOf('/Html/Share') > -1)) {
-        //console.log('不用跳转登录页')
-    } else {
-        if (is_weixin()) {
-            window.location.replace('/WeiXin/Login');
-        } else {
-            window.location.replace('/Html/Member/Login.html');
-        }
-    }
-    function is_weixin() {
-        var ua = navigator.userAgent.toLowerCase();
-        if (ua.match(/micromessenger/i) == "micromessenger") {
-            return true;
-        } else {
-            return false;
-        }
-    }
-
-    function base64_decode(str) {
-        var words = CryptoJS.enc.Base64.parse(str);
-        words = words.toString(CryptoJS.enc.Utf8);
-        return words
-    }
-}
-
-
-var base64encodechars = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/";
-var base64decodechars = new Array(-1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, 62, -1, -1, -1, 63,
-    52, 53, 54, 55, 56, 57, 58, 59, 60, 61, -1, -1, -1, -1, -1, -1, -1, 0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14,
-    15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, -1, -1, -1, -1, -1, -1, 26, 27, 28, 29, 30, 31, 32, 33, 34, 35, 36, 37, 38, 39, 40,
-    41, 42, 43, 44, 45, 46, 47, 48, 49, 50, 51, -1, -1, -1, -1, -1);
-
-function base64encode(str) {
-    var out, i, len;
-    var c1, c2, c3;
-    len = str.length;
-    i = 0;
-    out = "";
-    while (i < len) {
-        c1 = str.charCodeAt(i++) & 0xff;
-        if (i == len) {
-            out += base64encodechars.charAt(c1 >> 2);
-            out += base64encodechars.charAt((c1 & 0x3) << 4);
-            out += "==";
-            break;
-        }
-        c2 = str.charCodeAt(i++);
-        if (i == len) {
-            out += base64encodechars.charAt(c1 >> 2);
-            out += base64encodechars.charAt(((c1 & 0x3) << 4) | ((c2 & 0xf0) >> 4));
-            out += base64encodechars.charAt((c2 & 0xf) << 2);
-            out += "=";
-            break;
-        }
-        c3 = str.charCodeAt(i++);
-        out += base64encodechars.charAt(c1 >> 2);
-        out += base64encodechars.charAt(((c1 & 0x3) << 4) | ((c2 & 0xf0) >> 4));
-        out += base64encodechars.charAt(((c2 & 0xf) << 2) | ((c3 & 0xc0) >> 6));
-        out += base64encodechars.charAt(c3 & 0x3f);
-    }
-    return out;
-}
-
-function base64decode(str) {
-    var c1, c2, c3, c4;
-    var i, len, out;
-
-    len = str.length;
-
-    i = 0;
-    out = "";
-    while (i < len) {
-
-        do {
-            c1 = base64decodechars[str.charCodeAt(i++) & 0xff];
-        } while (i < len && c1 == -1);
-        if (c1 == -1)
-            break;
-
-        do {
-            c2 = base64decodechars[str.charCodeAt(i++) & 0xff];
-        } while (i < len && c2 == -1);
-        if (c2 == -1)
-            break;
-
-        out += String.fromCharCode((c1 << 2) | ((c2 & 0x30) >> 4));
-
-        do {
-            c3 = str.charCodeAt(i++) & 0xff;
-            if (c3 == 61)
-                return out;
-            c3 = base64decodechars[c3];
-        } while (i < len && c3 == -1);
-        if (c3 == -1)
-            break;
-
-        out += String.fromCharCode(((c2 & 0xf) << 4) | ((c3 & 0x3c) >> 2));
-
-        do {
-            c4 = str.charCodeAt(i++) & 0xff;
-            if (c4 == 61)
-                return out;
-            c4 = base64decodechars[c4];
-        } while (i < len && c4 == -1);
-        if (c4 == -1)
-            break;
-        out += String.fromCharCode(((c3 & 0x03) << 6) | c4);
-    }
-    return out;
 }
