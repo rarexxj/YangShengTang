@@ -2,30 +2,30 @@
  * Created by admin on 2016/8/24.
  */
 $(function () {
-    $('.myname p').html(decodeURIComponent(decodeURIComponent(sessionStorage['qy_NickName'])));
+    $('.myname p').html(decodeURIComponent(decodeURIComponent(localStorage['qy_NickName'])));
     var sex;
-    if (sessionStorage['qy_Sex'] == 0){
+    if (localStorage['qy_Sex'] == 0){
         sex = '保密'
-    }else if(sessionStorage['qy_Sex'] == 1){
+    }else if(localStorage['qy_Sex'] == 1){
         sex ='男'
-    }else if(sessionStorage['qy_Sex'] == 2){
+    }else if(localStorage['qy_Sex'] == 2){
         sex = '女'
     }
-    var day = sessionStorage['qy_Birthday'].split('T')
+    var day = localStorage['qy_Birthday'].split('T')
     $('.mysex p').html(sex);
     $('.mybir p').html(day[0]);
-    $('.myph p').html(sessionStorage['qy_PhoneNumber']);
+    $('.myph p').html(localStorage['qy_PhoneNumber']);
     ///Html/Member/BindPhone.html
     $('.myph a').on('click',function () {
-        if(sessionStorage['qy_PhoneNumber']==''){
+        if(localStorage['qy_PhoneNumber']==''){
             window.location.href="/Html/Member/BindPhone.html"
         }else{
             window.location.href="/Html/Member/BindNewPhone.html"
         }
     })
-    if(sessionStorage['qy_head']){
-        if(sessionStorage['qy_Identity']==sessionStorage['qy_head'].toString().split('|')[0]){
-            $('.head .img img').attr('src',sessionStorage['qy_head'].toString().split('|')[1]);
+    if(localStorage['qy_head']){
+        if(localStorage['qy_Identity']==localStorage['qy_head'].toString().split('|')[0]){
+            $('.head .img img').attr('src',localStorage['qy_head'].toString().split('|')[1]);
         }
     }
 
@@ -45,18 +45,18 @@ $(function () {
             type:'post'
         }).done(function (rs) {
             if (rs.returnCode == '200'){
-                sessionStorage.removeItem('qy_Birthday');
-                sessionStorage.removeItem('qy_City');
-                sessionStorage.removeItem('qy_Identity');
-                sessionStorage.removeItem('qy_NickName');
-                sessionStorage.removeItem('qy_PhoneNumber');
-                sessionStorage.removeItem('qy_Province');
-                sessionStorage.removeItem('qy_Sex');
-                sessionStorage.removeItem('qy_UserName');
-                sessionStorage.removeItem('qy_loginToken');
-                sessionStorage.removeItem('qy_head');
-                sessionStorage.removeItem('qy_InvitationCode');
-                sessionStorage.removeItem('qy_MemberType');
+                localStorage.removeItem('qy_Birthday');
+                localStorage.removeItem('qy_City');
+                localStorage.removeItem('qy_Identity');
+                localStorage.removeItem('qy_NickName');
+                localStorage.removeItem('qy_PhoneNumber');
+                localStorage.removeItem('qy_Province');
+                localStorage.removeItem('qy_Sex');
+                localStorage.removeItem('qy_UserName');
+                localStorage.removeItem('qy_loginToken');
+                localStorage.removeItem('qy_head');
+                localStorage.removeItem('qy_InvitationCode');
+                localStorage.removeItem('qy_MemberType');
                 window.location.href="/Html/Member/Login.html"
             }
             else{
@@ -91,13 +91,13 @@ $(function () {
                 $.ajax({
                     //contentType: false,    //不可缺
                     //processData: false,    //不可缺
-                    url: '/Api/v1/Member/'+sessionStorage['qy_Identity']+'/Avatar',
+                    url: '/Api/v1/Member/'+localStorage['qy_Identity']+'/Avatar',
                     data: imgData,
                     type: 'Patch'
                 }).done(function (json) {
                     if (json.returnCode == 200) {
                         var data = json.data;
-                        sessionStorage['qy_head']=sessionStorage['qy_Identity']+"|"+data.SmallThumbnail
+                        localStorage['qy_head']=localStorage['qy_Identity']+"|"+data.SmallThumbnail
                         $('.head').attr('data-id', data.Id);
                         $('.head img').attr('src', data.SmallThumbnail);
                         //toolTips(1, "修改成功！", 1);

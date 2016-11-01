@@ -38,7 +38,7 @@ $(function () {
 
     function ajax(data) {
         $.ajax({
-            url:'/Api/v1/Member/'+ sessionStorage['qy_Identity'] +'/Password',
+            url:'/Api/v1/Member/'+ localStorage['qy_Identity'] +'/Password',
             type:'PATCH',
             data:data
         }).done(function (rs) {

@@ -40,23 +40,23 @@ $(function() {
         }).done(function(rs) {
 
             if (rs.returnCode == '200') {
-                sessionStorage.setItem('qy_loginToken', data.PhoneNumber + ':' + rs.data.DynamicToken);
-                sessionStorage['qy_Identity'] = rs.data.Id;
-                sessionStorage['qy_UserName'] = rs.data.UserName;
-                //sessionStorage['qy_CreateTime']=rs.data.CreateTime;
-                sessionStorage['qy_NickName'] = encodeURIComponent(encodeURIComponent(rs.data.NickName));
-                sessionStorage['qy_Sex'] = rs.data.Sex;
-                sessionStorage['qy_Birthday'] = rs.data.Birthday;
-                //sessionStorage['qy_Avatar']=rs.data.Avatar;
-                sessionStorage['qy_PhoneNumber'] = rs.data.PhoneNumber;
-                sessionStorage['qy_Province'] = rs.data.Province;
-                sessionStorage['qy_City'] = rs.data.City;
-                sessionStorage['qy_InvitationCode'] = rs.data.InvitationCode;
+                localStorage.setItem('qy_loginToken', data.PhoneNumber + ':' + rs.data.DynamicToken);
+                localStorage['qy_Identity'] = rs.data.Id;
+                localStorage['qy_UserName'] = rs.data.UserName;
+                //localStorage['qy_CreateTime']=rs.data.CreateTime;
+                localStorage['qy_NickName'] = encodeURIComponent(encodeURIComponent(rs.data.NickName));
+                localStorage['qy_Sex'] = rs.data.Sex;
+                localStorage['qy_Birthday'] = rs.data.Birthday;
+                //localStorage['qy_Avatar']=rs.data.Avatar;
+                localStorage['qy_PhoneNumber'] = rs.data.PhoneNumber;
+                localStorage['qy_Province'] = rs.data.Province;
+                localStorage['qy_City'] = rs.data.City;
+                localStorage['qy_InvitationCode'] = rs.data.InvitationCode;
                 if (rs.data.Avatar != null) {
-                    sessionStorage['qy_head'] = rs.data.Id + '|' + rs.data.Avatar.SmallThumbnail;
+                    localStorage['qy_head'] = rs.data.Id + '|' + rs.data.Avatar.SmallThumbnail;
                 }
 
-                // sessionStorage['qy_UserName']=rs.data.UserName;
+                // localStorage['qy_UserName']=rs.data.UserName;
                 oppo('登录成功', 1, function() {
                     window.location.href = "/Html/Member/PersonalCenter.html"
                 })

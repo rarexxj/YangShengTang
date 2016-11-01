@@ -9,23 +9,23 @@ $(function () {
         userinfo = base64_decode(userinfo);
         // alert(userinfo)
         userinfo = eval("(" + userinfo + ")");
-        sessionStorage.setItem('qy_loginToken', userinfo.PhoneNumber + ':' + userinfo.DynamicToken);
-        sessionStorage['qy_Identity'] = userinfo.Id;
-        sessionStorage['qy_UserName'] = userinfo.UserName;
-        //sessionStorage['qy_CreateTime']=rs.data.CreateTime;
-        sessionStorage['qy_NickName'] = encodeURIComponent(encodeURIComponent(userinfo.NickName));
-        sessionStorage['qy_Sex'] = userinfo.Sex;
-        sessionStorage['qy_Birthday'] = userinfo.Birthday;
-        sessionStorage['qy_PhoneNumber'] = userinfo.PhoneNumber;
-        sessionStorage['qy_Province'] = userinfo.Province;
-        sessionStorage['qy_City'] = userinfo.City;
-        sessionStorage['qy_InvitationCode'] = userinfo.InvitationCode;
+        localStorage.setItem('qy_loginToken', userinfo.PhoneNumber + ':' + userinfo.DynamicToken);
+        localStorage['qy_Identity'] = userinfo.Id;
+        localStorage['qy_UserName'] = userinfo.UserName;
+        //localStorage['qy_CreateTime']=rs.data.CreateTime;
+        localStorage['qy_NickName'] = encodeURIComponent(encodeURIComponent(userinfo.NickName));
+        localStorage['qy_Sex'] = userinfo.Sex;
+        localStorage['qy_Birthday'] = userinfo.Birthday;
+        localStorage['qy_PhoneNumber'] = userinfo.PhoneNumber;
+        localStorage['qy_Province'] = userinfo.Province;
+        localStorage['qy_City'] = userinfo.City;
+        localStorage['qy_InvitationCode'] = userinfo.InvitationCode;
         if (userinfo.Avatar != null) {
-            sessionStorage['qy_head'] = userinfo.Id + '|' + userinfo.Avatar.SmallThumbnail;
+            localStorage['qy_head'] = userinfo.Id + '|' + userinfo.Avatar.SmallThumbnail;
         }
     }
 
-    window.TOKEN = sessionStorage.getItem('qy_loginToken')
+    window.TOKEN = localStorage.getItem('qy_loginToken')
     if (window.TOKEN && location.pathname.indexOf('/Html/Member/Login') <= -1) {
         $.ajaxSetup({
             headers: {
@@ -50,11 +50,11 @@ $(function () {
         }
     }
 
-    $('.head .name').html(decodeURIComponent(decodeURIComponent(sessionStorage['qy_NickName'])));
-    $('.head .ph').html(sessionStorage['qy_PhoneNumber']);
-    if (sessionStorage['qy_head']) {
-        if (sessionStorage['qy_Identity'] == sessionStorage['qy_head'].toString().split('|')[0]) {
-            $('.head .img img').attr('src', sessionStorage['qy_head'].toString().split('|')[1]);
+    $('.head .name').html(decodeURIComponent(decodeURIComponent(localStorage['qy_NickName'])));
+    $('.head .ph').html(localStorage['qy_PhoneNumber']);
+    if (localStorage['qy_head']) {
+        if (localStorage['qy_Identity'] == localStorage['qy_head'].toString().split('|')[0]) {
+            $('.head .img img').attr('src', localStorage['qy_head'].toString().split('|')[1]);
         }
     }
 
@@ -83,7 +83,7 @@ $(function () {
         if (!rs.Integral || rs.Integral == 'null') {
             rs.Integral = 0
         }
-        sessionStorage['qy_MemberType'] = rs.MemberType;
+        localStorage['qy_MemberType'] = rs.MemberType;
         new Vue({
             el: '#per-cen',
             data: rs,

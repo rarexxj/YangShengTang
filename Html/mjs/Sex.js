@@ -2,7 +2,7 @@
  * Created by admin on 2016/8/25.
  */
 $(function () {
-    var num =sessionStorage['qy_Sex'];
+    var num =localStorage['qy_Sex'];
     if(num ==1){
         $('.sexman').addClass('cur')
     }
@@ -33,14 +33,14 @@ $(function () {
     })
     function ajax(data) {
         $.ajax({
-            url:'/Api/v1/Member/'+ sessionStorage['qy_Identity'],
+            url:'/Api/v1/Member/'+ localStorage['qy_Identity'],
             type:'put',
             data:data
         }).done(function (rs) {
             if(rs.returnCode == '200'){
                 oppo('修改成功',1,function () {
                     window.location.href="/Html/Member/My.html";
-                    sessionStorage['qy_Sex'] = rs.data.Sex;
+                    localStorage['qy_Sex'] = rs.data.Sex;
                 })
             }else{
                 if(rs.returnCode == '401'){

@@ -3,7 +3,7 @@
  */
 $(function () {
     $.ADDLOAD();
-    var code = sessionStorage['qy_InvitationCode'];
+    var code = localStorage['qy_InvitationCode'];
     $('.mask .num').html(code);
     //复制链接
     var clipboard = new Clipboard('.copy');
@@ -260,7 +260,7 @@ $(function () {
         });
         qrcode.makeCode(location.origin+"/Html/Share/PartnerPlan.html?code="+code)
         $('.submit').on('click',function () {
-            if(sessionStorage['qy_MemberType']==1){
+            if(localStorage['qy_MemberType']==1){
                 $('.mask').fadeIn()
             }else{
                 $('.success').fadeIn()

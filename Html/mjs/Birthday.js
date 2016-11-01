@@ -5,8 +5,8 @@
  * Created by admin on 2016/8/25.
  */
 $(function () {
-    if(sessionStorage['qy_Birthday']){
-        $('.date').val(sessionStorage['qy_Birthday'].toString().split('T')[0])
+    if(localStorage['qy_Birthday']){
+        $('.date').val(localStorage['qy_Birthday'].toString().split('T')[0])
     }
     $('.submit').on('click',function () {
         var data={
@@ -23,14 +23,14 @@ $(function () {
     })
     function ajax(data) {
         $.ajax({
-            url:'/Api/v1/Member/'+ sessionStorage['qy_Identity'],
+            url:'/Api/v1/Member/'+ localStorage['qy_Identity'],
             type:'put',
             data:data
         }).done(function (rs) {
             if(rs.returnCode == '200'){
                 oppo('修改成功',1,function () {
                     window.location.href="/Html/Member/My.html";
-                    sessionStorage['qy_Birthday'] = rs.data.Birthday;
+                    localStorage['qy_Birthday'] = rs.data.Birthday;
                 })
             }else{
                 if(rs.returnCode == '401'){

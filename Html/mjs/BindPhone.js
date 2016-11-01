@@ -68,7 +68,7 @@ $(function () {
     })
     function ajax1(data) {
         $.ajax({
-            url:'/Api/v1/Member/'+sessionStorage['qy_Identity']+'/Bound/PhoneNumber',
+            url:'/Api/v1/Member/'+localStorage['qy_Identity']+'/Bound/PhoneNumber',
             type:'patch',
             data:data
         }).done(function (rs) {
@@ -111,7 +111,7 @@ $(function () {
     })
     function ajax1(data) {
         $.ajax({
-            url:'/Api/v1/Member/'+sessionStorage['qy_Identity']+'/PhoneNumber',
+            url:'/Api/v1/Member/'+localStorage['qy_Identity']+'/PhoneNumber',
             type:'patch',
             data:data
         }).done(function (rs) {

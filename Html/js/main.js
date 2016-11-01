@@ -64,7 +64,7 @@ $(function() {
 
 
 
-    window.TOKEN = sessionStorage.getItem('qy_loginToken')
+    window.TOKEN = localStorage.getItem('qy_loginToken')
         // if(!window.TOKEN&&(location.pathname.indexOf('/Html/Member/Login')<=-1)
         //     ){
         //     location.href='/Html/Member/Login.html'
@@ -127,8 +127,10 @@ function is_weixin() {
     }
 }
 //登录错误跳回登录页
-function Backlog() {
+function Backlog(backUrl) {
     if (is_weixin()) {
+
+        var backUrl=''
         window.location.href = "/WeiXin/Login"
     } else {
         window.location.href = "/Html/Member/Login.html"

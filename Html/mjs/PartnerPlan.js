@@ -4,12 +4,12 @@
 $(function () {
     $.ADDLOAD();
     var code =$.getUrlParam('code');
-    if(sessionStorage['qy_loginToken']){
+    if(localStorage['qy_loginToken']){
         $('.goindex').hide();
         $('.goreg').hide();
     }else{
         $('.wxshare').hide();
-        sessionStorage['qy_invited']=code
+        localStorage['qy_invited']=code
     }
     $('.goindex').on('click',function () {
         window.location.href="/Index.html"

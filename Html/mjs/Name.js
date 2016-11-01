@@ -18,14 +18,14 @@ $(function () {
     })
     function ajax(data) {
       $.ajax({
-          url:'/Api/v1/Member/'+ sessionStorage['qy_Identity'],
+          url:'/Api/v1/Member/'+ localStorage['qy_Identity'],
           type:'put',
           data:data
       }).done(function (rs) {
           if(rs.returnCode == '200'){
             oppo('修改成功',1,function () {
                 window.location.href="/Html/Member/My.html";
-                sessionStorage['qy_NickName'] = encodeURIComponent(encodeURIComponent(rs.data.NickName));
+                localStorage['qy_NickName'] = encodeURIComponent(encodeURIComponent(rs.data.NickName));
             })
           }else{
               if(rs.returnCode == '401'){
