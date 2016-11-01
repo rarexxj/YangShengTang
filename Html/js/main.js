@@ -2,7 +2,29 @@
  * Created by admin on 2016/8/16.
  */
 $(function () {
+    function is_weixin() {
+        var ua = navigator.userAgent.toLowerCase();
+        if (ua.match(/micromessenger/i) == "micromessenger") {
+            return true;
+        } else {
+            return false;
+        }
+    }
 
+    function base64_decodes(str) {
+        var words = CryptoJS.enc.Base64.parse(str);
+        words = words.toString(CryptoJS.enc.Utf8);
+        return words
+    }
+
+    function base64encode(str) {
+        //var encryptedHexStr = CryptoJS.enc.Base64.parse(str);
+        var encryptedHexStr = CryptoJS.enc.Utf8.parse(str)
+        console.log(str)
+        var words = CryptoJS.enc.Base64.stringify(encryptedHexStr);
+        console.log(words)
+        return words
+    }
 
     //rem
     function set_font() {
@@ -85,14 +107,16 @@ $(function () {
 
     window.TOKEN = localStorage.getItem('qy_loginToken')
 
-    var userinfo = $.getUrlParam('userInfo');
+    var userinfo = $.cookie('userInfo');
 
     if (userinfo) {
 
         //userinfo=decodeURIComponent(userinfo);
         userinfo = base64_decodes(userinfo);
+
         // alert(userinfo)
-        userinfo = eval("(" + userinfo + ")");
+        userinfo =  JSON.parse(userinfo) ;
+
         localStorage.setItem('qy_loginToken', userinfo.PhoneNumber + ':' + userinfo.DynamicToken);
         localStorage['qy_Identity'] = userinfo.Id;
         localStorage['qy_UserName'] = userinfo.UserName;
@@ -108,6 +132,7 @@ $(function () {
             localStorage['qy_head'] = userinfo.Id + '|' + userinfo.Avatar.SmallThumbnail;
         }
         window.TOKEN = localStorage.getItem('qy_loginToken')
+
         $.ajaxSetup({
             headers: {
                 Authorization: 'Basic ' + base64encode(window.TOKEN)
@@ -120,13 +145,12 @@ $(function () {
             } else {
                 if (is_weixin()) {
 
-                    window.location.replace('/WeiXin/Login?backUrl=' + location.pathname);
+                    window.location.replace('/WeiXin/Login?backUrl=' + location.pathname+location.search);
                 } else {
                     window.location.replace('/Html/Member/Login.html');
                 }
             }
         } else {
-
 
             window.TOKEN = localStorage.getItem('qy_loginToken')
             $.ajaxSetup({
@@ -138,29 +162,9 @@ $(function () {
     }
 
 
-    function is_weixin() {
-        var ua = navigator.userAgent.toLowerCase();
-        if (ua.match(/micromessenger/i) == "micromessenger") {
-            return true;
-        } else {
-            return false;
-        }
-    }
 
-    function base64_decodes(str) {
-        var words = CryptoJS.enc.Base64.parse(str);
-        words = words.toString(CryptoJS.enc.Utf8);
-        return words
-    }
 
-    function base64encode(str) {
-        //var encryptedHexStr = CryptoJS.enc.Base64.parse(str);
-        var encryptedHexStr = CryptoJS.enc.Utf8.parse(str)
-        console.log(str)
-        var words = CryptoJS.enc.Base64.stringify(encryptedHexStr);
-        console.log(words)
-        return words
-    }
+
 })
 
 //提示框

@@ -42,7 +42,7 @@ $(function () {
             }else{
                 if(rs.returnCode == '401'){
 
-                    Backlog(location.pathname);
+                    Backlog(location.pathname+location.search);
                 }else{
                     oppo(rs.msg ,1)
                 }
