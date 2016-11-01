@@ -143,6 +143,7 @@ $(function () {
             if (/index/i.test(location.pathname) || /\/Html\/hotsell\/shangpfl/i.test(location.pathname) || /\/Html\/Member\/Login/i.test(location.pathname) || (!window.TOKEN && /\/Html\/Products/i.test(location.pathname)) || (!window.TOKEN && /\/Html\/Member\/Register.html/i.test(location.pathname)) || (!window.TOKEN && location.pathname.match(/\/Html\/Member\/Forget/i)) || (!window.TOKEN && /\/Html\/Member\/Login\.html/i.test(location.pathname)) || (!window.TOKEN && /\/Htm\/Share/i.test(location.pathname)) || (!window.TOKEN && /\/Html\/Member\/WeChatBind/i.test(location.pathname))) {
 
             } else {
+
                 if (is_weixin()) {
 
                     window.location.replace('/WeiXin/Login?backUrl=' + location.pathname+location.search);
@@ -201,7 +202,7 @@ function is_weixin() {
 function Backlog(backUrl) {
     if (is_weixin()) {
 
-        var backUrls = backUrl ? backUrl : location.pathname
+        var backUrls = backUrl ? backUrl : (location.pathname+location.search)
         window.location.href = "/WeiXin/Login" + backUrls ? ('?backUrl=' + backUrls) : ''
     } else {
         window.location.href = "/Html/Member/Login.html"
