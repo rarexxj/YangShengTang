@@ -2,6 +2,9 @@
  * Created by admin on 2016/8/30.
  */
 $(function () {
+
+    $.checkuser()
+
     //console.log(window.location.pathname)
     var id = $.getUrlParam('id');
     var gid = $.getUrlParam('gid');
@@ -40,7 +43,8 @@ $(function () {
                 link();
             }else{
                 if(rs.returnCode == '401'){
-                    Backlog();
+
+                    Backlog(location.pathname);
                 }else{
                     oppo(rs.msg ,1)
                 }

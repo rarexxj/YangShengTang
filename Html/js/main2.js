@@ -102,11 +102,13 @@ function is_weixin() {
     }
 }
 //登录错误跳回登录页
-function Backlog() {
-    if(is_weixin()){
-        window.location.href="/WeiXin/Login"
-    }else{
-        window.location.href="/Html/Member/Login.html"
+function Backlog(backUrl) {
+    if (is_weixin()) {
+
+        var backUrls=backUrl?backUrl:''
+        window.location.href = "/WeiXin/Login"+backUrls?('?backUrl='+backUrls):''
+    } else {
+        window.location.href = "/Html/Member/Login.html"
     }
 }
 //价格截取
@@ -232,3 +234,72 @@ function base64decode(str) {
     }
     return out;
 }
+
+$(function () {
+    $.checkuser=function(){
+        window.TOKEN = localStorage.getItem('qy_loginToken')
+
+        var userinfo = $.getUrlParam('userInfo');
+
+        if (userinfo) {
+
+            //userinfo=decodeURIComponent(userinfo);
+            userinfo = base64_decode(userinfo);
+            // alert(userinfo)
+            userinfo = eval("(" + userinfo + ")");
+            localStorage.setItem('qy_loginToken', userinfo.PhoneNumber + ':' + userinfo.DynamicToken);
+            localStorage['qy_Identity'] = userinfo.Id;
+            localStorage['qy_UserName'] = userinfo.UserName;
+            //localStorage['qy_CreateTime']=rs.data.CreateTime;
+            localStorage['qy_NickName'] = encodeURIComponent(encodeURIComponent(userinfo.NickName));
+            localStorage['qy_Sex'] = userinfo.Sex;
+            localStorage['qy_Birthday'] = userinfo.Birthday;
+            localStorage['qy_PhoneNumber'] = userinfo.PhoneNumber;
+            localStorage['qy_Province'] = userinfo.Province;
+            localStorage['qy_City'] = userinfo.City;
+            localStorage['qy_InvitationCode'] = userinfo.InvitationCode;
+            if (userinfo.Avatar != null) {
+                localStorage['qy_head'] = userinfo.Id + '|' + userinfo.Avatar.SmallThumbnail;
+            }
+            window.TOKEN = localStorage.getItem('qy_loginToken')
+            $.ajaxSetup({
+                headers: {
+                    Authorization: 'Basic ' + base64encode(window.TOKEN)
+                }
+            })
+        }else{
+            if(!window.TOKEN) {
+                if (is_weixin()) {
+                    alert('/WeiXin/Login?backUrl=' + location.pathname)
+                    window.location.replace('/WeiXin/Login?backUrl=' + location.pathname);
+                } else {
+                    window.location.replace('/Html/Member/Login.html');
+                }
+            }else{
+                window.TOKEN = localStorage.getItem('qy_loginToken')
+                $.ajaxSetup({
+                    headers: {
+                        Authorization: 'Basic ' + base64encode(window.TOKEN)
+                    }
+                })
+            }
+        }
+
+
+
+        function is_weixin() {
+            var ua = navigator.userAgent.toLowerCase();
+            if (ua.match(/micromessenger/i) == "micromessenger") {
+                return true;
+            } else {
+                return false;
+            }
+        }
+
+        function base64_decode(str) {
+            var words = CryptoJS.enc.Base64.parse(str);
+            words = words.toString(CryptoJS.enc.Utf8);
+            return words
+        }
+    }
+})

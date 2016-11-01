@@ -64,34 +64,93 @@ $(function() {
 
 
 
-    window.TOKEN = localStorage.getItem('qy_loginToken')
-        // if(!window.TOKEN&&(location.pathname.indexOf('/Html/Member/Login')<=-1)
-        //     ){
-        //     location.href='/Html/Member/Login.html'
-        // }else{
-        //     if(location.pathname.indexOf('/Html/Member/Login')<=-1){
-        //         $.ajaxSetup({
-        //             headers:{
-        //                 Authorization:'Basic '+base64encode(window.TOKEN)
-        //             }
-        //         })
-        //     }
-        // }
+    // window.TOKEN = localStorage.getItem('qy_loginToken')
+    //
+    //
+    //
+    // if (window.TOKEN && location.pathname.indexOf('/Html/Member/Login') <= -1) {
+    //     $.ajaxSetup({
+    //         headers: {
+    //             Authorization: 'Basic ' + base64encode(window.TOKEN)
+    //         }
+    //     })
+    // } else if ((window.TOKEN && location.pathname.indexOf('/index1.html') > -1) || (window.TOKEN && location.pathname.indexOf('/Html/Member/Login') > -1) || (!window.TOKEN && location.pathname.indexOf('/Html/Products') > -1) || (!window.TOKEN && location.pathname.indexOf('/Index.html') > -1) || (!window.TOKEN && location.pathname.indexOf('/Html/Member/Register.html') > -1) || (!window.TOKEN && location.pathname.indexOf('/Html/Member/Forget.html') > -1) || (!window.TOKEN && location.pathname.indexOf('/Html/Member/Login.html') > -1) || (!window.TOKEN && location.pathname.indexOf('/Html/Share') > -1) || (!window.TOKEN && location.pathname.indexOf('/Html/Member/WeChatBind.html') > -1)) {
+    //     //console.log('不用跳转登录页')
+    // } else {
+    //     if (is_weixin()) {
+    //         window.location.replace('/WeiXin/Login');
+    //     } else {
+    //         window.location.replace('/Html/Member/Login.html');
+    //     }
+    // }
 
-    if (window.TOKEN && location.pathname.indexOf('/Html/Member/Login') <= -1) {
+    window.TOKEN = localStorage.getItem('qy_loginToken')
+
+    var userinfo = $.getUrlParam('userInfo');
+
+    if (userinfo) {
+
+        //userinfo=decodeURIComponent(userinfo);
+        userinfo = base64_decodes(userinfo);
+        // alert(userinfo)
+        userinfo = eval("(" + userinfo + ")");
+        localStorage.setItem('qy_loginToken', userinfo.PhoneNumber + ':' + userinfo.DynamicToken);
+        localStorage['qy_Identity'] = userinfo.Id;
+        localStorage['qy_UserName'] = userinfo.UserName;
+        //localStorage['qy_CreateTime']=rs.data.CreateTime;
+        localStorage['qy_NickName'] = encodeURIComponent(encodeURIComponent(userinfo.NickName));
+        localStorage['qy_Sex'] = userinfo.Sex;
+        localStorage['qy_Birthday'] = userinfo.Birthday;
+        localStorage['qy_PhoneNumber'] = userinfo.PhoneNumber;
+        localStorage['qy_Province'] = userinfo.Province;
+        localStorage['qy_City'] = userinfo.City;
+        localStorage['qy_InvitationCode'] = userinfo.InvitationCode;
+        if (userinfo.Avatar != null) {
+            localStorage['qy_head'] = userinfo.Id + '|' + userinfo.Avatar.SmallThumbnail;
+        }
+        window.TOKEN = localStorage.getItem('qy_loginToken')
         $.ajaxSetup({
             headers: {
                 Authorization: 'Basic ' + base64encode(window.TOKEN)
             }
         })
-    } else if ((window.TOKEN && location.pathname.indexOf('/index1.html') > -1) || (window.TOKEN && location.pathname.indexOf('/Html/Member/Login') > -1) || (!window.TOKEN && location.pathname.indexOf('/Html/Products') > -1) || (!window.TOKEN && location.pathname.indexOf('/Index.html') > -1) || (!window.TOKEN && location.pathname.indexOf('/Html/Member/Register.html') > -1) || (!window.TOKEN && location.pathname.indexOf('/Html/Member/Forget.html') > -1) || (!window.TOKEN && location.pathname.indexOf('/Html/Member/Login.html') > -1) || (!window.TOKEN && location.pathname.indexOf('/Html/Share') > -1) || (!window.TOKEN && location.pathname.indexOf('/Html/Member/WeChatBind.html') > -1)) {
-        //console.log('不用跳转登录页')
-    } else {
-        if (is_weixin()) {
-            window.location.replace('/WeiXin/Login');
-        } else {
-            window.location.replace('/Html/Member/Login.html');
+    }else{
+        if(!window.TOKEN) {
+            if ((window.TOKEN && location.pathname.indexOf('Index.html') > -1) || (window.TOKEN && location.pathname.indexOf('/Html/Member/Login') > -1) || (!window.TOKEN && location.pathname.indexOf('/Html/Products') > -1) || (!window.TOKEN && location.pathname.indexOf('/Index.html') > -1) || (!window.TOKEN && location.pathname.indexOf('/Html/Member/Register.html') > -1) || (!window.TOKEN && location.pathname.indexOf('/Html/Member/Forget.html') > -1) || (!window.TOKEN && location.pathname.indexOf('/Html/Member/Login.html') > -1) || (!window.TOKEN && location.pathname.indexOf('/Html/Share') > -1) || (!window.TOKEN && location.pathname.indexOf('/Html/Member/WeChatBind.html') > -1)) {
+
+            }else{
+                if (is_weixin()) {
+
+                    window.location.replace('/WeiXin/Login?backUrl=' + location.pathname);
+                } else {
+                    window.location.replace('/Html/Member/Login.html');
+                }
+            }
+        }else{
+            window.TOKEN = localStorage.getItem('qy_loginToken')
+            $.ajaxSetup({
+                headers: {
+                    Authorization: 'Basic ' + base64encode(window.TOKEN)
+                }
+            })
         }
+    }
+
+
+
+    function is_weixin() {
+        var ua = navigator.userAgent.toLowerCase();
+        if (ua.match(/micromessenger/i) == "micromessenger") {
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+    function base64_decodes(str) {
+        var words = CryptoJS.enc.Base64.parse(str);
+        words = words.toString(CryptoJS.enc.Utf8);
+        return words
     }
 
 })
@@ -130,8 +189,8 @@ function is_weixin() {
 function Backlog(backUrl) {
     if (is_weixin()) {
 
-        var backUrl=''
-        window.location.href = "/WeiXin/Login"
+        var backUrls=backUrl?backUrl:location.pathname
+        window.location.href = "/WeiXin/Login"+backUrls?('?backUrl='+backUrls):''
     } else {
         window.location.href = "/Html/Member/Login.html"
     }
@@ -172,6 +231,62 @@ function CountDown(obj) {
 
     }, 1000)
 }
+$.checkuser=function(){
+    var userinfo = $.getUrlParam('userInfo');
+    if (userinfo) {
+        //userinfo=decodeURIComponent(userinfo);
+        userinfo = base64_decode(userinfo);
+        // alert(userinfo)
+        userinfo = eval("(" + userinfo + ")");
+        localStorage.setItem('qy_loginToken', userinfo.PhoneNumber + ':' + userinfo.DynamicToken);
+        localStorage['qy_Identity'] = userinfo.Id;
+        localStorage['qy_UserName'] = userinfo.UserName;
+        //localStorage['qy_CreateTime']=rs.data.CreateTime;
+        localStorage['qy_NickName'] = encodeURIComponent(encodeURIComponent(userinfo.NickName));
+        localStorage['qy_Sex'] = userinfo.Sex;
+        localStorage['qy_Birthday'] = userinfo.Birthday;
+        localStorage['qy_PhoneNumber'] = userinfo.PhoneNumber;
+        localStorage['qy_Province'] = userinfo.Province;
+        localStorage['qy_City'] = userinfo.City;
+        localStorage['qy_InvitationCode'] = userinfo.InvitationCode;
+        if (userinfo.Avatar != null) {
+            localStorage['qy_head'] = userinfo.Id + '|' + userinfo.Avatar.SmallThumbnail;
+        }
+    }
+
+    window.TOKEN = localStorage.getItem('qy_loginToken')
+    if (window.TOKEN && location.pathname.indexOf('/Html/Member/Login') <= -1) {
+        $.ajaxSetup({
+            headers: {
+                Authorization: 'Basic ' + base64encode(window.TOKEN)
+            }
+        })
+    } else if ((window.TOKEN && location.pathname.indexOf('/Html/Member/Login') > -1) || (!window.TOKEN && location.pathname.indexOf('/Html/Products') > -1) || (!window.TOKEN && location.pathname.indexOf('/Index.html') > -1) || (!window.TOKEN && location.pathname.indexOf('/Html/Member/Register.html') > -1) || (!window.TOKEN && location.pathname.indexOf('/Html/Member/Forget.html') > -1) || (!window.TOKEN && location.pathname.indexOf('/Html/Member/Login.html') > -1) || (!window.TOKEN && location.pathname.indexOf('/Html/Share') > -1)) {
+        //console.log('不用跳转登录页')
+    } else {
+        if (is_weixin()) {
+            window.location.replace('/WeiXin/Login');
+        } else {
+            window.location.replace('/Html/Member/Login.html');
+        }
+    }
+    function is_weixin() {
+        var ua = navigator.userAgent.toLowerCase();
+        if (ua.match(/micromessenger/i) == "micromessenger") {
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+    function base64_decode(str) {
+        var words = CryptoJS.enc.Base64.parse(str);
+        words = words.toString(CryptoJS.enc.Utf8);
+        return words
+    }
+}
+
+
 var base64encodechars = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/";
 var base64decodechars = new Array(-1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, 62, -1, -1, -1, 63,
     52, 53, 54, 55, 56, 57, 58, 59, 60, 61, -1, -1, -1, -1, -1, -1, -1, 0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14,
