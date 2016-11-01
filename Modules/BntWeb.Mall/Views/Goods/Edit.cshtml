@@ -233,7 +233,7 @@
                                     <label class="col-sm-1 control-label no-padding-right"> 商品主图 </label>
                                     <div class="col-sm-8 image">
                                         <div class="col-sm-10">
-                                            @Html.Action("UploadPartial", "File", new { area = "SystemSettings", controlId = "MainImage", sourceId = Model.Id, moduleKey = MallModule.Key, sourceType = "MainImage", fileType = FileType.Image, isPublic = true, mediumThumbnailHeight = 500, mediumThumbnailWidth = 700, smallThumbnailWidth = 350, smallThumbnailHeight = 250 , maxFiles =4})
+                                            @Html.Action("UploadPartial", "File", new { area = "SystemSettings", controlId = "MainImage", sourceId = Model.Id, moduleKey = MallModule.Key, sourceType = "MainImage", fileType = FileType.Image, isPublic = true, mediumThumbnailHeight = 500, mediumThumbnailWidth = 500, smallThumbnailWidth = 300, smallThumbnailHeight = 300 , maxFiles =4})
                                         </div>
                                     </div>
                                 </div>
@@ -244,7 +244,7 @@
                             <div class="slim-scroll" data-height="100">
                                 @for (int i = 1; i <= maxLevel; i++)
                                 {
-                                    decimal value = 0;
+                                    decimal value = -1;
                                     if (commissions != null)
                                     {
                                         var commission = commissions.FirstOrDefault(c => c.Level == i);

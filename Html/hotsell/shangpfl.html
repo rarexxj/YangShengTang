@@ -29,29 +29,29 @@
     <div class="shangpfl-main" id="shangpfl_main">
         <a :href="'/Html/Products/List.html?id='+list.Id" v-for="list in data"> <img :src="list.FloorPicture.RelativePath"></a>
     </div>
-    <div class="welcome pb121 index1">
-        <div class="loading">加载中，请稍后...</div>
-        <div class="search-box" id="search_box">
-            <div class="content">
-                <div class="search fl">
-                    <div class="close fl"></div>
-                    <input type="text" class="text" id="search_alert" placeholder="搜索关键字">
-                    <span class="delete"></span>
-                </div>
-                <div class="btn fl">搜索</div>
-            </div>
-            <div class="con">
-                <p>大家都在搜...</p>
-                <ul>
-                    <li v-for="tag in data" :data-tag="tag">{{tag}}</li>
-                </ul>
-            </div>
-            <div class="nothing">
-                <div class="tb"></div>
-                <p>抱歉，没有找到符合条件的商品</p>
-            </div>
-        </div>
-    </div>
+    <!--<div class="welcome pb121 index1">-->
+        <!--<div class="loading">加载中，请稍后...</div>-->
+        <!--<div class="search-box" id="search_box">-->
+            <!--<div class="content">-->
+                <!--<div class="search fl">-->
+                    <!--<div class="close fl"></div>-->
+                    <!--<input type="text" class="text" id="search_alert" placeholder="搜索关键字">-->
+                    <!--<span class="delete"></span>-->
+                <!--</div>-->
+                <!--<div class="btn fl">搜索</div>-->
+            <!--</div>-->
+            <!--<div class="con">-->
+                <!--<p>大家都在搜...</p>-->
+                <!--<ul>-->
+                    <!--<li v-for="tag in data" :data-tag="tag">{{tag}}</li>-->
+                <!--</ul>-->
+            <!--</div>-->
+            <!--<div class="nothing">-->
+                <!--<div class="tb"></div>-->
+                <!--<p>抱歉，没有找到符合条件的商品</p>-->
+            <!--</div>-->
+        <!--</div>-->
+    <!--</div>-->
     <div class="subnav">
         <a href="/Index.html" class="sy">
             <span class="tb"></span>
