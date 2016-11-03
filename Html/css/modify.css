@@ -217,6 +217,15 @@
     margin-left: 0.09rem;
     margin-bottom: 0.18rem;
     float: left;
+    position: relative;
+}
+.index-tab-mainli .tips{
+    width: 0.52rem;
+    height: 0.72rem;
+    background: url('../img/22_02.png') no-repeat center top/contain;
+    right: 0.1rem;
+    position: absolute;
+    top:0;
 }
 
 .index-tab-mainli img {
