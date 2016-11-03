@@ -3669,7 +3669,9 @@ body,html{
     line-height: 0.57rem;
     text-align: center;
 }
-
+.size-mask .size-box .getnum .amount[disabled]{
+    opacity: 1;
+}
 .size-mask .size-box .get-btn {
     width: 100%;
     height: 1rem;
@@ -3679,7 +3681,22 @@ body,html{
     background: #78a000;
     line-height: 1rem;
 }
-
+.pro-in-gocart {
+    width: 50%;
+    height: 1rem;
+    text-align: center;
+    color: #fff;
+    font-size: 0.3rem;
+    background: #ffc057;
+}
+.pro-in-gobuy {
+    width: 50%;
+    height: 1rem;
+    text-align: center;
+    color: #fff;
+    font-size: 0.3rem;
+    background: #ea5959;
+}
 .size-mask .size-box .close {
     width: 0.44rem;
     height: 0.44rem;

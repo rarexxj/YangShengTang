@@ -27,10 +27,14 @@
     <div class="withdrawals">
         <div class="line">
             <span>提现金额</span>
-            <input type="number" class="text" placeholder="请输入您要提现的金额" onkeyup="value=value.replace(/[^\-?\d.]/g,'')" onafterpaste="value=value.replace(/[^\-?\d.]/g,'')" >
+            <input type="number" class="text money" placeholder="请输入您要提现的金额" onkeyup="value=value.replace(/[^\-?\d.]/g,'')" onafterpaste="value=value.replace(/[^\-?\d.]/g,'')" >
             <!--抱歉，提现金额不能低于5元-->
         </div>
         <div class="p">注意：每天最多提现1次，单次提现金额不能低于5元， 法定节假日不能提现</div>
+        <div class="line" style="margin-top: 0.2rem">
+            <span>真实姓名</span>
+            <input type="text" class="text tname" placeholder="请输入您的支付宝姓名">
+        </div>
         <div class="list f-cb">
             <ul>
                 <li data-money="5">¥5</li>

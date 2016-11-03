@@ -3,6 +3,7 @@
  */
 $(function () {
     var money = parseFloat($.getUrlParam('money'));
+    var name  = decodeURIComponent(decodeURIComponent($.getUrlParam('name')));
     //验证码
     $('.get').on('click',function () {
         if($('.get').hasClass('on')){
@@ -52,7 +53,8 @@ $(function () {
             data:{
                 Account:$('.zh').val(),
                 Money:money,
-                SmsVerifyCode:$('.yzm').val()
+                SmsVerifyCode:$('.yzm').val(),
+                RealName:name
             }
         }).done(function (rs) {
             if (rs.returnCode == '200'){
