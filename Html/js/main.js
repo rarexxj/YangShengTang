@@ -2,29 +2,7 @@
  * Created by admin on 2016/8/16.
  */
 $(function () {
-    function is_weixin() {
-        var ua = navigator.userAgent.toLowerCase();
-        if (ua.match(/micromessenger/i) == "micromessenger") {
-            return true;
-        } else {
-            return false;
-        }
-    }
 
-    function base64_decodes(str) {
-        var words = CryptoJS.enc.Base64.parse(str);
-        words = words.toString(CryptoJS.enc.Utf8);
-        return words
-    }
-
-    function base64encode(str) {
-        //var encryptedHexStr = CryptoJS.enc.Base64.parse(str);
-        var encryptedHexStr = CryptoJS.enc.Utf8.parse(str)
-        console.log(str)
-        var words = CryptoJS.enc.Base64.stringify(encryptedHexStr);
-        console.log(words)
-        return words
-    }
 
     //rem
     function set_font() {
@@ -105,62 +83,7 @@ $(function () {
     //     }
     // }
 
-    window.TOKEN = localStorage.getItem('qy_loginToken')
 
-    var userinfo = $.cookie('userInfo');
-
-    if (userinfo) {
-
-        //userinfo=decodeURIComponent(userinfo);
-        userinfo = base64_decodes(userinfo);
-
-        // alert(userinfo)
-        userinfo =  JSON.parse(userinfo) ;
-
-        localStorage.setItem('qy_loginToken', userinfo.PhoneNumber + ':' + userinfo.DynamicToken);
-        localStorage['qy_Identity'] = userinfo.Id;
-        localStorage['qy_UserName'] = userinfo.UserName;
-        //localStorage['qy_CreateTime']=rs.data.CreateTime;
-        localStorage['qy_NickName'] = encodeURIComponent(encodeURIComponent(userinfo.NickName));
-        localStorage['qy_Sex'] = userinfo.Sex;
-        localStorage['qy_Birthday'] = userinfo.Birthday;
-        localStorage['qy_PhoneNumber'] = userinfo.PhoneNumber;
-        localStorage['qy_Province'] = userinfo.Province;
-        localStorage['qy_City'] = userinfo.City;
-        localStorage['qy_InvitationCode'] = userinfo.InvitationCode;
-        if (userinfo.Avatar != null) {
-            localStorage['qy_head'] = userinfo.Id + '|' + userinfo.Avatar.SmallThumbnail;
-        }
-        window.TOKEN = localStorage.getItem('qy_loginToken')
-
-        $.ajaxSetup({
-            headers: {
-                Authorization: 'Basic ' + base64encode(window.TOKEN)
-            }
-        })
-    } else {
-        if (!window.TOKEN) {
-            if (/index/i.test(location.pathname) || /\/Html\/hotsell\/shangpfl/i.test(location.pathname) || /\/Html\/Member\/Login/i.test(location.pathname) || (!window.TOKEN && /\/Html\/Products/i.test(location.pathname)) || (!window.TOKEN && /\/Html\/Member\/Register.html/i.test(location.pathname)) || (!window.TOKEN && location.pathname.match(/\/Html\/Member\/Forget/i)) || (!window.TOKEN && /\/Html\/Member\/Login\.html/i.test(location.pathname)) || (!window.TOKEN && /\/Htm\/Share/i.test(location.pathname)) || (!window.TOKEN && /\/Html\/Member\/WeChatBind/i.test(location.pathname))) {
-
-            } else {
-
-                if (is_weixin()) {
-
-                    window.location.replace('/WeiXin/Login?backUrl=' + location.pathname+location.search);
-                } else {
-                    window.location.replace('/Html/Member/Login.html');
-                }
-            }
-        } else {
-
-            window.TOKEN = localStorage.getItem('qy_loginToken')
-            $.ajaxSetup({
-                headers: {
-                    Authorization: 'Basic ' + base64encode(window.TOKEN)
-                }
-            })
-        }
-    }
 
 
 
@@ -243,4 +166,84 @@ function CountDown(obj) {
         }
 
     }, 1000)
+}
+function is_weixin() {
+    var ua = navigator.userAgent.toLowerCase();
+    if (ua.match(/micromessenger/i) == "micromessenger") {
+        return true;
+    } else {
+        return false;
+    }
+}
+
+function base64_decodes(str) {
+    var words = CryptoJS.enc.Base64.parse(str);
+    words = words.toString(CryptoJS.enc.Utf8);
+    return words
+}
+
+function base64encode(str) {
+    //var encryptedHexStr = CryptoJS.enc.Base64.parse(str);
+    var encryptedHexStr = CryptoJS.enc.Utf8.parse(str)
+    console.log(str)
+    var words = CryptoJS.enc.Base64.stringify(encryptedHexStr);
+    console.log(words)
+    return words
+}
+
+window.TOKEN = localStorage.getItem('qy_loginToken')
+
+var userinfo = $.cookie('userInfo');
+
+if (userinfo) {
+
+    //userinfo=decodeURIComponent(userinfo);
+    userinfo = base64_decodes(userinfo);
+
+    // alert(userinfo)
+    userinfo =  JSON.parse(userinfo) ;
+
+    localStorage.setItem('qy_loginToken', userinfo.PhoneNumber + ':' + userinfo.DynamicToken);
+    localStorage['qy_Identity'] = userinfo.Id;
+    localStorage['qy_UserName'] = userinfo.UserName;
+    //localStorage['qy_CreateTime']=rs.data.CreateTime;
+    localStorage['qy_NickName'] = encodeURIComponent(encodeURIComponent(userinfo.NickName));
+    localStorage['qy_Sex'] = userinfo.Sex;
+    localStorage['qy_Birthday'] = userinfo.Birthday;
+    localStorage['qy_PhoneNumber'] = userinfo.PhoneNumber;
+    localStorage['qy_Province'] = userinfo.Province;
+    localStorage['qy_City'] = userinfo.City;
+    localStorage['qy_InvitationCode'] = userinfo.InvitationCode;
+    if (userinfo.Avatar != null) {
+        localStorage['qy_head'] = userinfo.Id + '|' + userinfo.Avatar.SmallThumbnail;
+    }
+    window.TOKEN = localStorage.getItem('qy_loginToken')
+
+    $.ajaxSetup({
+        headers: {
+            Authorization: 'Basic ' + base64encode(window.TOKEN)
+        }
+    })
+} else {
+    if (!window.TOKEN) {
+        if (/index/i.test(location.pathname) || /\/Html\/hotsell\/shangpfl/i.test(location.pathname) || /\/Html\/Member\/Login/i.test(location.pathname) || (!window.TOKEN && /\/Html\/Products/i.test(location.pathname)) || (!window.TOKEN && /\/Html\/Member\/Register.html/i.test(location.pathname)) || (!window.TOKEN && location.pathname.match(/\/Html\/Member\/Forget/i)) || (!window.TOKEN && /\/Html\/Member\/Login\.html/i.test(location.pathname)) || (!window.TOKEN && /\/Htm\/Share/i.test(location.pathname)) || (!window.TOKEN && /\/Html\/Member\/WeChatBind/i.test(location.pathname))) {
+
+        } else {
+
+            if (is_weixin()) {
+
+                window.location.replace('/WeiXin/Login?backUrl=' + location.pathname+location.search);
+            } else {
+                window.location.replace('/Html/Member/Login.html');
+            }
+        }
+    } else {
+
+        window.TOKEN = localStorage.getItem('qy_loginToken')
+        $.ajaxSetup({
+            headers: {
+                Authorization: 'Basic ' + base64encode(window.TOKEN)
+            }
+        })
+    }
 }
