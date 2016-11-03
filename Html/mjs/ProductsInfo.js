@@ -237,7 +237,7 @@ $(function () {
             $(this).addClass('cur').siblings().removeClass('cur');
         })
         //关闭
-        $('.size-mask .close,.size-mask .get-btn').on('click',function () {
+        $('.size-mask .close').on('click',function () {
             $('.size-mask').hide();
         })
 
@@ -353,7 +353,7 @@ $(function () {
             rs.Evaluates[i].newtime = rs.Evaluates[i].EvaluateTime.split('T')[0]
         }
 
-        for(i in rs.Evaluates){
+        for(var i in rs.Evaluates){
             if(rs.Evaluates[i].ReplyTime){
                 rs.Evaluates[i].newrtime = rs.Evaluates[i].ReplyTime.split('T')[0]
             }
@@ -436,7 +436,7 @@ $(function () {
         })
     }
     //加入购物车
-    $('.addshopc').on('click',function () {
+    $('.addshopc,.pro-in-gocart').on('click',function () {
         if(!TOKEN){
             oppo('您还未登录',1,function () {
                 if(is_weixin()){
@@ -471,6 +471,7 @@ $(function () {
                 data:listdata
             }).done(function (rs) {
                 if (rs.returnCode == '200'){
+                    $('.size-mask').hide();
                     oppo('成功加入购物车',1)
                 }else{
                     if(rs.returnCode == '401'){
@@ -486,7 +487,7 @@ $(function () {
     })
      
     //立即购买
-    $('.gobuy').on('click',function () {
+    $('.gobuy,.pro-in-gobuy').on('click',function () {
         if(!$('.get-btn').attr('data-id')){
             $('.size-mask').show();
         }else{

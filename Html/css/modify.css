@@ -127,8 +127,9 @@
 .index-searchlogo {
     background-image: url(../img/index-search1.png);
     background-size: 100%;
-    width: 0.18rem;
-    height: 0.17rem;
+    background-repeat: no-repeat;
+    width: 0.25rem;
+    height: 0.25rem;
     position: absolute;
     right: 0.38rem;
     top: 0.3rem;
@@ -156,7 +157,7 @@
     line-height: 0.72rem;
     font-family: "宋体";
     float: left;
-    padding-right: 0.56rem;
+    padding-right: 0.4rem;
     -webkit-tap-highlight-color:rgba(0,0,0,0);
 }
 
