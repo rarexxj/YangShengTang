@@ -65,12 +65,12 @@ $(function () {
             type: 'get',
             cache :false
         }).done(function (rs) {
-            alert(JSON.stringify(rs))
+
             if (rs.returnCode == '200') {
                 view(rs.data);
             } else {
                 if (rs.returnCode == '401') {
-                    alert(222222222222)
+
                     Backlog();
                 } else {
                     oppo(rs.msg, 1)

@@ -120,7 +120,7 @@ function is_weixin() {
 function Backlog(backUrl) {
     if (is_weixin()) {
         var backUrls = backUrl ? backUrl : (location.pathname + location.search)
-        alert(backUrls)
+        
         window.location.replace("/WeiXin/Login" + (backUrls ? ('?backUrl=' + backUrls) : ''))
     } else {
         window.location.href = "/Html/Member/Login.html"
