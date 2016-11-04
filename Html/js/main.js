@@ -119,9 +119,9 @@ function is_weixin() {
 //登录错误跳回登录页
 function Backlog(backUrl) {
     if (is_weixin()) {
-
         var backUrls = backUrl ? backUrl : (location.pathname + location.search)
-        window.location.href = "/WeiXin/Login" + backUrls ? ('?backUrl=' + backUrls) : ''
+        alert(backUrls)
+        window.location.replace("/WeiXin/Login" + (backUrls ? ('?backUrl=' + backUrls) : ''))
     } else {
         window.location.href = "/Html/Member/Login.html"
     }
@@ -233,6 +233,7 @@ if (!window.TOKEN) {
     
 
     $.ajaxSetup({
+        cache :false,
         headers: {
             Authorization: 'Basic ' + base64encode(window.TOKEN)
         }
