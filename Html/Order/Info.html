@@ -26,7 +26,7 @@
 <body>
     <div class="order-info" id="order_info">
         <!--待付款-->
-        <div class="status" v-if="OrderStatus == 0&&RefundStatus==0">
+        <div class="status" v-if="OrderStatus == 0&&RefundStatus!=1">
             <p>订单编号：{{OrderNo}}</p>
             <p>订单状态：<span class="e84608">等待买家付款</span></p>
             <p>还剩下 <span class="time paytime">00:<span class="mins":data-min="paymin">{{paymin}}</span>:<span class="sec" :data-sec="paysec">{{paysec}}</span></span> 支付（若未支付订单将取消）</p>
@@ -37,7 +37,7 @@
         </div>
 
         <!--待发货-->
-        <div class="status" v-if="OrderStatus == 1&&RefundStatus==0">
+        <div class="status" v-if="OrderStatus == 1&&RefundStatus!=1">
             <p>订单编号：{{OrderNo}}</p>
             <p>订单状态：<span class="e84608">买家已付款，等待卖家发货</span></p>
             <div class="btns f-cb">
@@ -45,7 +45,7 @@
             </div>
         </div>
         <!--待确认-->
-        <div class="status" v-if="OrderStatus == 2&&RefundStatus == 0">
+        <div class="status" v-if="OrderStatus == 2&&RefundStatus!=1">
             <p>订单编号：{{OrderNo}}</p>
             <p>订单状态：<span class="e84608">买家已付款，等待卖家发货</span></p>
             <p>还剩下 <span class="color">{{conday}}</span>天 <span class="color">{{conhour}}</span>小时 自动确认</p>
@@ -54,7 +54,7 @@
             </div>
         </div>
         <!--未评价-->
-        <div class="status" v-if="EvaluateStatus==0&&OrderStatus==3&&RefundStatus==0">
+        <div class="status" v-if="EvaluateStatus==0&&OrderStatus==3&&RefundStatus!=1">
             <p>订单编号：{{OrderNo}}</p>
             <p>订单状态：<span class="e84608">交易完成</span></p>
             <div class="btns f-cb">
@@ -63,7 +63,7 @@
             </div>
         </div>
         <!--已评价-->
-        <div class="status"  v-if="(EvaluateStatus == 1||EvaluateStatus == 2)&&OrderStatus==3&&RefundStatus==0">
+        <div class="status"  v-if="(EvaluateStatus == 1||EvaluateStatus == 2)&&OrderStatus==3&&RefundStatus!=1">
             <p>订单编号：{{OrderNo}}</p>
             <p>订单状态：<span class="e84608">交易完成</span></p>
             <div class="btns f-cb">
@@ -72,7 +72,7 @@
             </div>
         </div>
         <!--已关闭-->
-        <div class="status" v-if="OrderStatus == 4&&RefundStatus==0">
+        <div class="status" v-if="OrderStatus == 4&&RefundStatus!=1">
             <p>订单编号：{{OrderNo}}</p>
             <p>订单状态：<span class="e84608">交易关闭</span></p>
             <div class="btns f-cb">
@@ -85,10 +85,10 @@
             <p>订单状态：<span class="e84608">退货中</span></p>
         </div>
         <!--退款成功-->
-        <div class="status" v-if="RefundStatus==2">
-            <p>订单编号：{{OrderNo}}</p>
-            <p>订单状态：<span class="e84608">退货成功</span></p>
-        </div>
+        <!--<div class="status" v-if="RefundStatus==2">-->
+            <!--<p>订单编号：{{OrderNo}}</p>-->
+            <!--<p>订单状态：<span class="e84608">退货成功</span></p>-->
+        <!--</div>-->
         <div class="logi" v-if="ShippingStatus == 1">
             <a :href="'http://m.kuaidi100.com/index_all.html?type='+ShippingCode+'&postid='+ShippingNo+'&callbackurl='+URL+'/Html/Order/Info.html?id='+Id">
                 <!--<div class="now">[杭州市]快件已到浙江省杭州市西湖区..</div>-->

@@ -36,13 +36,13 @@
                 <a href="javascript:;">
                     <div class="top">
                         <div class="time fl">{{list.newtime}}</div>
-                        <div class="st fr" v-if="list.OrderStatus == 0&&list.RefundStatus==0">待付款</div>
-                        <div class="st fr" v-if="list.OrderStatus == 1&&list.RefundStatus==0">待发货</div>
-                        <div class="st fr" v-if="list.OrderStatus == 2&&list.RefundStatus==0">待收货</div>
-                        <div class="st fr" v-if="list.OrderStatus == 3&&list.RefundStatus==0">已完成</div>
-                        <div class="st fr" v-if="list.OrderStatus == 4&&list.RefundStatus==0">已关闭</div>
+                        <div class="st fr" v-if="list.OrderStatus == 0&&list.RefundStatus!=1">待付款</div>
+                        <div class="st fr" v-if="list.OrderStatus == 1&&list.RefundStatus!=1">待发货</div>
+                        <div class="st fr" v-if="list.OrderStatus == 2&&list.RefundStatus!=1">待收货</div>
+                        <div class="st fr" v-if="list.OrderStatus == 3&&list.RefundStatus!=1">已完成</div>
+                        <div class="st fr" v-if="list.OrderStatus == 4&&list.RefundStatus!=1">已关闭</div>
                         <div class="st fr" v-if="list.RefundStatus==1">退款中</div>
-                        <div class="st fr" v-if="list.RefundStatus==2">退款成功</div>
+                        <!--<div class="st fr" v-if="list.RefundStatus==2">退款成功</div>-->
                     </div>
                     <div class="pro-style" v-for="listchild in list.OrderGoods" :data-id="listchild.SingleGoodsId">
                         <div class="img fl" :style="{backgroundImage: 'url('+listchild.GoodsImage.SmallThumbnail+')'}"></div>
