@@ -116,7 +116,7 @@ $(function () {
                 }
             })
         }
-    }
+    } 
     var flag = true;
     $(window).scroll(function () {
         var H = $('body,html').height();
