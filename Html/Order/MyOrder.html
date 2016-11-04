@@ -52,7 +52,7 @@
                         <div class="num fr">
                             <div class="price">¥ <span>{{listchild.prices3}}</span>.<span>{{listchild.prices4}}</span></div>
                             <div class="number">x {{listchild.Quantity}}</div>
-                            <div class="back" v-if="list.RefundStatus==1||list.RefundStatus==2">退款详情</div>
+                            <div class="back" v-if="listchild.RefundStatus==1||listchild.RefundStatus==2">退款详情</div>
                         </div>
                         <div class="color fl"><span v-for="sx in listchild.shuxi">{{sx}} </span></div>
                     </div>
