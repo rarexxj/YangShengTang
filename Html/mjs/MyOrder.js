@@ -194,12 +194,12 @@ $(function () {
     }
     //删除订单
     function deleteorder() {
-        $('.delete-btns').on('click',function () {
+        $('body').on('click','.delete-btns',function () {
             var confirmid = $(this).parents('.box').attr('data-id');
             $('.pop-del').show().find('.box').attr('data-id',confirmid)
 
         })
-        $('.delete-btn').on('click',function () {
+        $('body').on('click','.delete-btn',function () {
             var id = $(this).parents('.box').attr('data-id');
             ajaxdelete(id);
         })
@@ -224,11 +224,11 @@ $(function () {
         })
     }
     function link() {
-        $('.my-order .normal>a').on('click',function () {
+        $('.my-order').on('click','.normal>a',function () {
             var id = $(this).parent().attr('data-id');
             window.location.href="/Html/Order/Info.html?id="+id
         })
-        $('.my-order .normal .back').on('click',function () {
+        $('.my-order').on('click','.normal .back',function () {
             event.stopPropagation();
             var id = $(this).parents('.box').attr('data-id');
             var gid = $(this).parents('.pro-style').attr('data-id');
