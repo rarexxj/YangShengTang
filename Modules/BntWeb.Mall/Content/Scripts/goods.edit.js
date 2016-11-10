@@ -14,6 +14,9 @@ jQuery(function ($) {
         },
         CategoryName: {
             required: true
+        },
+        SalesVolume: {
+            number: true
         }
     }, beforeSubmit, success);
 

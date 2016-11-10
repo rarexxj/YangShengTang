@@ -2,8 +2,8 @@
 
     var options = $.datepicker.regional["zh-CN"];
     options["dateFormat"] = "yy-mm-dd";
-    $("#CreateTimeBegin").datepicker(options);
-    $("#CreateTimeEnd").datepicker(options);
+    $("#CreateTimeBegin").datetimepicker(options);
+    $("#CreateTimeEnd").datetimepicker(options);
 
     var orderNo = $("#OrderNo").val();
     var consignee = $("#Consignee").val();

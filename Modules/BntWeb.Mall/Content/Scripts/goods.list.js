@@ -84,6 +84,7 @@
 		                var url = url_sendAdvert.replace('%5BsourceId%5D', full.Id).replace('%5BsourceTitle%5D', full.Name).replace('%5BviewUrl%5D', "");
 		                render += '<a class="blue" data-id="' + full.Id + '" href="' + url + '" title="设为广告"><i class="icon-barcode bigger-130"></i></a>';
 		            }
+		            render += '<a class="green view" data-id="' + full.Id + '" href="' + url_Evaluate + '?goodsId='+full.Id+'" title="查看商品评论"><i class="icon-eye-open bigger-130"></i></a>';
 
 		            render += '<a class="blue" href="' + url_editGoods + '?id=' + full.Id + '" title="编辑"><i class="icon-pencil bigger-130"></i></a>';
 		            render += '<a class="red delete" data-id="' + full.Id + '" href="#" title="删除"><i class="icon-trash bigger-130"></i></a>';

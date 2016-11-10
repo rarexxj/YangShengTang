@@ -1,6 +1,7 @@
 ﻿@using System.Web.Optimization
 @using Autofac
 @using BntWeb.Environment
+@using BntWeb.Evaluate
 @using BntWeb.Security
 @using BntWeb.Security.Identity
 @{
@@ -108,6 +109,11 @@
         var url_batchDeleteGoods = "@Url.Action("BatchDelete", "Goods", new {area = MallModule.Area})";
         var url_InSaleGoods = "@Url.Action("InSale", "Goods", new {area = MallModule.Area})";
         var url_NotInSaleGoods = "@Url.Action("NotInSale", "Goods", new {area = MallModule.Area})";
+
+        var url_Evaluate = "@Url.Action("EvaluateList","Goods",new
+                       {
+                           area=MallModule.Area
+                       })";
 
         var url_addCarousel = "@Url.Action("Add", "Admin", new {area = "Carousel", sourceType= "Goods", sourceId= "[sourceId]", sourceTitle = "[sourceTitle]", viewUrl = "[viewUrl]", moduleKey = MallModule.Key, moduleName = MallModule.DisplayName })";
         var url_sendAdvert = "@Url.Action("Send", "Admin", new {area = "Advertisement", sourceType= "Goods", sourceId= "[sourceId]", sourceTitle = "[sourceTitle]", viewUrl = "[viewUrl]", moduleKey = MallModule.Key, moduleName = MallModule.DisplayName })";

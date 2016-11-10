@@ -1,0 +1,25 @@
+﻿@using System.Web.Optimization
+@using BntWeb.Evaluate
+@{
+    ViewBag.Title = EvaluateModule.DisplayName;
+    ViewBag.SubTitle = "评价列表";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+    var sourceType = ViewBag.SourceType;
+    var goodsId = ViewBag.SourceId;
+}
+<div class="row">
+    <div class="col-sm-12" id="EvaluateList">
+    </div>
+</div>
+<div id="pageDiv">
+</div>
+@section Scripts {
+      @Scripts.Render("~/js/admin/jquery-datatable")
+    <script type="text/javascript">
+
+        var url_loadPage = "@Url.Action("EvaluateListOnPage", "Goods", new {area = MallModule.Area, goodsId})";
+        var url_deleteEvaluate = "@Url.Action("Delete", "Admin", new {area = EvaluateModule.Area})";
+
+    </script>
+    @Scripts.Render("~/js/admin/mall/goods/evaluate/list")
+}
