@@ -29,7 +29,7 @@
         <div class="status" v-if="OrderStatus == 0&&RefundStatus!=1">
             <p>订单编号：{{OrderNo}}</p>
             <p>订单状态：<span class="e84608">等待买家付款</span></p>
-            <p>还剩下 <span class="time paytime">00:<span class="mins":data-min="paymin">{{paymin}}</span>:<span class="sec" :data-sec="paysec">{{paysec}}</span></span> 支付（若未支付订单将取消）</p>
+            <p>还剩下 <span class="time paytime"><span class="mins":data-min="paymin">{{paymin}}</span>小时<span class="sec" :data-sec="paysec">{{paysec}}</span>分</span> 支付（若未支付订单将取消）</p>
             <div class="btns f-cb">
                 <div class="btn fl can-btns">取消订单</div>
                 <a :href="'/Html/ShopCar/Pay.html?id='+Id+'&OrderNo='+OrderNo+'&money='+PayFee+'&time='+CreateTime" class="btn fr cur">立即付款</a>

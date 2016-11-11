@@ -49,7 +49,11 @@ $(function () {
             datas.lei=datas.AttributeValues.toString().split(',')
             var html='';
             for (var i=0;i<datas.lei.length;i++){
-                html+='<li class="choose" data-px="'+ i +'" data-id="'+ datas.AttributeId +'">';
+                html+='<li class="choose ';
+                if(datas.lei.length==1){
+                    html+='choose-cur'
+                }
+                html+='" data-px="'+ i +'" data-id="'+ datas.AttributeId +'">';
                 html+=datas.lei[i];
                 html+='</li>'
             }
@@ -127,10 +131,13 @@ $(function () {
             motheds:{
 
             },
-            ready:function () {
-                chooses()
-
-            }
+            // ready:function () {
+            //     chooses()
+            //
+            // }
+        })
+        guige.$nextTick(function () {
+            chooses()
         })
     }
     function chooses() {
@@ -143,6 +150,7 @@ $(function () {
         $('.first .choose-box>li').on('click',function () {
             choose_gg()
         })
+        choose_zuhe()
     }
     function choose_zuhe() {
         var zuhe=[]

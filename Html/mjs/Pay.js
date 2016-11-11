@@ -32,33 +32,33 @@ $(function () {
     //计时
     //var str = time.toString().replace(/-/g,"/");
     var date = new Date(time);
-    var deadline = date.getTime()+30*60*1000;
+    var deadline = date.getTime()+12*60*60*1000;
     var mytime = new Date()
     var nowtime = mytime.getTime();
     var last = (deadline -nowtime)/1000;
-    var fen = parseInt(last/60);
-    var miao = parseInt(last%60);
+    var hou = parseInt(last/3600);
+    var fen = parseInt((last-3600*hou)/60);
+    if(hou<10){
+        hou='0'+hou
+    }
     if(fen<10){
         fen='0'+fen
     }
-    if(miao<10){
-        miao='0'+miao
-    }
-    $('.deadline .min').html(fen);
+    $('.deadline .hou').html(hou);
+    $('.deadline .hou').attr('data-hou',hou)
+    $('.deadline .min').html(fen)
     $('.deadline .min').attr('data-min',fen)
-    $('.deadline .sec').html(miao)
-    $('.deadline .sec').attr('data-sec',miao)
-    lasttime();
+    //lasttime();
     //js
     function wxp() {
         $('.pay-btn').on('click',function () {
-            // if($(this).hasClass('cur')){
-            //     $(this).removeClass('cur')
-            // }else{
-            //     $('.pay-btn').removeClass('cur');
-            //     $(this).addClass('cur');
-            // }
-            $(this).addClass('cur').siblings().removeClass('cur')
+            if($(this).hasClass('cur')){
+                $(this).removeClass('cur')
+            }else{
+                $('.pay-btn').removeClass('cur');
+                $(this).addClass('cur');
+            }
+            // $(this).addClass('cur').siblings().removeClass('cur')
         })
     }
     function yep(rs) {
@@ -188,6 +188,9 @@ $(function () {
     function choosePay() {
         $("#subimitButton").on("click",function(){
             var submitForm = $("#formid");
+            // if(){
+            //
+            // }
             if(is_weixin()){
                 //如果是选择的支付宝，显示遮罩
                 if($('.alipay').hasClass('cur'))

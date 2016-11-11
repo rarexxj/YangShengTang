@@ -33,12 +33,12 @@ $(function () {
             var str =rs.CreateTime.split('T');
             str = str.toString().replace(/-/g,"/");
             var date = new Date(str);
-            var deadline = date.getTime()+30*60*1000;
+            var deadline = date.getTime()+12*60*60*1000;
             var mytime = new Date()
             var nowtime = mytime.getTime();
             var last = (deadline -nowtime)/1000;
-            rs.paymin = parseInt(last/60);
-            rs.paysec = parseInt(last%60);
+            rs.paymin = parseInt(last/3600);
+            rs.paysec = parseInt((last-3600*rs.paymin)/60);
             if(rs.paymin<10){
                 rs.paymin='0'+rs.paymin
             }
@@ -60,7 +60,7 @@ $(function () {
         }
 
         //属性
-        for(i in rs.OrderGoods){
+        for(var i in rs.OrderGoods){
             rs.OrderGoods[i].shuxin=[]
             for (j in rs.OrderGoods[i].GoodsAttribute.split(',')){
                 rs.OrderGoods[i].shuxin[j]=rs.OrderGoods[i].GoodsAttribute.split(',')[j]
@@ -68,7 +68,7 @@ $(function () {
         }
         //
 
-        for(i in rs.OrderGoods){
+        for(var i in rs.OrderGoods){
             var pricebox= changeprice(rs.OrderGoods[i].Price)
 
             rs.OrderGoods[i].price1=pricebox.price1;
@@ -99,7 +99,7 @@ $(function () {
                 canorder();
                 qrsh();
                 remind();
-                lasttime(rs);
+                //lasttime(rs);
                 js();
             }
         })

@@ -13,34 +13,36 @@ $(function () {
     var reg =/^1[3|4|5|7|8]\d{9}$/
     //注册
     $('.reg-btn').on('click',function (){
-
-
+        
         if ($(this).hasClass('cur')){
             return false
         }else{
             if ($('#ph').val()=="") {
                 oppo("请输入手机号", 1);
                 return false;
-            }else if(!reg.test($('#ph').val())){
+            }
+            if(!reg.test($('#ph').val())){
                 oppo("手机号格式有误", 1);
                 return false;
-            }else if($('#yzm').val()==""){
+            }
+            if($('#yzm').val()==""){
                 oppo("请输入验证码", 1);
                 return false;
-            }else if($('#pw').val()==""){
+            }
+            if($('#pw').val()==""){
                 oppo("请输入密码", 1);
                 return false;
-            }else{
-                $(this).addClass('gray');
-                var data = {
-                    PhoneNumber:$('#ph').val(),
-                    Password:$('#pw').val(),
-                    SmsVerifyCode:$('#yzm').val(),
-                    InvitationCode:$('#inv').val(),
-                    openId:openid
-                }
-                ajax1(data)
             }
+            $(this).addClass('gray');
+            var data = {
+                PhoneNumber:$('#ph').val(),
+                //Password:$('#pw').val(),
+                SmsVerifyCode:$('#yzm').val(),
+                InvitationCode:$('#inv').val(),
+                openId:openid
+            }
+            ajax1(data)
+
         }
 
     })

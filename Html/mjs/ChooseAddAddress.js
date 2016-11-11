@@ -156,43 +156,50 @@ $(function () {
             if($('.use').val() == ''){
                 oppo('收货人不能为空',1)
                 return false;
-            }else if($('.ph').val() == ''){
+            }
+            if($('.ph').val() == ''){
                 oppo('手机号不能为空',1)
                 return false;
-            }else if($('.postcode').val() == ''){
-                oppo('邮政编码不能为空',1)
-                return false;
-            }else if($('#province').val() == ''){
+            }
+            // if($('.postcode').val() == ''){
+            //     oppo('邮政编码不能为空',1)
+            //     return false;
+            // }
+            if($('#province').val() == ''){
                 oppo('省份不能为空',1)
                 return false;
-            }else if($('#City').val() == ''){
+            }
+            if($('#City').val() == ''){
                 oppo('市区不能为空',1)
                 return false;
-            }else if($('#District').val() == ''){
+            }
+            if($('#District').val() == ''){
                 oppo('地区不能为空',1)
                 return false;
-            }else if($('#Street').val() == ''){
-                oppo('街道不能为空',1)
-                return false;
-            }else if($('.textarea').val() == ''){
+            }
+            // if($('#Street').val() == ''){
+            //     oppo('街道不能为空',1)
+            //     return false;
+            // }
+            if($('.textarea').val() == ''){
                 oppo('详细地址不能为空',1)
                 return false;
-            }else{
-                var RegionName = $('#province').val()+','+$('#City').val()+','+$('#District').val()+','+$('#Street').val()
-                var data = {
-                    Address:$('.textarea').val(),
-                    Contacts:$('.use').val(),
-                    Phone:$('.ph').val(),
-                    Province:$('#province option:selected').attr('data-id'),
-                    City:$('#City option:selected').attr('data-id'),
-                    District:$('#District option:selected').attr('data-id'),
-                    Street:$('#Street option:selected').attr('data-id'),
-                    RegionName:RegionName,
-                    Postcode:$('.postcode').val()
-                }
-                $(this).addClass('gray')
-                ajax(data);
             }
+            var RegionName = $('#province').val()+','+$('#City').val()+','+$('#District').val()+','+$('#Street').val()
+            var data = {
+                Address:$('.textarea').val(),
+                Contacts:$('.use').val(),
+                Phone:$('.ph').val(),
+                Province:$('#province option:selected').attr('data-id'),
+                City:$('#City option:selected').attr('data-id'),
+                District:$('#District option:selected').attr('data-id'),
+                Street:$('#Street option:selected').attr('data-id'),
+                RegionName:RegionName,
+                Postcode:$('.postcode').val()
+            }
+            $(this).addClass('gray')
+            ajax(data);
+            
         }
 
     })

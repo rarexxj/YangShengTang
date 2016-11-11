@@ -189,15 +189,16 @@
 .index-tab-titlebtn {
     float: right;
     margin: 0.22rem 0.2rem 0 0;
-    color: #a59b8f;
+    color: #fff;
     width: 0.74rem;
     height: 0.36rem;
     line-height: 0.36rem;
     font-size: 0.1877rem;
-    border: 1px solid #a59b8f;
+    border: 1px solid #fff;
     border-radius: 5px;
     background-color: transparent;
     text-align: center;
+    font-weight: bold;
 }
 
 .index-tab-f1 {
@@ -253,7 +254,7 @@
 }
 
 .index-tab-mainul p i {
-    font-size: 0.2389rem;
+    font-size: 0.20rem;
     color: #acacac;
     text-decoration: line-through;
     font-style: normal;
@@ -830,4 +831,32 @@
 
 .swiper-pagination-bullet{
     background:#fff;
+}
+.i-qg{
+    position: absolute;
+    width: 0.74rem;
+    height: 0.36rem;
+    background: #d1a162;
+    text-align: center;
+    line-height:0.36rem;
+    color: #fff;
+    font-size: 0.24rem;
+    right: 0.1rem;
+    bottom: 0.2rem;
+    border-radius: 4px;
+}
+.login .text.yzminput {
+    width: 2.3rem;
+}
+.login .yzm .get {
+    float: right;
+    width: 1.7rem;
+    height: 0.6rem;
+    background: #d1a162;
+    color: #fff;
+    font-size: 0.26rem;
+    border-radius: 0.08rem;
+    line-height: 0.6rem;
+    text-align: center;
+    margin-top: 0.2rem;
 }

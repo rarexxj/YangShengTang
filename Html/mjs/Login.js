@@ -4,20 +4,19 @@
 $(function() {
     var openid = $.getUrlParam('openId');
     $('.submit').on('click', function() {
-
         if ($('#ph').val() == "") {
             //toolTips(0, "请输入手机号", 1);
             oppo('请输入手机号', 1)
             return false;
         }
-        if ($('#pw').val() == "") {
+        if ($('#yzm').val() == "") {
             //toolTips(0, "请输入密码", 1);
-            oppo('请输入密码', 1)
+            oppo('请输入验证码', 1)
             return false;
         }
         var data = {
             PhoneNumber: $('#ph').val(),
-            Password: $('#pw').val(),
+            SmsVerifyCode: $('#yzm').val(),
             MobileDevice: '',
             OpenId: openid
         }
@@ -27,14 +26,11 @@ $(function() {
             $(this).addClass('gray')
             ajax(data);
         }
-
-
-
     })
 
     function ajax(data) {
         $.ajax({
-            url: '/Api/v1/Login',
+            url: '/Api/v1/LoginWithSms',
             type: 'post',
             data: data
         }).done(function(rs) {
@@ -71,6 +67,42 @@ $(function() {
             $('.submit').removeClass('gray')
         })
 
+    }
+    //验证码
+    $('.get').on('click',function () {
+        if ($('#ph').val()=="") {
+            oppo("请输入手机号", 1);
+        }else{
+            if($('.get').hasClass('on')){
+                return false
+            }else{
+                $('.get').addClass('on');
+                var data = {
+                    PhoneNumber:$('#ph').val(),
+                    RequestType:'3'
+                }
+                ajax2(data)
+            }
+        }
+    })
+    function ajax2(data) {
+        $.ajax({
+            url:'/Api/v1/Member/SendCode',
+            type:'post',
+            data:data
+        }).done(function (rs) {
+            if (rs.returnCode == '200'){
+                oppo('验证码已经发送',1)
+                CountDown($('.get'));
+            }else{
+                if(rs.returnCode == '401'){
+                    Backlog();
+                }else{
+                    oppo(rs.msg ,1)
+                }
+            }
+
+        })
     }
 
 })

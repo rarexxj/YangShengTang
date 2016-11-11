@@ -26,21 +26,21 @@
 <body>
     <div class="shoppay" id="pay_mon">
         <form action="/Payment/Process/WeiXin/" id="formid" method="post">
-        <div class="deadline">剩余付款时间： <span class="min">59</span>分<span class="sec">59</span>秒 </div>
+        <div class="deadline">剩余付款时间： <span class="hou"></span>小时<span class="min"></span>分</div>
         <div class="line" style="margin-top: 0.2rem">
             <div class="tt fl">订单编号</div>
             <div class="num fr orderno"></div>
         </div>
         <div class="line bb">
             <div class="tt fl">实付金额</div>
-            <div class="price fr npri"><span class="amo">¥ <span class="int">129</span>.<span class="dec">00</span></span></div>
+            <div class="price fr npri"><span class="amo">¥ <span class="int"></span>.<span class="dec"></span></span></div>
         </div>
         <div class="line" style="margin-top: 0.2rem">
             <div class="tt fl">我的余额</div>
         </div>
         <div class="payline f-cb money pay-mon" >
             <div class="tb fl"></div>
-            <div class="tt fl">余额支付 <span>可用余额：￥{{prices1}}.{{prices2}}</span></div>
+            <div class="tt fl">积分支付 <span>可用余额：￥{{prices1}}.{{prices2}}</span></div>
             <div class="btn"></div>
         </div>
         <div class="line" style="margin-top: 0.2rem">
@@ -50,7 +50,7 @@
                 <span class="price mpri">¥ <span class="amo"><span class="int"></span>.<span class="dec"></span></span></span>
             </div>
         </div>
-        <div class="payline f-cb weixin pay-btn cur">
+        <div class="payline f-cb weixin pay-btn">
             <div class="tb fl"></div>
             <div class="tt fl">微信钱包</div>
             <div class="btn"></div>
