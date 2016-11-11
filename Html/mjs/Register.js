@@ -29,10 +29,10 @@ $(function () {
                 oppo("请输入验证码", 1);
                 return false;
             }
-            if($('#pw').val()==""){
-                oppo("请输入密码", 1);
-                return false;
-            }
+            // if($('#pw').val()==""){
+            //     oppo("请输入密码", 1);
+            //     return false;
+            // }
             $(this).addClass('gray');
             var data = {
                 PhoneNumber:$('#ph').val(),
