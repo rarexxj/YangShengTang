@@ -41,18 +41,18 @@
         <span>省市</span>
         <select name="" id="province" class="select">
             <option value="">请选择</option>
-            <option :data-id="pro.Id" v-for="pro in data">{{pro.FullName}}</option>
+            <option :data-id="pro.Id" v-for="pro in data" v-cloak="">{{pro.FullName}}</option>
         </select>
         <select name="" id="City" class="select">
             <option value="">请选择</option>
-            <option  v-for="city in data" :data-id="city.Id">{{city.FullName}}</option>
+            <option  v-for="city in data" :data-id="city.Id" v-cloak="">{{city.FullName}}</option>
         </select>
     </div>
     <div class="line f-cb">
         <span>地区</span>
         <select name="" id="District" class="select">
             <option value="">请选择</option>
-            <option  :data-id="dis.Id" v-for="dis in data">{{dis.FullName}}</option>
+            <option  :data-id="dis.Id" v-for="dis in data" v-cloak="">{{dis.FullName}}</option>
         </select>
         <!--<select name="" id="Street" class="select">-->
             <!--<option value="">请选择</option>-->

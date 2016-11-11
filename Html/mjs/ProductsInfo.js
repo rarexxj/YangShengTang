@@ -458,6 +458,7 @@ $(function () {
                 return false
             }else{
                 if(!$('.get-btn').attr('data-id')){
+                    oppo('请选择规格',1)
                     $('.size-mask').show();
                 }else{
                     $(this).addClass('on')
@@ -466,6 +467,7 @@ $(function () {
                         SingleGoodsId:$('.get-btn').attr('data-id'),
                         Quantity:$('.getnum .amount').val()
                     }
+
                     addshopcar(listdata);
                 }
             }
@@ -497,6 +499,10 @@ $(function () {
     //立即购买
     $('.gobuy,.pro-in-gobuy').on('click',function () {
         if(!$('.get-btn').attr('data-id')){
+
+                oppo('请选择规格',1)
+
+
             $('.size-mask').show();
         }else{
             window.location.href="/Html/ShopCar/Confirm.html?gid="+$('.get-btn').attr('data-id')+"|"+$('.getnum .amount').val()
