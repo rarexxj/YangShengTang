@@ -89,7 +89,7 @@
                         <li class="index-tab-mainli" v-for="list1 in list.Goods">
                             <a  :href="'/Html/Products/Info.html?id='+list1.Id">
                                 <img :src="list1.MainImage.MediumThumbnail">
-                                <div class="tips"></div>
+                                <!--<div class="tips"></div>-->
                                 <h2>{{list1.Name}}</h2>
                                 <p><span>￥{{list1.ShopPrice}}</span><i>原价：￥{{list1.OriginalPrice}}</i></p>
                             </a>
@@ -146,7 +146,7 @@
                     <ul class="index-tab-mainul">
                         <li class="index-tab-mainli" v-for="list in RecommendGoods">
                             <a :href="'/Html/Products/Info.html?id='+list.Id">
-                                <div class="tips"></div>
+                                <!--<div class="tips"></div>-->
                                 <img :src="list.MainImage.MediumThumbnail">
                                 <h2>{{list.Name}}</h2>
                                 <p><span>￥{{list.ShopPrice}}</span><i>￥{{list.OriginalPrice}}</i></p>
