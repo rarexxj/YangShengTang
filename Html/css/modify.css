@@ -860,3 +860,14 @@
     text-align: center;
     margin-top: 0.2rem;
 }
+.confirm-order .line .textarea{
+    width: 4.55rem;
+    height: 1.5rem;
+    margin-top: 0.25rem;
+    background: none;
+    border: 0;
+    font-size: 0.26rem;
+    color: #999;
+    line-height: 0.3rem;
+    resize:none;
+}

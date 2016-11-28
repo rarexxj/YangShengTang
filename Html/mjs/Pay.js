@@ -6,7 +6,8 @@ $(function () {
     var Id = $.getUrlParam('id');
     var OrderNo = $.getUrlParam('OrderNo');
     var money = $.getUrlParam('money');
-    var time = $.getUrlParam('time');
+    var time = decodeURIComponent($.getUrlParam('time'));
+   // alert(time)
     $('.orderno').html(OrderNo);
     $('#orderid').val(Id);
     cash();
@@ -30,8 +31,9 @@ $(function () {
         $('.mpri .dec').html('00').attr('data-int','00')
     }
     //计时
-    //var str = time.toString().replace(/-/g,"/");
-    var date = new Date(time);
+    var str = time.toString().replace(/-/g,"/");
+    var date = new Date(str);
+    //alert(date)
     var deadline = date.getTime()+12*60*60*1000;
     var mytime = new Date()
     var nowtime = mytime.getTime();
@@ -39,10 +41,10 @@ $(function () {
     var hou = parseInt(last/3600);
     var fen = parseInt((last-3600*hou)/60);
     if(hou<10){
-        hou='0'+hou
+        hou='0'+hou;
     }
     if(fen<10){
-        fen='0'+fen
+        fen='0'+fen;
     }
     $('.deadline .hou').html(hou);
     $('.deadline .hou').attr('data-hou',hou)

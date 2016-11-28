@@ -164,8 +164,13 @@ $(function () {
                     type:'post'
                 }).done(function (rs) {
                     if (rs.returnCode == '200'){
-
-                         window.location.replace("/Html/ShopCar/Pay.html?id="+rs.data.Id+'&OrderNo='+rs.data.OrderNo+'&money='+rs.data.PayFee+'&time='+rs.data.CreateTime)
+                        var lastm = parseFloat($('.car-list .amo').attr('data-price'));
+                        if(lastm>0){
+                            window.location.replace("/Html/ShopCar/Pay.html?id="+rs.data.Id+'&OrderNo='+rs.data.OrderNo+'&money='+rs.data.PayFee+'&time='+rs.data.CreateTime)
+                        }else{
+                            window.location.replace('/Html/Order/MyOrder.html?orderType=0');
+                        }
+                         //window.location.replace("/Html/ShopCar/Pay.html?id="+rs.data.Id+'&OrderNo='+rs.data.OrderNo+'&money='+rs.data.PayFee+'&time='+rs.data.CreateTime)
                     }else{
                         if(rs.returnCode == '401'){
                             Backlog();
