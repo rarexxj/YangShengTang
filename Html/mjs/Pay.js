@@ -50,8 +50,9 @@ $(function () {
     $('.deadline .hou').attr('data-hou',hou)
     $('.deadline .min').html(fen)
     $('.deadline .min').attr('data-min',fen)
-    //lasttime();
+    lasttime();
     //js
+    
     function wxp() {
         $('.pay-btn').on('click',function () {
             if($(this).hasClass('cur')){

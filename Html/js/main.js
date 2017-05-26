@@ -217,7 +217,7 @@ if (userinfo) {
 window.TOKEN = localStorage.getItem('qy_loginToken')
 if (!window.TOKEN) {
 
-    if (/index/i.test(location.pathname) || /\/Html\/hotsell\/shangpfl/i.test(location.pathname) || /\/Html\/Member\/Login/i.test(location.pathname) || (!window.TOKEN && /\/Html\/Products/i.test(location.pathname)) || (!window.TOKEN && /\/Html\/Member\/Register.html/i.test(location.pathname)) || (!window.TOKEN && location.pathname.match(/\/Html\/Member\/Forget/i)) || (!window.TOKEN && /\/Html\/Member\/Login\.html/i.test(location.pathname)) || (!window.TOKEN && /\/Htm\/Share/i.test(location.pathname)) || (!window.TOKEN && /\/Html\/Member\/WeChatBind/i.test(location.pathname))) {
+    if (/index/i.test(location.pathname) || /\/Html\/hotsell\/shangpfl/i.test(location.pathname) || /\/Html\/Member\/Login/i.test(location.pathname) || (!window.TOKEN && /\/Html\/Products/i.test(location.pathname)) || (!window.TOKEN && /\/Html\/Member\/Register.html/i.test(location.pathname)) || (!window.TOKEN && location.pathname.match(/\/Html\/Member\/Forget/i)) || (!window.TOKEN && /\/Html\/Member\/Login.html/i.test(location.pathname)) || (!window.TOKEN && /\/Html\/Share/i.test(location.pathname)) || (!window.TOKEN && /\/Html\/Member\/WeChatBind/i.test(location.pathname))) {
 
     } else {
 
